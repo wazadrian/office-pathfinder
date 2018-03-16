@@ -2075,8 +2075,8 @@
 	<rect x="272" y="587" class="st12" width="27.5" height="27"/>
 	<rect x="528" y="1116" class="st12" width="27" height="27"/>
 	<rect x="528" y="1149" class="st12" width="27" height="27"/>
-	<rect x="1022" y="1116" class="st12" width="27" height="27"/>
-	<rect x="1022" y="1149" class="st12" width="27" height="27"/>
+	<rect x="1022" y="1115" class="st12" width="27" height="27"/>
+	<rect x="1022" y="1148" class="st12" width="27" height="27"/>
 	<rect x="1957" y="693" class="st12" width="27" height="27"/>
 </g>
 <g id="clickable-elevators" class="st10">
