@@ -12,8 +12,8 @@
 .position{
     position: absolute;
     left: 850px;
-    top: 100px;
-    width: 500px;
-    height: 800px;;
-    
+    top: 83px;
+    min-width: 605px;
+    min-height: 850px;
+    border-style: solid;
 }

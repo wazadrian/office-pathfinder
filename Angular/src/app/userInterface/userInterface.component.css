@@ -8,7 +8,10 @@
     width:100px
 }
 
-table th, td{
-    position: relative;
-   border: 1px solid black;
+h1{
+    text-align: center;
+}
+
+table, th, td{
+    border: 1px solid black;
 }

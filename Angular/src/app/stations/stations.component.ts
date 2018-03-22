@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { DataService } from "../data.service";
 
 @Component({
   selector: '[app-stations]',
@@ -7,14 +8,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StationsComponent implements OnInit {
 
-  constructor() { }
+  stationClicked:string;
+  
+  constructor(private _data: DataService) { }
 
   ngOnInit() {
+    this._data.currentMessage.subscribe(message => this.stationClicked = message)
   }
 
   onClick(event : Event) {
     
     console.log(event.srcElement.id);
+    this.stationClicked = event.srcElement.id;
+    this._data.changeMessage(this.stationClicked);
 
   }
+
+
+
+
+
 }

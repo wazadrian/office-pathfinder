@@ -6,14 +6,15 @@
     </div>
     
     <div>
-      <a class= 'btn btn-warning' (click)='onBack()'>
+      <a class= 'btn btn-warning' (click)='onClickEmployee()'>
         SEARCH
         <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
       </a>     
       <input type="text" name="fname"><br> 
     </div>
-
-    <div class='table'>
+    <h1>{{ stationClicked }}</h1>
+    <div class='table' *ngIf ='showEmployee'>
+        <h1>Dane: </h1>
       <table>
         <thead>
           <tr>
@@ -23,24 +24,18 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Stachu</td>
-            <td>Pomorski</td>
-            <td>INF</td>
+          <tr 
+          *ngFor='let employee of employees'>
+            <td>{{ employee.employeeId }}</td>
+            <td>{{ employee.employeeName }}</td>
+            <td>{{ employee.employeeSurname }}</td>
+            <td>{{ employee.employeePosition }}</td>
           </tr>
-          <tr>
-              <td>Peter</td>
-              <td>Griffin</td>
-              <td>BOSS</td>
-            </tr>
-            <tr>
-                <td>Jan</td>
-                <td>Kowalski</td>
-                <td>HR</td>
-              </tr>
         </tbody>
       </table>
     </div>
+
+  
 
 </div>
 

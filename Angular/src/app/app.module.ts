@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 
 import { AppComponent } from './app.component';
@@ -9,6 +11,7 @@ import { ConferenceRoomsComponent } from './conference-rooms/conference-rooms.co
 import { MapComponent } from './map/map.component';
 import { UserInterfaceComponent } from './userInterface/userInterface.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,10 +19,12 @@ import { UserInterfaceComponent } from './userInterface/userInterface.component'
     PopupComponent,
     ConferenceRoomsComponent,
     MapComponent,
-    UserInterfaceComponent
+    UserInterfaceComponent,
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
