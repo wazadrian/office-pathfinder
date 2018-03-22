@@ -1,0 +1,14 @@
+.panel-heading{
+    font-size: 20px;
+    font-family: Consolas, "Times New Roman", Times, serif;
+    text-align: center;
+}
+
+.btn-default{
+    width:100px
+}
+
+table th, td{
+    position: relative;
+   border: 1px solid black;
+}

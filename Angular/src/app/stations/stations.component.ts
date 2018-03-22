@@ -13,8 +13,7 @@ export class StationsComponent implements OnInit {
   }
 
   onClick(event : Event) {
-
-    //console.log(event);
+    
     console.log(event.srcElement.id);
 
   }
