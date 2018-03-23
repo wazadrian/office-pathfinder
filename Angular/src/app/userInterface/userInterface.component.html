@@ -12,8 +12,8 @@
       </a>     
       <input type="text" name="fname"><br> 
     </div>
-    <h1>{{ stationClicked }}</h1>
-    <div class='table' *ngIf ='showEmployee'>
+    <h1>Zostala wybrana: {{ stationClicked }}</h1>
+    <div class='table' *ngIf ='stationClicked !== ""'>
         <h1>Dane: </h1>
       <table>
         <thead>

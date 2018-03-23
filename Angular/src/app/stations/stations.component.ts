@@ -9,7 +9,6 @@ import { DataService } from "../data.service";
 export class StationsComponent implements OnInit {
 
   stationClicked:string;
-  
   constructor(private _data: DataService) { }
 
   ngOnInit() {
