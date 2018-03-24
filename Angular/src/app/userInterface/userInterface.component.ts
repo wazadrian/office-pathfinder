@@ -19,21 +19,18 @@ export class UserInterfaceComponent implements OnInit, AfterContentChecked {
   stationClicked:string;
   stationNumber:number;
 
-
-
   constructor(private _employeesService: EmployeesService, private _data: DataService) { }
 
   ngOnInit(): void {
-    this.employees = this._employeesService.getEmployees();
+ //   this.employees = this._employeesService.getEmployees();
     this._data.currentMessage.subscribe(message => this.stationClicked = message);
 
     
-/*
+
     this._employeesService.getEmployees()
       .subscribe(employees => this.employees = employees,
       error => this.errorMessage = <any>error);
-*/
-    //this.filteredEmployees
+
   }
 
   ngAfterContentChecked() {
@@ -41,25 +38,11 @@ export class UserInterfaceComponent implements OnInit, AfterContentChecked {
     station = this.stationClicked.substr(7, 9);
     this.stationNumber = +station;
     console.log(this.stationNumber);
-   // this.filterEmoplyees();
+
+    //filtrowanie by jedna osoba sie wyswietlala
+    this.filteredEmployes = this.employees.filter((employee: IEmployee) =>
+    employee.employeeId ===this.stationNumber);
   }
-
- // filterEmoplyees():void{
-
-   //for (let employee of this.employees){
-   //   if(employee.employeeId === this.stationNumber){
-    //    this.filteredEmployes.push(employee);
-    //  }
-  // }
-
- // }
-
-  funkcja(element, index, array):void{
-    if(element.employeeId === this.stationNumber){
-      this.filteredEmployes += element;
-    }
-  }
-
 
   onClickEmployee(): void {
     this.showEmployee = !this.showEmployee;

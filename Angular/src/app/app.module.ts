@@ -10,6 +10,7 @@ import { PopupComponent } from './popup/popup.component';
 import { ConferenceRoomsComponent } from './conference-rooms/conference-rooms.component';
 import { MapComponent } from './map/map.component';
 import { UserInterfaceComponent } from './userInterface/userInterface.component';
+import { HelpComponent } from './help/help.component';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { UserInterfaceComponent } from './userInterface/userInterface.component'
     ConferenceRoomsComponent,
     MapComponent,
     UserInterfaceComponent,
+    HelpComponent,
   ],
   imports: [
     BrowserModule,
