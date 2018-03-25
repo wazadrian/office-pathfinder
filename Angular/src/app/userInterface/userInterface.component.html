@@ -12,9 +12,16 @@
       </a>     
       <input type="text" name="fname"><br> 
     </div>
-    <h1>Zostala wybrana: {{ stationClicked }}</h1>
+    <h1 *ngIf ='stationClicked === ""'>Wybierz lokalizacje</h1>
+    <h1 *ngIf ='stationClicked !== ""'>Wybrana lokalizacja: {{ stationClicked }}</h1>
     <div class='table' *ngIf ='stationClicked !== ""'>
         <h1>Dane: </h1>
+        <h1 *ngFor='let employee of filteredEmployes'>
+         <!-- {{ employee.employeeId }}.-->
+          {{ employee.employeeName }} 
+          {{ employee.employeeSurname }} 
+          {{ employee.employeePosition }}
+        </h1>
       <table>
         <thead>
           <tr>

@@ -14,6 +14,7 @@ export class UserInterfaceComponent implements OnInit, AfterContentChecked {
   title = 'Who or what you want to find?';
   employees: IEmployee[] = [];
   filteredEmployes: IEmployee [];
+  foundEmployee: IEmployee;
   showEmployee: boolean = false;
   errorMessage: string;
   stationClicked:string;
@@ -22,11 +23,9 @@ export class UserInterfaceComponent implements OnInit, AfterContentChecked {
   constructor(private _employeesService: EmployeesService, private _data: DataService) { }
 
   ngOnInit(): void {
- //   this.employees = this._employeesService.getEmployees();
     this._data.currentMessage.subscribe(message => this.stationClicked = message);
 
     
-
     this._employeesService.getEmployees()
       .subscribe(employees => this.employees = employees,
       error => this.errorMessage = <any>error);
@@ -34,14 +33,18 @@ export class UserInterfaceComponent implements OnInit, AfterContentChecked {
   }
 
   ngAfterContentChecked() {
-    let station;
-    station = this.stationClicked.substr(7, 9);
-    this.stationNumber = +station;
-    console.log(this.stationNumber);
+    this.filterPlace();
 
     //filtrowanie by jedna osoba sie wyswietlala
     this.filteredEmployes = this.employees.filter((employee: IEmployee) =>
     employee.employeeId ===this.stationNumber);
+  }
+
+  filterPlace(){
+    let station;
+    station = this.stationClicked.substr(7, 9);
+    this.stationNumber = +station;
+    console.log(this.stationNumber);
   }
 
   onClickEmployee(): void {
@@ -50,3 +53,12 @@ export class UserInterfaceComponent implements OnInit, AfterContentChecked {
   
 
 } 
+
+ /*filterEmoplyees():void{
+   for (let employee of this.employees){
+      if(employee.employeeId == this.stationNumber){
+        this.foundEmployee = employee;
+      }
+    }
+  }
+*/

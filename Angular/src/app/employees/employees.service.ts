@@ -12,47 +12,9 @@ import { IEmployee } from './employee';
 @Injectable()
 export class EmployeesService {
 
-  private _employeeUrl = './api/employees/employees.json';
+  private _employeeUrl = './assets/employees.json';
   constructor(private _http: HttpClient) { }
 
-
-
-/*
-getEmployees(): IEmployee[]{
-  return [
-    {
-	"employeeId": 1,
-        "employeeName": "Maciek",
-        "employeeSurname": "Kołodziejski",
-        "employeePosition": "Sprzątaczka"
-    },
-    {
-	"employeeId": 2,
-        "employeeName": "Oskar",
-        "employeeSurname": "Sadowski",
-        "employeePosition": "BOSS"
-    },
-    {
-      "employeeId": 3,
-            "employeeName": "Mateusz",
-            "employeeSurname": "Janiszewski",
-            "employeePosition": "INF"
-        },
-        {
-      "employeeId": 4,
-            "employeeName": "Dominik",
-            "employeeSurname": "Malicki",
-            "employeePosition": "INF"
-        },
-        {
-      "employeeId": 5,
-            "employeeName": "Mateusz",
-            "employeeSurname": "NieJaniszewski",
-            "employeePosition": "INF"
-        }
-  ]
-}
-*/
 
 
   getEmployees(): Observable<IEmployee[]>{
@@ -69,8 +31,7 @@ getEmployees(): IEmployee[]{
   
 }
 
-
-//getProduct(): Observable<IProduct[]>{
-
-
+//getEmployees(){
+//  return this._http.get(this._employeeUrl).map((response:Response) => response.json());
+//}
 
