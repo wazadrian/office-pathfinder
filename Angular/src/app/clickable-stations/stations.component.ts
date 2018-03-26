@@ -20,7 +20,6 @@ export class StationsComponent implements OnInit {
     console.log(event.srcElement.id);
     this.stationClicked = event.srcElement.id;
     this._data.changeMessage(this.stationClicked);
-
   }
 
 

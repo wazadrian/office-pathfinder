@@ -17,13 +17,13 @@ export class UserInterfaceComponent implements OnInit, AfterContentChecked {
   foundEmployee: IEmployee;
   showEmployee: boolean = false;
   errorMessage: string;
-  stationClicked:string;
-  stationNumber:number;
+  placeClicked:string;
+  placeNumber:number;
 
   constructor(private _employeesService: EmployeesService, private _data: DataService) { }
 
   ngOnInit(): void {
-    this._data.currentMessage.subscribe(message => this.stationClicked = message);
+    this._data.currentMessage.subscribe(message => this.placeClicked = message);
 
     
     this._employeesService.getEmployees()
@@ -37,14 +37,26 @@ export class UserInterfaceComponent implements OnInit, AfterContentChecked {
 
     //filtrowanie by jedna osoba sie wyswietlala
     this.filteredEmployes = this.employees.filter((employee: IEmployee) =>
-    employee.employeeId ===this.stationNumber);
+    employee.employeeId ===this.placeNumber);
   }
 
   filterPlace(){
-    let station;
-    station = this.stationClicked.substr(7, 9);
-    this.stationNumber = +station;
-    console.log(this.stationNumber);
+    let place;
+    let str = this.placeClicked.substr(0, 4);
+
+    if( str === "room"){
+      place = this.placeClicked.substr(4, 2); //naciśnięty został pokój
+    }
+    else if( str === "offi"){
+      place = this.placeClicked.substr(6, 2); //naciśnięty został office
+    }
+    else{
+      place = this.placeClicked.substr(7, 3); //naciśnięta została stacja
+    }
+
+
+    this.placeNumber = +place;
+    console.log(this.placeNumber);
   }
 
   onClickEmployee(): void {
