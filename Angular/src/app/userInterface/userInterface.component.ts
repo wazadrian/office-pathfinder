@@ -23,7 +23,9 @@ export class UserInterfaceComponent implements OnInit, AfterContentChecked {
   constructor(private _employeesService: EmployeesService, private _data: DataService) { }
 
   ngOnInit(): void {
-    this._data.currentMessage.subscribe(message => this.placeClicked = message);
+    this._data.currentMessage.subscribe(message => {
+      this.placeClicked = message;
+    });
 
     
     this._employeesService.getEmployees()
