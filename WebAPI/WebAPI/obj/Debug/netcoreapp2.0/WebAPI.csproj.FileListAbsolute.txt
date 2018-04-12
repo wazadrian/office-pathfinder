@@ -1,0 +1,11 @@
+K:\Projects\office-pathfinder\WebAPI\WebAPI\bin\Debug\netcoreapp2.0\WebAPI.deps.json
+K:\Projects\office-pathfinder\WebAPI\WebAPI\bin\Debug\netcoreapp2.0\WebAPI.runtimeconfig.json
+K:\Projects\office-pathfinder\WebAPI\WebAPI\bin\Debug\netcoreapp2.0\WebAPI.runtimeconfig.dev.json
+K:\Projects\office-pathfinder\WebAPI\WebAPI\bin\Debug\netcoreapp2.0\WebAPI.dll
+K:\Projects\office-pathfinder\WebAPI\WebAPI\obj\Debug\netcoreapp2.0\WebAPI.csprojResolveAssemblyReference.cache
+K:\Projects\office-pathfinder\WebAPI\WebAPI\obj\Debug\netcoreapp2.0\WebAPI.csproj.CoreCompileInputs.cache
+K:\Projects\office-pathfinder\WebAPI\WebAPI\obj\Debug\netcoreapp2.0\WebAPI.AssemblyInfoInputs.cache
+K:\Projects\office-pathfinder\WebAPI\WebAPI\obj\Debug\netcoreapp2.0\WebAPI.AssemblyInfo.cs
+K:\Projects\office-pathfinder\WebAPI\WebAPI\bin\Debug\netcoreapp2.0\WebAPI.pdb
+K:\Projects\office-pathfinder\WebAPI\WebAPI\obj\Debug\netcoreapp2.0\WebAPI.dll
+K:\Projects\office-pathfinder\WebAPI\WebAPI\obj\Debug\netcoreapp2.0\WebAPI.pdb
