@@ -9,3 +9,14 @@ K:\Projects\office-pathfinder\WebAPI\WebAPI\obj\Debug\netcoreapp2.0\WebAPI.Assem
 K:\Projects\office-pathfinder\WebAPI\WebAPI\bin\Debug\netcoreapp2.0\WebAPI.pdb
 K:\Projects\office-pathfinder\WebAPI\WebAPI\obj\Debug\netcoreapp2.0\WebAPI.dll
 K:\Projects\office-pathfinder\WebAPI\WebAPI\obj\Debug\netcoreapp2.0\WebAPI.pdb
+C:\Users\MJ\Documents\Visual Studio 2017\Projects\office-pathfinder\WebAPI\WebAPI\bin\Debug\netcoreapp2.0\WebAPI.deps.json
+C:\Users\MJ\Documents\Visual Studio 2017\Projects\office-pathfinder\WebAPI\WebAPI\bin\Debug\netcoreapp2.0\WebAPI.runtimeconfig.json
+C:\Users\MJ\Documents\Visual Studio 2017\Projects\office-pathfinder\WebAPI\WebAPI\bin\Debug\netcoreapp2.0\WebAPI.runtimeconfig.dev.json
+C:\Users\MJ\Documents\Visual Studio 2017\Projects\office-pathfinder\WebAPI\WebAPI\bin\Debug\netcoreapp2.0\WebAPI.dll
+C:\Users\MJ\Documents\Visual Studio 2017\Projects\office-pathfinder\WebAPI\WebAPI\bin\Debug\netcoreapp2.0\WebAPI.pdb
+C:\Users\MJ\Documents\Visual Studio 2017\Projects\office-pathfinder\WebAPI\WebAPI\obj\Debug\netcoreapp2.0\WebAPI.csprojResolveAssemblyReference.cache
+C:\Users\MJ\Documents\Visual Studio 2017\Projects\office-pathfinder\WebAPI\WebAPI\obj\Debug\netcoreapp2.0\WebAPI.csproj.CoreCompileInputs.cache
+C:\Users\MJ\Documents\Visual Studio 2017\Projects\office-pathfinder\WebAPI\WebAPI\obj\Debug\netcoreapp2.0\WebAPI.AssemblyInfoInputs.cache
+C:\Users\MJ\Documents\Visual Studio 2017\Projects\office-pathfinder\WebAPI\WebAPI\obj\Debug\netcoreapp2.0\WebAPI.AssemblyInfo.cs
+C:\Users\MJ\Documents\Visual Studio 2017\Projects\office-pathfinder\WebAPI\WebAPI\obj\Debug\netcoreapp2.0\WebAPI.dll
+C:\Users\MJ\Documents\Visual Studio 2017\Projects\office-pathfinder\WebAPI\WebAPI\obj\Debug\netcoreapp2.0\WebAPI.pdb

@@ -8,14 +8,15 @@ using System.Net;
 using System.Threading.Tasks;
 using WebAPI.Models;
 
+
 namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     public class EmployeesController : Controller
     {
-        private const string _endpointUri = "https://officepathfinder.documents.azure.com:443/";
-        private const string _primaryKey = "WPNnm5XPIEcw5INS2Pxb3iNJqJIpNGJ0jqlb0jH7Nn1fgyEcvLTwEI0NCp2MjuPke2MACQKi0FonFnlvoeSCyg==";
-        private DocumentClient _client = new DocumentClient(new Uri(_endpointUri), _primaryKey);
+        //private const string _endpointUri = "https://officepathfinder.documents.azure.com:443/";
+        //private const string _primaryKey = "WPNnm5XPIEcw5INS2Pxb3iNJqJIpNGJ0jqlb0jH7Nn1fgyEcvLTwEI0NCp2MjuPke2MACQKi0FonFnlvoeSCyg==";
+        //private DocumentClient _client = new DocumentClient(new Uri(_endpointUri), _primaryKey);
 
         public EmployeesController()
         {
@@ -27,7 +28,7 @@ namespace WebAPI.Controllers
         {
             FeedOptions queryOptions = new FeedOptions { MaxItemCount = -1 };
 
-            var employeesQuery = _client.CreateDocumentQuery<Employee>(
+            var employeesQuery = CosmosDbConnection.client.CreateDocumentQuery<Employee>(
                 UriFactory.CreateDocumentCollectionUri("Office", "EmployeesCollection"), queryOptions);
 
             var employees = new List<Employee>(employeesQuery);
@@ -36,28 +37,25 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateEmployee(Employee employee)
+        public async void CreateEmployee([FromBody] Employee employee)
         {
-            employee.employeeId = 2313;
-            employee.employeeName = "Dupson";
+            
+            await CreateDocumentIfNotExists("Office", "EmployeesCollection", employee);
 
-            CreateFamilyDocumentIfNotExists("Office", "EmployeesCollection", employee);
-
-            return Ok();
         }
 
-        private async Task CreateFamilyDocumentIfNotExists(string databaseName, string collectionName, Employee employee)
+        private async Task CreateDocumentIfNotExists(string databaseName, string collectionName, Employee employee)
         {
             try
             {
                 Guid documentId = Guid.NewGuid();
-                await this._client.ReadDocumentAsync(UriFactory.CreateDocumentUri(databaseName, collectionName, documentId.ToString()));
+                await CosmosDbConnection.client.ReadDocumentAsync(UriFactory.CreateDocumentUri(databaseName, collectionName, documentId.ToString()));
             }
             catch (DocumentClientException de)
             {
                 if (de.StatusCode == HttpStatusCode.NotFound)
                 {
-                    await this._client.CreateDocumentAsync(UriFactory.CreateDocumentCollectionUri(databaseName, collectionName), employee);
+                    await CosmosDbConnection.client.CreateDocumentAsync(UriFactory.CreateDocumentCollectionUri(databaseName, collectionName), employee);
                 }
                 else
                 {
@@ -65,5 +63,36 @@ namespace WebAPI.Controllers
                 }
             }
         }
+
+        
+
+        [HttpDelete("{id}")]
+        public async void DeleteEmployeeAsync(string id)
+        {
+            //DeleteEmployeeDocument("Office", "EmployeesCollection", id);
+            await DeleteEmployeeDocument("Office", "EmployeesCollection", id);
+
+        }
+
+        private async Task DeleteEmployeeDocument(string databaseName, string collectionName, string documentId)
+        {
+            await CosmosDbConnection.client.DeleteDocumentAsync(UriFactory.CreateDocumentUri(databaseName, collectionName, documentId));
+        }
+
+        [HttpPut("{id}")]
+        public async void UpdateEmployeeAsync(string id, [FromBody] Employee employee)
+        {
+            employee.id = id;
+            await UpdateDocument("Office", "EmployeesCollection", id, employee);
+        }
+
+        private async Task UpdateDocument(string databaseName, string collectionName, string documentId, Employee updatedEmployee)
+        {
+            await CosmosDbConnection.client.ReplaceDocumentAsync(UriFactory.CreateDocumentUri(databaseName, collectionName, documentId), updatedEmployee);
+        }
+
+
+
+
     }
 }

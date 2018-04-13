@@ -16,6 +16,8 @@ namespace WebAPI
 {
     public class Program
     {
+       
+
         public static void Main(string[] args)
         {
             BuildWebHost(args).Run();
@@ -44,7 +46,7 @@ namespace WebAPI
 
         private async Task GetStartedDemo()
         {
-            
+
         }
 
         public static IWebHost BuildWebHost(string[] args) =>
