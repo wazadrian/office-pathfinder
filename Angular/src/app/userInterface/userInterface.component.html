@@ -1,3 +1,6 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 <div>
     <div class='panel panel-info'>
         <div class='panel-heading'>
@@ -10,6 +13,13 @@
         SEARCH
         <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
       </a>     
+      <a id='buttonElev' class= 'btn btn-info' (click)='onClickElevator($event)'>
+        Elevator
+        <span id='buttonElev' class="glyphicon glyphicon-sort" aria-hidden="true"></span>
+      </a>
+      <a id='buttonWC' class= 'btn btn-info' (click)='onClickWC($event)'>
+        <i id='buttonWC' class="material-icons" style="font-size: 26px; color:white">wc</i>
+      </a>
       <input type="text" name="fname"><br> 
     </div>
 

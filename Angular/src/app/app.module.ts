@@ -14,6 +14,7 @@ import { UserInterfaceComponent } from './userInterface/userInterface.component'
 import { HelpComponent } from './help/help.component';
 import { ClickableOfficesComponent } from './clickable-offices/clickable-offices.component';
 import { ClickableRoomsComponent } from './clickable-rooms/clickable-rooms.component';
+import { ClickableOthersComponent } from './clickable-others/clickable-others.component';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { ClickableRoomsComponent } from './clickable-rooms/clickable-rooms.compo
     HelpComponent,
     ClickableOfficesComponent,
     ClickableRoomsComponent,
+    ClickableOthersComponent,
   ],
   imports: [
     BrowserModule,

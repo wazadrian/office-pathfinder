@@ -12,6 +12,7 @@ export class ClickableRoomsComponent implements OnInit {
   prevEventSrcID : string;
   prevElement : Element;
   placeClicked : string;
+  doubleClick : boolean = false;
   sillyCheck : boolean = true;
 
   constructor(private _data: DataService) { }
@@ -24,7 +25,8 @@ export class ClickableRoomsComponent implements OnInit {
 
   ngAfterContentChecked() {
     if (this.placeClicked[0] != 'r' && this.prevElement != null) {
-      console.log("Poprzedni element odczytany data after: " + this.placeClicked);
+      //console.log("Poprzedni element odczytany data after: " + this.placeClicked);
+      this.prevEventSrcID = this.placeClicked;
       this.fadeOut();
     }    
   }
@@ -44,22 +46,21 @@ export class ClickableRoomsComponent implements OnInit {
     this.roomClicked = event.srcElement.id;
     this._data.changeMessage(this.roomClicked);
     //console.log("Poprzedni element odczytany data: " + this.placeClicked);
-    if (this.placeClicked != null) {
-        
-      if (this.prevEventSrcID != event.srcElement.id && this.prevElement != null) {
-            //console.log("Poprzedni element odczytany lok: " + this.prevElement.id);
-            this.fadeOut();
-      }
 
-      this.letMeShine();
-
-      this.prevEventSrcID = event.srcElement.id;
-      this.prevElement = event.srcElement;
-    }
-    else {
+    if (this.prevEventSrcID === event.srcElement.id && !this.doubleClick) {
       this.fadeOut();
+      this.doubleClick = true;
+    } else {
+      if (this.prevEventSrcID != event.srcElement.id && this.prevElement != null) {
+        //console.log("Poprzedni element odczytany: " + this.prevElement.id);
+        this.fadeOut();
+      }
+      this.doubleClick = false;
+      this.letMeShine();
     }
-    //console.log("Poprzedni element zapisany: " + this.prevElement.id);
+
+    this.prevEventSrcID = event.srcElement.id;
+    this.prevElement = event.srcElement;
 
   }
 

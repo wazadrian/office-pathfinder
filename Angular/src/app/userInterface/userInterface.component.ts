@@ -20,12 +20,14 @@ export class UserInterfaceComponent implements OnInit, AfterContentChecked {
   errorMessage: string;
   placeClicked:string;
   placeNumber:number;
+  wantToWCShine : boolean = false;
+  wantToElevatorShine : boolean = false;
 
   constructor(private _employeesService: EmployeesService, private _data: DataService) { }
 
   ngOnInit(): void {
     this._data.currentMessage.subscribe(message => this.placeClicked = message);
-
+    this._data.currentMsg.subscribe(wanted => this.wantToWCShine = wanted);
     
     this._employeesService.getEmployees()
       .subscribe(employees => this.employees = employees,
@@ -36,7 +38,12 @@ export class UserInterfaceComponent implements OnInit, AfterContentChecked {
     this.filterPlace();
 
     this.sillyChange = !this.sillyChange;
-
+    if (this.placeClicked != "buttonWC")
+      this.wantToWCShine = false;
+    if (this.placeClicked != "buttonElev")
+      this.wantToElevatorShine = false;
+    this._data.changeMsg(this.wantToWCShine);
+    //console.log(this.placeClicked + this.wantToWCShine);
    // let elm = document.getElementById("info");
   //  elm.classList.remove("table animated bounce");
    // elm.classList.add("table animated bounce");
@@ -70,6 +77,20 @@ export class UserInterfaceComponent implements OnInit, AfterContentChecked {
     this.showEmployee = !this.showEmployee;
   }
   
+  onClickWC(event : Event) {
+    this.wantToWCShine = !this.wantToWCShine;
+    this._data.changeMsg(this.wantToWCShine);
+    this._data.changeMessage(event.srcElement.id);
+    //console.log(event.srcElement.id + " User " + this.wantToWcShine);
+  }
+
+  onClickElevator(event : Event) {
+    this.wantToElevatorShine = !this.wantToElevatorShine;
+    this._data.changeMsgElevator(this.wantToElevatorShine);
+    this._data.changeMessage(event.srcElement.id);
+    //console.log(event.srcElement.id + " User " + this.wantToElevatorShine);
+  }
+
 
 } 
 

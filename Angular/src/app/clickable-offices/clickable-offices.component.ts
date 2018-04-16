@@ -12,6 +12,7 @@ export class ClickableOfficesComponent implements OnInit {
   prevEventSrcID : string;
   prevElement : Element;
   placeClicked : string;
+  doubleClick : boolean = false;
   constructor(private _data: DataService) { }
 
   ngOnInit() {
@@ -22,7 +23,8 @@ export class ClickableOfficesComponent implements OnInit {
 
   ngAfterContentChecked() {
     if (this.placeClicked[0] != 'o' && this.prevElement != null) {
-      console.log("Poprzedni element odczytany data after: " + this.placeClicked);
+      //console.log("Poprzedni element odczytany data after: " + this.placeClicked);
+      this.prevEventSrcID = this.placeClicked;
       this.fadeOut();
     }    
   }
@@ -43,13 +45,18 @@ export class ClickableOfficesComponent implements OnInit {
     this.officeClicked = event.srcElement.id;
     this._data.changeMessage(this.officeClicked);
 
-    if (this.prevEventSrcID != event.srcElement.id && this.prevElement != null) {
-      //console.log("Poprzedni element odczytany: " + this.prevElement.id);
+
+    if (this.prevEventSrcID === event.srcElement.id && !this.doubleClick) {
       this.fadeOut();
+      this.doubleClick = true;
+    } else {
+      if (this.prevEventSrcID != event.srcElement.id && this.prevElement != null) {
+        //console.log("Poprzedni element odczytany: " + this.prevElement.id);
+        this.fadeOut();
+      }
+      this.doubleClick = false;
+      this.letMeShine();
     }
-
-    this.letMeShine();
-
     this.prevEventSrcID = event.srcElement.id;
     this.prevElement = event.srcElement;
 
