@@ -14,42 +14,77 @@
     </div>
 
     <h1 *ngIf ='placeClicked === "";else notEmpty'>Wybierz lokalizacje</h1>
-    <ng-template #notEmpty>
-      <h1>Wybrana lokalizacja: {{ placeClicked }}</h1>
-    </ng-template>
+    
+      <ng-template #notEmpty>
+        <h1>Wybrana lokalizacja: {{ placeClicked }}</h1>
+      </ng-template>
 
-    <div class='table' *ngIf ='filteredEmployes.length > 0;else noData'>
-        <h2>Dane: </h2>
-        <h2 *ngFor='let employee of filteredEmployes'>
-         <!-- {{ employee.employeeId }}.-->
-          {{ employee.employeeName }} 
-          {{ employee.employeeSurname }} 
-          {{ employee.employeePosition }}
-        </h2>
-      <table>
-        <thead>
-          <tr>
-              <th>Imie</th>
-              <th>Nazwisko</th>
-              <th>Stanowisko</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr 
-          *ngFor='let employee of filteredEmployes'>
-           <!-- <td>{{ employee.employeeId }}</td> -->
-            <td>{{ employee.employeeName }}</td>
-            <td>{{ employee.employeeSurname }}</td>
-            <td>{{ employee.employeePosition }}</td>
-          </tr>
-        </tbody>
-      </table>
+      <div *ngIf ='sillyChange === true;else twin'>
+
+      <div id='info' class='table animated fadeIn' *ngIf ='filteredEmployes.length > 0;else noData'>
+          <h2>Dane: </h2>
+          <h2 *ngFor='let employee of filteredEmployes'>
+          <!-- {{ employee.employeeId }}.-->
+            {{ employee.employeeName }} 
+            {{ employee.employeeSurname }} 
+            {{ employee.employeePosition }}
+          </h2>
+        <table>
+          <thead>
+            <tr>
+                <th>Imie</th>
+                <th>Nazwisko</th>
+                <th>Stanowisko</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr 
+            *ngFor='let employee of filteredEmployes'>
+            <!-- <td>{{ employee.employeeId }}</td> -->
+              <td>{{ employee.employeeName }}</td>
+              <td>{{ employee.employeeSurname }}</td>
+              <td>{{ employee.employeePosition }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <ng-template #noData>
+          <h2 *ngIf ='placeClicked !== ""'>W tym pomieszczeniu niestety<br>nikt jeszcze nie przesiaduje</h2>
+      </ng-template>
     </div>
-    <ng-template #noData>
-        <h2 *ngIf ='placeClicked !== ""'>W tym pomieszczeniu niestety<br>nikt jeszcze nie przesiaduje</h2>
+    <ng-template #twin>
+        <div id='info' class='table animated fadeIn' *ngIf ='filteredEmployes.length > 0;else noData'>
+            <h2>Dane: </h2>
+            <h2 *ngFor='let employee of filteredEmployes'>
+            <!-- {{ employee.employeeId }}.-->
+              {{ employee.employeeName }} 
+              {{ employee.employeeSurname }} 
+              {{ employee.employeePosition }}
+            </h2>
+          <table>
+            <thead>
+              <tr>
+                  <th>Imie</th>
+                  <th>Nazwisko</th>
+                  <th>Stanowisko</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr 
+              *ngFor='let employee of filteredEmployes'>
+              <!-- <td>{{ employee.employeeId }}</td> -->
+                <td>{{ employee.employeeName }}</td>
+                <td>{{ employee.employeeSurname }}</td>
+                <td>{{ employee.employeePosition }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <ng-template #noData>
+            <h2 *ngIf ='placeClicked !== ""'>W tym pomieszczeniu niestety<br>nikt jeszcze nie przesiaduje</h2>
+        </ng-template>
     </ng-template>
-
-  
+  </div>
 
 </div>
 

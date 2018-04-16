@@ -16,6 +16,7 @@ export class UserInterfaceComponent implements OnInit, AfterContentChecked {
   filteredEmployes: IEmployee [];
   foundEmployee: IEmployee;
   showEmployee: boolean = false;
+  sillyChange: boolean = false;
   errorMessage: string;
   placeClicked:string;
   placeNumber:number;
@@ -29,15 +30,21 @@ export class UserInterfaceComponent implements OnInit, AfterContentChecked {
     this._employeesService.getEmployees()
       .subscribe(employees => this.employees = employees,
       error => this.errorMessage = <any>error);
-
   }
 
   ngAfterContentChecked() {
     this.filterPlace();
 
+    this.sillyChange = !this.sillyChange;
+
+   // let elm = document.getElementById("info");
+  //  elm.classList.remove("table animated bounce");
+   // elm.classList.add("table animated bounce");
+
     //filtrowanie by jedna osoba sie wyswietlala
     this.filteredEmployes = this.employees.filter((employee: IEmployee) =>
     employee.employeeId ===this.placeNumber);
+    
   }
 
   filterPlace(){

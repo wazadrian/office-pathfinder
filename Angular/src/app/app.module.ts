@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -30,8 +31,10 @@ import { ClickableRoomsComponent } from './clickable-rooms/clickable-rooms.compo
   imports: [
     BrowserModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    MDBBootstrapModule.forRoot()
   ],
+  schemas: [ NO_ERRORS_SCHEMA ],
   providers: [],
   bootstrap: [AppComponent]
 })

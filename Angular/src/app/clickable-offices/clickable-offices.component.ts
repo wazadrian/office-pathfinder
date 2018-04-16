@@ -9,10 +9,32 @@ import { DataService } from "../data.service";
 export class ClickableOfficesComponent implements OnInit {
 
   officeClicked:string;
+  prevEventSrcID : string;
+  prevElement : Element;
+  placeClicked : string;
   constructor(private _data: DataService) { }
 
   ngOnInit() {
     this._data.currentMessage.subscribe(message => this.officeClicked = message)
+    this._data.currentMessage.subscribe(message => this.placeClicked = message);
+
+  }
+
+  ngAfterContentChecked() {
+    if (this.placeClicked[0] != 'o' && this.prevElement != null) {
+      console.log("Poprzedni element odczytany data after: " + this.placeClicked);
+      this.fadeOut();
+    }    
+  }
+
+  fadeOut() {
+    this.prevElement.removeAttribute("class");
+    this.prevElement.setAttribute("class", "st16");
+  }
+
+  letMeShine() {
+    event.srcElement.removeAttribute("class");
+    event.srcElement.setAttribute("class", "shining");
   }
 
   onClick(event : Event) {
@@ -20,6 +42,16 @@ export class ClickableOfficesComponent implements OnInit {
     console.log(event.srcElement.id);
     this.officeClicked = event.srcElement.id;
     this._data.changeMessage(this.officeClicked);
+
+    if (this.prevEventSrcID != event.srcElement.id && this.prevElement != null) {
+      //console.log("Poprzedni element odczytany: " + this.prevElement.id);
+      this.fadeOut();
+    }
+
+    this.letMeShine();
+
+    this.prevEventSrcID = event.srcElement.id;
+    this.prevElement = event.srcElement;
 
   }
 
