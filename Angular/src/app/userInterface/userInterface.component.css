@@ -40,18 +40,20 @@ table, th, td{
 }
 .water4{
     position: absolute;
-    left: 680px;
+    left: 670px;
     top: 1050px;
+    width: 50px;
 }
 .water5{
     position: absolute;
-    left: 1170px;
+    left: 1160px;
     top: 800px;
+    width: 50px;
 }
 .coffee{
     position: absolute;
     left: -555px;
-    top: 520px;
+    top: 510px;
 }
 .coffee2{
     position: absolute;
@@ -65,13 +67,15 @@ table, th, td{
 }
 .coffee4{
     position: absolute;
-    left: 680px;
+    left: 660px;
     top: 1090px;
+    width: 50px;
 }
 .coffee5{
     position: absolute;
-    left: 1170px;
+    left: 1160px;
     top: 760px;
+    width: 50px;
 }
 .aid{
     position: absolute;
@@ -101,12 +105,13 @@ table, th, td{
 .printer5{
     position: absolute;
     left: 1155px;
-    top: 660px;
+    top: 675px;
+    width: 50px;
 }
 .eat{
     position: absolute;
     left: -600px;
-    top: 520px;
+    top: 510px;
 }
 .eat2{
     position: absolute;
@@ -120,31 +125,33 @@ table, th, td{
 }
 .eat4{
     position: absolute;
-    left: 680px;
+    left: 670px;
     top: 1020px;
+    width: 50px;
 }
 .eat5{
     position: absolute;
-    left: 1170px;
+    left: 1160px;
     top: 730px;
+    width: 50px;
 }
 .info{
     position: absolute;
-    left: 1634px;
-    top: 83px;
+    left: -260px;
+    top: 125px;
 }
 .bed{
     position: absolute;
-    left: 987px;
-    top: 83px;
+    left: -220px;
+    top: 125px;
 }
 .active{
     position: absolute;
-    left: 567px;
-    top: 83px;
+    left: -400px;
+    top: 125px;
 }
 .health{
     position: absolute;
-    left: 345px;
-    top: 83px;
+    left: -660px;
+    top: 125px;
 }
