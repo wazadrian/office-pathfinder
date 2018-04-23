@@ -19,6 +19,7 @@ export class DataService {
   private messageBed = new BehaviorSubject<boolean>(false);
   private messageActive = new BehaviorSubject<boolean>(false);
   private messageHealth = new BehaviorSubject<boolean>(false);
+  private messageSearch = new BehaviorSubject<boolean>(false);
   
   currentMessage = this.messageSource.asObservable();
   currentMessageForSearch = this.messageSource.asObservable();
@@ -34,6 +35,7 @@ export class DataService {
   currentMsgBed = this.messageElevator.asObservable();
   currentMsgActive = this.messageElevator.asObservable();
   currentMsgHealth = this.messageElevator.asObservable();
+  currentMsgSearch= this.messageSearch.asObservable();
 
   constructor() { }
 
@@ -91,5 +93,9 @@ export class DataService {
   
   changeMsgHealth(wanted : boolean) {
     this.messageElevator.next(wanted)
+  }
+
+  changeMsgSearch(wanted : boolean) {
+    this.messageSearch.next(wanted)
   }
 }

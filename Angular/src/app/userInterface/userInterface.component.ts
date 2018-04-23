@@ -38,6 +38,7 @@ export class UserInterfaceComponent implements OnInit, AfterContentChecked {
   wantToBedShine : boolean = false;
   wantToActiveShine : boolean = false;
   wantToHealthShine : boolean = false;
+  shySearchCheck : boolean = false;
   
   showSearchDiv : boolean = false;
   buttonWasClicked : boolean = true;
@@ -51,7 +52,7 @@ export class UserInterfaceComponent implements OnInit, AfterContentChecked {
 
   ngOnInit(): void {
     this._data.currentMessage.subscribe(message => this.placeClicked = message);
-    //this._data.currentMsg.subscribe(wanted => this.wantToWCShine = wanted);
+   // this._data.currentMsgSearch.subscribe(wanted => this.shySearchCheck = wanted);
 
     this._employeesService.getEmployees()
       .subscribe(employees => this.employees = employees,
@@ -61,14 +62,21 @@ export class UserInterfaceComponent implements OnInit, AfterContentChecked {
 
   ngAfterContentChecked() {
     this.filterPlace();
-
+   // this.shySearchCheck = false;
+    //this.dataForSearch = "";
     this.sillyChange = !this.sillyChange;
    // if (this.placeClicked != "buttonSearchSlide")
     //this.showSearchDiv = false;
 
+    if (this.placeClicked[0] != 's') {
+      this.shySearchCheck = false;
+      this._data.changeMsgSearch(this.shySearchCheck);
+    }
 
+    
     if (!this.equalsBtn(this.placeClicked)) {
       this.buttonWasClicked = false;
+      this.shySearchCheck = false;
       if (this.placeClicked != "buttonWC") {
         this.wantToWCShine = false;
         this._data.changeMsg(this.wantToWCShine);
@@ -83,6 +91,11 @@ export class UserInterfaceComponent implements OnInit, AfterContentChecked {
 
     this._data.changeMsg(this.wantToWCShine);
     this._data.changeMsgElevator(this.wantToElevatorShine);
+
+    /*if (this.dataForSearch != "") {
+    this.filteredEmployes = this.employees.filter((employee: IEmployee) =>
+    employee.employeeSurname ===this.dataForSearch);
+    }*/
 
     //filtrowanie by jedna osoba sie wyswietlala
     this.filteredEmployes = this.employees.filter((employee: IEmployee) =>
@@ -126,13 +139,31 @@ export class UserInterfaceComponent implements OnInit, AfterContentChecked {
     //this.showEmployee = !this.showEmployee;
     this._data.changeMessage(event.srcElement.id);
     this.showSearchDiv = !this.showSearchDiv;
-    console.log("Jestem batonem: ", event.srcElement.id, " ", this.showSearchDiv);
   }
 
   onClickSearch(inputData : string): void {
     if (inputData) {
+     // this.shySearchCheck = !this.shySearchCheck;
       this.dataForSearch = inputData;
       console.log(this.dataForSearch);
+      if (this.dataForSearch != "") {
+        this.employees.forEach(element => {
+          if (this.dataForSearch === element.employeeSurname) {
+           // this.placeClicked = element.employeeId.toString();
+            this.filteredEmployes = this.employees.filter((employee: IEmployee) =>
+            employee.employeeSurname ===this.dataForSearch);
+            this.placeClicked = "station" + element.employeeId.toString();
+            this._data.changeMessage(this.placeClicked);
+            this.shySearchCheck = true;
+            this._data.changeMsgSearch(this.shySearchCheck);
+          }
+         // console.log(this.filteredEmployes[0].employeeId + this.filteredEmployes[0].employeeName);
+        });
+      } 
+     /* else {
+        this.shySearchCheck = false;
+        this._data.changeMsgSearch(this.shySearchCheck);
+      }*/
     }
   }
 

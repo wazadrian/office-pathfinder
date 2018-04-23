@@ -9,30 +9,42 @@ import { DataService } from "../data.service";
   styleUrls: ['./stations.component.css']
 })
 export class StationsComponent implements OnInit {
-  @ViewChild('someInput') someInput: ElementRef; // dziala
 
   stationClicked:string;
   prevEventSrcID : string;
+  lastSearchID: string = "";
   prevElement : Element;
   placeClicked : string;
   doubleClick : boolean = false;
+  wasSearching : boolean = false;
   constructor(private _data: DataService) { }
 
   ngOnInit() {
     this._data.currentMessage.subscribe(message => this.stationClicked = message);
     this._data.currentMessage.subscribe(message => this.placeClicked = message);
+    this._data.currentMsgSearch.subscribe(messageSearch => this.wasSearching = messageSearch);
     //this.someInput.nativeElement.class = "shining";
+    //var element = document.getElementById('station1');
+    //element.setAttribute('class', 'shining');
   }
 
   ngAfterViewInit() {
-    //this.someInput.nativeElement.style.color = "red";
-   // this.someInput.nativeElement.removeAttribute("class");
-   // this.someInput.nativeElement.setAttribute("class", "shining");
-    //console.log("alo" + this.someInput.nativeElement.id);
 
   }
 
   ngAfterContentChecked() {
+    if (this.wasSearching) {
+      if (this.prevEventSrcID[0] === 's') 
+        document.getElementById(this.prevEventSrcID).setAttribute('class', 'st27');
+      document.getElementById(this.placeClicked).setAttribute('class', 'shining');
+      this.prevEventSrcID = this.placeClicked;
+      this.lastSearchID = this.prevEventSrcID;
+    }
+    else if (!this.wasSearching && this.lastSearchID != "") {
+      document.getElementById(this.lastSearchID).setAttribute('class', 'st27');
+    }
+
+
     if (this.placeClicked[0] != 's' && this.prevElement != null) {
       //console.log("Poprzedni element odczytany data after: " + this.placeClicked);
       this.prevEventSrcID = this.placeClicked;
@@ -68,6 +80,8 @@ export class StationsComponent implements OnInit {
       this.doubleClick = false;
       this.letMeShine();
     }
+
+    this._data.changeMsgSearch(false);
 
     this.prevEventSrcID = event.srcElement.id;
     this.prevElement = event.srcElement;
