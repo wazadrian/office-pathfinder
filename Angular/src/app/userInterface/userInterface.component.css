@@ -17,3 +17,134 @@ table, th, td{
     font-size: 16px;
     border: 1px solid black;
 }
+
+.fire{
+    position: absolute;
+    left: -460px;
+    top: 125px;
+}
+.water{
+    position: absolute;
+    left: -525px;
+    top: 510px;
+}
+.water2{
+    position: absolute;
+    left: -610px;
+    top: 1090px;
+}
+.water3{
+    position: absolute;
+    left: -220px;
+    top: 1050px;
+}
+.water4{
+    position: absolute;
+    left: 680px;
+    top: 1050px;
+}
+.water5{
+    position: absolute;
+    left: 1170px;
+    top: 800px;
+}
+.coffee{
+    position: absolute;
+    left: -555px;
+    top: 520px;
+}
+.coffee2{
+    position: absolute;
+    left: -610px;
+    top: 1060px;
+}
+.coffee3{
+    position: absolute;
+    left: -200px;
+    top: 1050px;
+}
+.coffee4{
+    position: absolute;
+    left: 680px;
+    top: 1090px;
+}
+.coffee5{
+    position: absolute;
+    left: 1170px;
+    top: 760px;
+}
+.aid{
+    position: absolute;
+    left: -560px;
+    top: 125px;
+}
+.printer{
+    position: absolute;
+    left: -360px;
+    top: 115px;
+}
+.printer2{
+    position: absolute;
+    left: -575px;
+    top: 520px;
+}
+.printer3{
+    position: absolute;
+    left: -320px;
+    top: 1165px;
+}
+.printer4{
+    position: absolute;
+    left: 175px;
+    top: 1035px;
+}
+.printer5{
+    position: absolute;
+    left: 1155px;
+    top: 660px;
+}
+.eat{
+    position: absolute;
+    left: -600px;
+    top: 520px;
+}
+.eat2{
+    position: absolute;
+    left: -610px;
+    top: 1120px;
+}
+.eat3{
+    position: absolute;
+    left: -170px;
+    top: 1050px;
+}
+.eat4{
+    position: absolute;
+    left: 680px;
+    top: 1020px;
+}
+.eat5{
+    position: absolute;
+    left: 1170px;
+    top: 730px;
+}
+.info{
+    position: absolute;
+    left: 1634px;
+    top: 83px;
+}
+.bed{
+    position: absolute;
+    left: 987px;
+    top: 83px;
+}
+.active{
+    position: absolute;
+    left: 567px;
+    top: 83px;
+}
+.health{
+    position: absolute;
+    left: 345px;
+    top: 83px;
+}

@@ -21,12 +21,24 @@ export class UserInterfaceComponent implements OnInit, AfterContentChecked {
   filteredEmployes: IEmployee [];
   foundEmployee: IEmployee;
   showEmployee: boolean = false;
+
   sillyChange: boolean = false;
   errorMessage: string;
   placeClicked:string;
   placeNumber:number;
   wantToWCShine : boolean = false;
   wantToElevatorShine : boolean = false;
+  wantToWaterShine : boolean = false;
+  wantToFireShine : boolean = false;
+  wantToCoffeeShine : boolean = false;
+  wantToAidShine : boolean = false;
+  wantToPrinterShine : boolean = false;
+  wantToEatShine : boolean = false;
+  wantToInfoShine : boolean = false;
+  wantToBedShine : boolean = false;
+  wantToActiveShine : boolean = false;
+  wantToHealthShine : boolean = false;
+  
   showSearchDiv : boolean = false;
   buttonWasClicked : boolean = true;
   btnIdSearchSlide : string = "buttonSearchSlide";
@@ -39,8 +51,8 @@ export class UserInterfaceComponent implements OnInit, AfterContentChecked {
 
   ngOnInit(): void {
     this._data.currentMessage.subscribe(message => this.placeClicked = message);
-    this._data.currentMsg.subscribe(wanted => this.wantToWCShine = wanted);
-    
+    //this._data.currentMsg.subscribe(wanted => this.wantToWCShine = wanted);
+
     this._employeesService.getEmployees()
       .subscribe(employees => this.employees = employees,
       error => this.errorMessage = <any>error);
@@ -53,6 +65,8 @@ export class UserInterfaceComponent implements OnInit, AfterContentChecked {
     this.sillyChange = !this.sillyChange;
    // if (this.placeClicked != "buttonSearchSlide")
     //this.showSearchDiv = false;
+
+
     if (!this.equalsBtn(this.placeClicked)) {
       this.buttonWasClicked = false;
       if (this.placeClicked != "buttonWC") {
@@ -81,7 +95,11 @@ export class UserInterfaceComponent implements OnInit, AfterContentChecked {
   }
 
   equalsBtn(a : string) : boolean {
-      if (a === this.btnIdSearchSlide || a === this.btnIdWC || a === this.btnIdElevator) return true; //a === this.btnIdSearchSlide ||
+      if (a === this.btnIdSearchSlide || a === this.btnIdWC || a === this.btnIdElevator
+          ||a === "buttonWater" ||a === "buttonFire"||a === "buttonCoffee"
+          ||a === "buttonAid" ||a === "buttonPrinter"||a === "buttonEat"
+          ||a === "buttonInfo" ||a === "buttonBed"||a === "buttonActive"
+          ||a === "buttonHealth") return true; 
       else return false;
   }
 
@@ -117,29 +135,89 @@ export class UserInterfaceComponent implements OnInit, AfterContentChecked {
       console.log(this.dataForSearch);
     }
   }
-  
-  onClickWC(event : Event) {
-    this.wantToWCShine = !this.wantToWCShine;
-    this._data.changeMsg(this.wantToWCShine);
-    this._data.changeMessage(event.srcElement.id);
-    //console.log(event.srcElement.id + " User " + this.wantToWcShine);
-  }
 
   onClickElevator(event : Event) {
     this.wantToElevatorShine = !this.wantToElevatorShine;
     this._data.changeMsgElevator(this.wantToElevatorShine);
     this._data.changeMessage(event.srcElement.id);
-    //console.log(event.srcElement.id + " User " + this.wantToElevatorShine);
   }
 
+  onClickWC(event : Event) {
+    this.wantToWCShine = !this.wantToWCShine;
+    this._data.changeMsg(this.wantToWCShine);
+    this._data.changeMessage(event.srcElement.id);
+  }
 
+  onClickWater(event : Event) {
+    this.wantToWaterShine = !this.wantToWaterShine;
+    this._data.changeMsgWater(this.wantToWaterShine);
+    this._data.changeMessage(event.srcElement.id);
+    console.log(event.srcElement.id + " User " + this.wantToWaterShine);
+  }
+
+  onClickFire(event : Event) {
+    this.wantToFireShine = !this.wantToFireShine;
+    this._data.changeMsgFire(this.wantToFireShine);
+    this._data.changeMessage(event.srcElement.id);
+
+  }
+
+  onClickCoffee(event : Event) {
+    this.wantToCoffeeShine = !this.wantToCoffeeShine;
+    this._data.changeMsgCoffee(this.wantToCoffeeShine);
+    this._data.changeMessage(event.srcElement.id);
+  }
+
+  onClickAid(event : Event) {
+    this.wantToAidShine = !this.wantToAidShine;
+    this._data.changeMsgAid(this.wantToAidShine);
+    this._data.changeMessage(event.srcElement.id);
+  }
+
+  onClickPrinter(event : Event) {
+    this.wantToPrinterShine = !this.wantToPrinterShine;
+    this._data.changeMsgPrinter(this.wantToPrinterShine);
+    this._data.changeMessage(event.srcElement.id);
+  }
+
+  onClickEat(event : Event) {
+    this.wantToEatShine = !this.wantToEatShine;
+    this._data.changeMsgEat(this.wantToEatShine);
+    this._data.changeMessage(event.srcElement.id);
+  }
+
+  onClickInfo(event : Event) {
+    this.wantToInfoShine = !this.wantToInfoShine;
+    this._data.changeMsgInfo(this.wantToInfoShine);
+    this._data.changeMessage(event.srcElement.id);
+  }
+
+  onClickBed(event : Event) {
+    this.wantToBedShine = !this.wantToBedShine;
+    this._data.changeMsgBed(this.wantToBedShine);
+    this._data.changeMessage(event.srcElement.id);
+  }
+
+  onClickActive(event : Event) {
+    this.wantToActiveShine = !this.wantToActiveShine;
+    this._data.changeMsgActive(this.wantToActiveShine);
+    this._data.changeMessage(event.srcElement.id);
+  }
+
+  onClickHealth(event : Event) {
+    this.wantToHealthShine = !this.wantToHealthShine;
+    this._data.changeMsgHealth(this.wantToHealthShine);
+    this._data.changeMessage(event.srcElement.id);
+  }
+  
+
+ /* filterEmoplyees():void{
+    for (let employee of this.employees){
+       if(employee.employeeId == this.stationNumber){
+         this.foundEmployee = employee;
+       }
+     }
+   }*/
 } 
 
- /*filterEmoplyees():void{
-   for (let employee of this.employees){
-      if(employee.employeeId == this.stationNumber){
-        this.foundEmployee = employee;
-      }
-    }
-  }
-*/
+ 

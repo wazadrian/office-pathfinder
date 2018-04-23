@@ -9,10 +9,8 @@ import { DataService } from "../data.service";
   styleUrls: ['./stations.component.css']
 })
 export class StationsComponent implements OnInit {
-  //@ViewChild("${wezadzialajpls}") someInput: ElementRef; // nie dziala
   @ViewChild('someInput') someInput: ElementRef; // dziala
 
-  wezadzialajpls:string = "someInput";
   stationClicked:string;
   prevEventSrcID : string;
   prevElement : Element;
@@ -28,9 +26,9 @@ export class StationsComponent implements OnInit {
 
   ngAfterViewInit() {
     //this.someInput.nativeElement.style.color = "red";
-    this.someInput.nativeElement.removeAttribute("class");
-    this.someInput.nativeElement.setAttribute("class", "shining");
-    console.log("alo" + this.someInput.nativeElement.id);
+   // this.someInput.nativeElement.removeAttribute("class");
+   // this.someInput.nativeElement.setAttribute("class", "shining");
+    //console.log("alo" + this.someInput.nativeElement.id);
 
   }
 

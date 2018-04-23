@@ -12,9 +12,9 @@ import { IEmployee } from './employee';
 @Injectable()
 export class EmployeesService {
 
+  //private _employeeUrl = './assets/employees.json';
   private _employeeUrl = './assets/employees.json';
   constructor(private _http: HttpClient) { }
-
 
 
   getEmployees(): Observable<IEmployee[]>{

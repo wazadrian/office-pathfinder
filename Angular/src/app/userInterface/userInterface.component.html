@@ -1,27 +1,57 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+
 
 <div>
     <div class='panel panel-info'>
         <div class='panel-heading'>
             {{title}}
-            
-    </div>
+        </div>
     
-    <div>
-      <a id='buttonSearchSlide' class= 'btn btn-warning' (click)='onClickSearchSlide($event)'>
-        SEARCH
-        <span id='buttonSearchSlide' class="glyphicon glyphicon-search" aria-hidden="true"></span>
-      </a>     
-      <a id='buttonElev' class= 'btn btn-info' (click)='onClickElevator($event)'>
-        Elevator
-        <span id='buttonElev' class="glyphicon glyphicon-sort" aria-hidden="true"></span>
-      </a>
-      <a id='buttonWC' class= 'btn btn-info' (click)='onClickWC($event)'>
-        <i id='buttonWC' class="material-icons" style="font-size: 26px; color:white">wc</i>
-      </a>
-      <input type="text" name="fname"><br> 
-    </div>
+      <div>
+        <a id='buttonSearchSlide' class= 'btn btn-warning' (click)='onClickSearchSlide($event)'>
+          SEARCH
+          <span id='buttonSearchSlide' class="glyphicon glyphicon-search" aria-hidden="true"></span>
+        </a>    
+        <a id='buttonElev' class= 'btn btn-success' (click)='onClickElevator($event)'>
+          <span id='buttonElev' class="glyphicon glyphicon-sort" aria-hidden="true" style="font-size: 30px"></span>
+        </a>
+        <a id='buttonWC' class= 'btn btn-info' (click)='onClickWC($event)'>
+          <i id='buttonWC' class="material-icons" style="font-size: 30px">wc</i>
+        </a>
+        <a id='buttonWater' class= 'btn btn-primary' (click)='onClickWater($event)'>
+          <i class="fas fa-tint" style="font-size: 30px"></i>
+        </a>
+        <a id='buttonFire' class= 'btn btn-danger' (click)='onClickFire($event)'>
+          <i class="fas fa-fire-extinguisher" style="font-size: 30px"></i>
+        </a>
+        <a id='buttonCoffee' class= 'btn btn-danger' (click)='onClickCoffee($event)'>
+          <i class="fas fa-coffee" style="font-size: 30px"></i>
+        </a>
+        <a id='buttonAid' class= 'btn btn-primary' (click)='onClickAid($event)'>
+          <i class="fas fa-first-aid" style="font-size: 30px"></i>
+        </a>
+        <br>
+        <a id='buttonPrinter' class= 'btn btn-info' (click)='onClickPrinter($event)'>
+          <i class="fas fa-print" style="font-size: 30px"></i>
+        </a>
+        <a id='buttonEat' class= 'btn btn-danger' (click)='onClickEat($event)'>
+          <i class="fas fa-utensils" style="font-size: 30px"></i>
+        </a>
+        <a id='buttonInfo' class= 'btn btn-primary' (click)='onClickInfo($event)'>
+          <i class="fas fa-info" style="font-size: 30px"></i>
+        </a>
+        <a id='buttonBed' class= 'btn btn-success' (click)='onClickBed($event)'>
+          <i class="fas fa-bed" style="font-size: 30px"></i>
+        </a>
+        <a id='buttonActive' class= 'btn btn-success' (click)='onClickActive($event)'>
+          <i class="fas fa-table-tennis" style="font-size: 30px"></i>
+        </a>
+        <a id='buttonHealth' class= 'btn btn-danger' (click)='onClickHealth($event)'>
+          <i class="fas fa-heart" style="font-size: 30px"></i>
+        </a>    
+      </div>
 
     <div>
         <div id='search' class='table animated fadeIn' *ngIf ='showSearchDiv === true;'>
@@ -75,6 +105,7 @@
           <h2 *ngIf ='placeClicked !== ""'>W tym pomieszczeniu niestety<br>nikt jeszcze nie przesiaduje</h2>
       </ng-template>
     </div>
+
     <ng-template #twin>
         <div id='info' class='table animated fadeIn' *ngIf ='filteredEmployes.length > 0;else noData'>
             <h2>Dane: </h2>
@@ -112,6 +143,120 @@
 
 </div>
 
+<div class="fire" *ngIf ='wantToFireShine === true'>
+  <i class="fas fa-fire-extinguisher" style="font-size: 20px; color: red"></i>
+</div>
 
+  <div class="water" *ngIf ='wantToWaterShine === true'>
+    <i class="fas fa-arrow-up" style="font-size: 20px; color: black"></i>
+    <br>
+    <i class="fas fa-tint"  style="font-size: 20px; color: blue"></i>
+  </div>
+  <div class="water2" *ngIf ='wantToWaterShine === true'>
+    <i class="fas fa-tint"  style="font-size: 20px; color: blue"></i>
+    <i class="fas fa-arrow-right" style="font-size: 20px; color: black"></i>
+  </div>
+  <div class="water3" *ngIf ='wantToWaterShine === true'>
+      <i class="fas fa-tint"  style="font-size: 20px; color: blue"></i>
+      <br>
+      <i class="fas fa-arrow-down" style="font-size: 20px; color: black"></i>
+  </div>
+  <div class="water4" *ngIf ='wantToWaterShine === true'>
+    <i class="fas fa-tint"  style="font-size: 20px; color: blue"></i>
+    <i class="fas fa-arrow-right" style="font-size: 20px; color: black"></i>
+  </div>
+  <div class="water5" *ngIf ='wantToWaterShine === true'>
+    <i class="fas fa-arrow-left" style="font-size: 20px; color: black"></i>
+    <i class="fas fa-tint"  style="font-size: 20px; color: blue"></i>
+  </div>
 
+<div class="coffee" *ngIf ='wantToCoffeeShine === true'>
+  <i class="fas fa-arrow-up" style="font-size: 20px; color: black"></i>
+  <br>
+  <i class="fas fa-coffee" style="font-size: 20px; color: darkslategray"></i>
+</div>
+<div class="coffee2" *ngIf ='wantToCoffeeShine === true'>
+  <i class="fas fa-coffee" style="font-size: 20px; color: darkslategray"></i>
+  <i class="fas fa-arrow-right" style="font-size: 20px; color: black"></i>
+</div>
+<div class="coffee3" *ngIf ='wantToCoffeeShine === true'>
+  <i class="fas fa-coffee" style="font-size: 20px; color: darkslategray"></i>
+  <br>
+  <i class="fas fa-arrow-down" style="font-size: 20px; color: black"></i>
+</div>
+<div class="coffee4" *ngIf ='wantToCoffeeShine === true'>
+  <i class="fas fa-coffee" style="font-size: 20px; color: darkslategray"></i>
+  <i class="fas fa-arrow-right" style="font-size: 20px; color: black"></i>
+</div>
+<div class="coffee5" *ngIf ='wantToCoffeeShine === true'>
+  <i class="fas fa-arrow-left" style="font-size: 20px; color: black"></i>
+  <i class="fas fa-coffee" style="font-size: 20px; color: darkslategray"></i>
+</div>
+<div class="aid" *ngIf ='wantToAidShine === true'>
+  <i class="fas fa-first-aid" style="font-size: 20px; color: red"></i>
+</div>
+
+  <div class="printer" *ngIf ='wantToPrinterShine === true'>
+      <i class="fas fa-print" style="font-size: 20px; color: gray"></i>
+      <br>
+      <i class="fas fa-arrow-down" style="font-size: 20px; color: black"></i>
+  </div>
+  <div class="printer2" *ngIf ='wantToPrinterShine === true'>
+      <i class="fas fa-print" style="font-size: 20px; color: gray"></i>
+      <br>
+      <i class="fas fa-arrow-down" style="font-size: 20px; color: black"></i>
+  </div>
+  <div class="printer3" *ngIf ='wantToPrinterShine === true'>
+      <i class="fas fa-arrow-up" style="font-size: 20px; color: black"></i>
+      <br>
+      <i class="fas fa-print" style="font-size: 20px; color: gray"></i>
+  </div>
+  <div class="printer4" *ngIf ='wantToPrinterShine === true'>
+      <i class="fas fa-print" style="font-size: 20px; color: gray"></i>
+      <br>
+      <i class="fas fa-arrow-down" style="font-size: 20px; color: black"></i>
+  </div>
+  <div class="printer5" *ngIf ='wantToPrinterShine === true'>
+      <i class="fas fa-arrow-left" style="font-size: 20px; color: black"></i>
+      <i class="fas fa-print" style="font-size: 20px; color: gray"></i>
+  </div>
+
+<div class="eat" *ngIf ='wantToEatShine === true'>
+  <i class="fas fa-arrow-up" style="font-size: 20px; color: black"></i>
+  <br>
+  <i class="fas fa-utensils" style="font-size: 20px; color: burlywood"></i>
+</div>
+<div class="eat2" *ngIf ='wantToEatShine === true'>
+  <i class="fas fa-utensils" style="font-size: 20px; color: burlywood"></i>
+  <i class="fas fa-arrow-right" style="font-size: 20px; color: black"></i>
+</div>
+<div class="eat3" *ngIf ='wantToEatShine === true'>
+  <i class="fas fa-utensils" style="font-size: 20px; color: burlywood"></i>
+  <br>
+  <i class="fas fa-arrow-down" style="font-size: 20px; color: black"></i>
+</div>
+<div class="eat4" *ngIf ='wantToEatShine === true'>
+  <span class="fas fa-utensils" style="  display: inline-block;  font-size: 20px; color: burlywood"></span>
+  <span class="fas fa-arrow-right" style="  display: inline-block; font-size: 20px; color: black"></span>
+</div>
+<div class="eat5" *ngIf ='wantToEatShine === true'>
+    <i class="fas fa-arrow-left" style="font-size: 20px; color: black"></i>
+  <i class="fas fa-utensils" style="font-size: 20px; color: burlywood"></i>
+</div>
+
+<div class="info" *ngIf ='wantToInfoShine === true'>
+  <i class="fas fa-info" style="font-size: 20px; color: blueviolet"></i>
+</div>
+
+<div class="bed" *ngIf ='wantToBedShine === true'>
+  <i class="fas fa-bed" style="font-size: 20px; color: brown"></i>
+</div>
+
+<div class="active" *ngIf ='wantToActiveShine === true'>
+  <i class="fas fa-table-tennis" style="font-size: 20px; color: green"></i>
+</div>
+
+<div class="health" *ngIf ='wantToHealthShine === true'>
+  <i class="fas fa-heart" style="font-size: 20px; color: greenyellow"></i>
+</div>
 
