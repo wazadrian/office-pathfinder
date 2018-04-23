@@ -8,7 +8,8 @@ import { DataService } from "../data.service";
 })
 export class ClickableOthersComponent implements OnInit {
 
-  wantToOtersShine : boolean = false;
+  wantToWcShine : boolean = false;
+  wantToElevShine : boolean = false;
   decisionWC : boolean = false;
   decisionElevator : boolean = false;
 
@@ -16,13 +17,12 @@ export class ClickableOthersComponent implements OnInit {
   constructor(private _data: DataService) { }
 
   ngOnInit() {
-    this._data.currentMsg.subscribe(wanted => this.wantToOtersShine = wanted);
+    this._data.currentMsg.subscribe(wanted => this.decisionWC = wanted);
     this._data.currentMsgElevator.subscribe(wanted => this.decisionElevator = wanted);
   }
 
   ngAfterContentChecked() {
-    this.decisionWC = this.wantToOtersShine;
-   // console.log("others " + this.decisionWC);
+    
   }
 
 }

@@ -6,10 +6,12 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 export class DataService {
 
   private messageSource = new BehaviorSubject<string>("");
+  private messageForSearch = new BehaviorSubject<string>("");
   private messageSrc = new BehaviorSubject<boolean>(false);
   private messageElevator = new BehaviorSubject<boolean>(false);
 
   currentMessage = this.messageSource.asObservable();
+  currentMessageForSearch = this.messageSource.asObservable();
   currentMsg = this.messageSrc.asObservable();
   currentMsgElevator = this.messageElevator.asObservable();
 
@@ -25,6 +27,10 @@ export class DataService {
 
   changeMsgElevator(wanted1 : boolean) {
     this.messageElevator.next(wanted1)
+  }
+
+  changeDataForSearch(data : string) {
+    this.messageForSearch.next(data)
   }
 
 

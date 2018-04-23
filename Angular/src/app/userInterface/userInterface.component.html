@@ -9,9 +9,9 @@
     </div>
     
     <div>
-      <a class= 'btn btn-warning' (click)='onClickEmployee()'>
+      <a id='buttonSearchSlide' class= 'btn btn-warning' (click)='onClickSearchSlide($event)'>
         SEARCH
-        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+        <span id='buttonSearchSlide' class="glyphicon glyphicon-search" aria-hidden="true"></span>
       </a>     
       <a id='buttonElev' class= 'btn btn-info' (click)='onClickElevator($event)'>
         Elevator
@@ -23,13 +23,26 @@
       <input type="text" name="fname"><br> 
     </div>
 
+    <div>
+        <div id='search' class='table animated fadeIn' *ngIf ='showSearchDiv === true;'>
+            <h2>
+              <input #searchInput (keyup.enter)="onClickSearch(searchInput.value)" (blur)="onClickSearch(searchInput.value); searchInput.value='' ">
+              <a id='buttonSearch' class= 'btn btn-warning' (click)='onClickSearch(searchInput.value)'>
+                  SEARCH
+                  <span id='buttonSearch' class="glyphicon glyphicon-search" aria-hidden="true"></span>
+              </a>     
+            </h2>
+        </div>
+    </div>
+
+    <div *ngIf ='buttonWasClicked === false;'>
     <h1 *ngIf ='placeClicked === "";else notEmpty'>Wybierz lokalizacje</h1>
     
       <ng-template #notEmpty>
         <h1>Wybrana lokalizacja: {{ placeClicked }}</h1>
       </ng-template>
-
-      <div *ngIf ='sillyChange === true;else twin'>
+    
+    <div *ngIf ='sillyChange === true;else twin'>
 
       <div id='info' class='table animated fadeIn' *ngIf ='filteredEmployes.length > 0;else noData'>
           <h2>Dane: </h2>
@@ -94,6 +107,7 @@
             <h2 *ngIf ='placeClicked !== ""'>W tym pomieszczeniu niestety<br>nikt jeszcze nie przesiaduje</h2>
         </ng-template>
     </ng-template>
+  </div>
   </div>
 
 </div>

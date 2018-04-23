@@ -1,4 +1,6 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ViewChild,
+  AfterViewInit,
+  ElementRef , Renderer } from '@angular/core';
 import { DataService } from "../data.service";
 
 @Component({
@@ -7,7 +9,10 @@ import { DataService } from "../data.service";
   styleUrls: ['./stations.component.css']
 })
 export class StationsComponent implements OnInit {
+  //@ViewChild("${wezadzialajpls}") someInput: ElementRef; // nie dziala
+  @ViewChild('someInput') someInput: ElementRef; // dziala
 
+  wezadzialajpls:string = "someInput";
   stationClicked:string;
   prevEventSrcID : string;
   prevElement : Element;
@@ -18,6 +23,14 @@ export class StationsComponent implements OnInit {
   ngOnInit() {
     this._data.currentMessage.subscribe(message => this.stationClicked = message);
     this._data.currentMessage.subscribe(message => this.placeClicked = message);
+    //this.someInput.nativeElement.class = "shining";
+  }
+
+  ngAfterViewInit() {
+    //this.someInput.nativeElement.style.color = "red";
+    this.someInput.nativeElement.removeAttribute("class");
+    this.someInput.nativeElement.setAttribute("class", "shining");
+    console.log("alo" + this.someInput.nativeElement.id);
 
   }
 
@@ -26,6 +39,7 @@ export class StationsComponent implements OnInit {
       //console.log("Poprzedni element odczytany data after: " + this.placeClicked);
       this.prevEventSrcID = this.placeClicked;
       this.fadeOut();
+  //    this.someInput.nativeElement.class = "shining";
     }    
   }
 
