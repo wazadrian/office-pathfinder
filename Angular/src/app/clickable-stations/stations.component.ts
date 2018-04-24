@@ -11,7 +11,7 @@ import { DataService } from "../data.service";
 export class StationsComponent implements OnInit {
 
   stationClicked:string;
-  prevEventSrcID : string;
+  prevEventSrcID : string = "";
   lastSearchID: string = "";
   prevElement : Element;
   placeClicked : string;
@@ -33,9 +33,11 @@ export class StationsComponent implements OnInit {
   }
 
   ngAfterContentChecked() {
-    if (this.wasSearching) {
+    if (this.wasSearching ) {
+      if (this.prevEventSrcID != "") {
       if (this.prevEventSrcID[0] === 's') 
         document.getElementById(this.prevEventSrcID).setAttribute('class', 'st27');
+      }
       document.getElementById(this.placeClicked).setAttribute('class', 'shining');
       this.prevEventSrcID = this.placeClicked;
       this.lastSearchID = this.prevEventSrcID;
