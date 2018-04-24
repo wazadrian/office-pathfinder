@@ -41,7 +41,7 @@ namespace WebAPI.Controllers
             try
             {
                 Guid documentId = Guid.NewGuid();
-                await CosmosDbConnection.client.ReadDocumentAsync(UriFactory.CreateDocumentUri(databaseName, collectionName, documentId.ToString()));
+                await CosmosDbConnection.client.ReadDocumentAsync(UriFactory.CreateDocumentUri(databaseName, collectionName, employee.id));
             }
             catch (DocumentClientException de)
             {

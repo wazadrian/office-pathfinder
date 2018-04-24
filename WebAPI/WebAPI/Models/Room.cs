@@ -10,6 +10,7 @@ namespace WebAPI.Models
     {
         [JsonProperty(PropertyName = "id")]
         public string id { get; set; }
+        public string svgId { get; set; }
         public string name { get; set; }
         public string numberOfRoom { get; set; }
 
