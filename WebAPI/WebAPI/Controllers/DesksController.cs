@@ -1,84 +1,49 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Azure.Documents;
-using Microsoft.Azure.Documents.Client;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Threading.Tasks;
+using WebAPI.Interfaces;
 using WebAPI.Models;
-
 
 namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     public class DesksController : Controller
     {
-        private string databaseName = "Office";
-        private string collectionName = "DesksCollection";
-   
-        [HttpGet]
-        public List<Desk> Get()
+        private string _databaseName = "Office";
+        private string _collectionName = "DesksCollection";
+        private readonly ICosmosDBService _cosmosDBService;
+
+        public DesksController(ICosmosDBService cosmosDBService)
         {
-            FeedOptions queryOptions = new FeedOptions { MaxItemCount = -1 };
+            _cosmosDBService = cosmosDBService;
+        }
 
-            var desksQuery = CosmosDbConnection.client.CreateDocumentQuery<Desk>(
-                UriFactory.CreateDocumentCollectionUri(databaseName, collectionName), queryOptions);
-
-            var desks = new List<Desk>(desksQuery);
+        [HttpGet]
+        public List<BaseEntity> GetAll()
+        {
+            var desks =
+                 _cosmosDBService.GetAllEntities(_databaseName, _collectionName, "desks");
 
             return desks;
         }
 
         [HttpPost]
-        public async void CreateDesk([FromBody] Desk desk)
-        {   
-            await CreateDocumentIfNotExists(databaseName, collectionName, desk);
-        }
-
-        private async Task CreateDocumentIfNotExists(string databaseName, string collectionName, Desk desk)
+        public async void CreateDeskAsync([FromBody] Desk desk)
         {
-            try
-            {
-                Guid documentId = Guid.NewGuid();
-                await CosmosDbConnection.client.ReadDocumentAsync(UriFactory.CreateDocumentUri(databaseName, collectionName, documentId.ToString()));
-            }
-            catch (DocumentClientException de)
-            {
-                if (de.StatusCode == HttpStatusCode.NotFound)
-                {
-                    await CosmosDbConnection.client.CreateDocumentAsync(UriFactory.CreateDocumentCollectionUri(databaseName, collectionName), desk);
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            await _cosmosDBService.CreateDocumentIfNotExistsAsync(_databaseName, _collectionName, desk);
         }
-
-
 
         [HttpDelete("{id}")]
         public async void DeleteDeskAsync(string id)
         {
-            await DeleteDeskDocument(databaseName, collectionName, id);
-        }
-
-        private async Task DeleteDeskDocument(string databaseName, string collectionName, string documentId)
-        {
-            await CosmosDbConnection.client.DeleteDocumentAsync(UriFactory.CreateDocumentUri(databaseName, collectionName, documentId));
+            await _cosmosDBService.DeleteDocumentAsync(_databaseName, _collectionName, id);
         }
 
         [HttpPut("{id}")]
         public async void UpdateDeskAsync(string id, [FromBody] Desk desk)
         {
-            desk.id = id;
-            await UpdateDocument(databaseName, collectionName, id, desk);
-        }
-
-        private async Task UpdateDocument(string databaseName, string collectionName, string documentId, Desk updatedDesk)
-        {
-            await CosmosDbConnection.client.ReplaceDocumentAsync(UriFactory.CreateDocumentUri(databaseName, collectionName, documentId), updatedDesk);
+            desk.id = Guid.Parse(id);
+            await _cosmosDBService.UpdateDocumentAsync(_databaseName, _collectionName, id, desk);
         }
     }
 }

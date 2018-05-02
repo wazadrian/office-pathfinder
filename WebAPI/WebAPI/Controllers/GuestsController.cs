@@ -1,84 +1,49 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Azure.Documents;
-using Microsoft.Azure.Documents.Client;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Threading.Tasks;
+using WebAPI.Interfaces;
 using WebAPI.Models;
-
 
 namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     public class GuestsController : Controller
     {
-        private string databaseName = "Office";
-        private string collectionName = "GuestsCollection";
-   
-        [HttpGet]
-        public List<Guest> Get()
+        private string _databaseName = "Office";
+        private string _collectionName = "GuestsCollection";
+        private readonly ICosmosDBService _cosmosDBService;
+
+        public GuestsController(ICosmosDBService cosmosDBService)
         {
-            FeedOptions queryOptions = new FeedOptions { MaxItemCount = -1 };
+            _cosmosDBService = cosmosDBService;
+        }
 
-            var guestsQuery = CosmosDbConnection.client.CreateDocumentQuery<Guest>(
-                UriFactory.CreateDocumentCollectionUri(databaseName, collectionName), queryOptions);
-
-            var guests = new List<Guest>(guestsQuery);
+        [HttpGet]
+        public List<BaseEntity> GetAll()
+        {
+            var guests =
+                 _cosmosDBService.GetAllEntities(_databaseName, _collectionName, "guests");
 
             return guests;
         }
 
         [HttpPost]
-        public async void CreateGuest([FromBody] Guest guest)
-        {   
-            await CreateDocumentIfNotExists(databaseName, collectionName, guest);
-        }
-
-        private async Task CreateDocumentIfNotExists(string databaseName, string collectionName, Guest guest)
+        public async void CreateGuestAsync([FromBody] Guest guest)
         {
-            try
-            {
-                Guid documentId = Guid.NewGuid();
-                await CosmosDbConnection.client.ReadDocumentAsync(UriFactory.CreateDocumentUri(databaseName, collectionName, documentId.ToString()));
-            }
-            catch (DocumentClientException de)
-            {
-                if (de.StatusCode == HttpStatusCode.NotFound)
-                {
-                    await CosmosDbConnection.client.CreateDocumentAsync(UriFactory.CreateDocumentCollectionUri(databaseName, collectionName), guest);
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            await _cosmosDBService.CreateDocumentIfNotExistsAsync(_databaseName, _collectionName, guest);
         }
-
-
 
         [HttpDelete("{id}")]
         public async void DeleteGuestAsync(string id)
         {
-            await DeleteGuestDocument(databaseName, collectionName, id);
-        }
-
-        private async Task DeleteGuestDocument(string databaseName, string collectionName, string documentId)
-        {
-            await CosmosDbConnection.client.DeleteDocumentAsync(UriFactory.CreateDocumentUri(databaseName, collectionName, documentId));
+            await _cosmosDBService.DeleteDocumentAsync(_databaseName, _collectionName, id);
         }
 
         [HttpPut("{id}")]
         public async void UpdateGuestAsync(string id, [FromBody] Guest guest)
         {
-            guest.id = id;
-            await UpdateDocument(databaseName, collectionName, id, guest);
-        }
-
-        private async Task UpdateDocument(string databaseName, string collectionName, string documentId, Guest updatedGuest)
-        {
-            await CosmosDbConnection.client.ReplaceDocumentAsync(UriFactory.CreateDocumentUri(databaseName, collectionName, documentId), updatedGuest);
+            guest.id = Guid.Parse(id);
+            await _cosmosDBService.UpdateDocumentAsync(_databaseName, _collectionName, id, guest);
         }
     }
 }
