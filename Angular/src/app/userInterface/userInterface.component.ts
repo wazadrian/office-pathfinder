@@ -228,6 +228,8 @@ export class UserInterfaceComponent implements OnInit, AfterContentChecked {
         console.log("To je pokój");
         this.foundThing += element.roomNumber + " " + element.roomName + " ";
         this._data.changeMessage(element.roomId);
+        this.shySearchCheck = true;
+        this._data.changeMsgSearch(this.shySearchCheck);
         if(personNotFoundJet === true) {
           if (this.findEmployee(element.employeeId.toString()) === null) {
             this.findGuest(element.guestId.toString());
@@ -259,6 +261,8 @@ export class UserInterfaceComponent implements OnInit, AfterContentChecked {
         console.log("To je office");
         this.foundThing += element.officeNumber + " " + element.officeName + " ";
         this._data.changeMessage(element.officeId);
+        this.shySearchCheck = true;
+        this._data.changeMsgSearch(this.shySearchCheck);
         if(personNotFoundJet === true) {
           if (this.findEmployee(element.employeeId.toString()) === null) {
             this.findGuest(element.guestId.toString());
@@ -273,6 +277,8 @@ export class UserInterfaceComponent implements OnInit, AfterContentChecked {
         console.log("To je conferenceRoom");
         this.foundThing += element.conferenceRoomNumber + " " + element.conferenceRoomName + " ";
         this._data.changeMessage(element.conferenceRoomId);
+        this.shySearchCheck = true;
+        this._data.changeMsgSearch(this.shySearchCheck);
         if(personNotFoundJet === true) {
           if (this.findEmployee(element.employeeId.toString()) === null) {
             this.findGuest(element.guestId.toString());
