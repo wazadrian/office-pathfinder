@@ -8,7 +8,7 @@ namespace WebAPI.Models
         public string employeeName { get; set; }
         public string employeeSurname { get; set; }
         public string employeePosition { get; set; }
-        public string roomId { get; set; }
+        public string placeId { get; set; }
 
         public override string ToString()
         {

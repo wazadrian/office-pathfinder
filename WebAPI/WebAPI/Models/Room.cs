@@ -4,9 +4,11 @@ namespace WebAPI.Models
 {
     public class Room : BaseEntity
     {
-        public string svgId { get; set; }
-        public string name { get; set; }
-        public string numberOfRoom { get; set; }
+        public string roomId { get; set; }
+        public int employeeId { get; set; }
+        public int guestId { get; set; }
+        public string roomName { get; set; }
+        public int roomNumber { get; set; }
 
         public override string ToString()
         {

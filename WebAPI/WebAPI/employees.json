@@ -3,120 +3,70 @@
     "employeeId": 1,
     "employeeName": "Maciek",
     "employeeSurname": "Kołodziejski",
-    "employeePosition": "INF"
+    "employeePosition": "INF",
+    "placeId": "station0"
   },
   {
     "employeeId": 2,
     "employeeName": "Oskar",
     "employeeSurname": "Sadowski",
-    "employeePosition": "INF"
+    "employeePosition": "INF",
+    "placeId": "station1"
   },
   {
     "employeeId": 3,
     "employeeName": "Mateusz",
     "employeeSurname": "Janiszewski",
-    "employeePosition": "INF"
+    "employeePosition": "INF",
+    "placeId": "station3"
   },
   {
     "employeeId": 4,
     "employeeName": "Dominik",
     "employeeSurname": "Malicki",
-    "employeePosition": "INF"
+    "employeePosition": "INF",
+    "placeId": "station4"
   },
   {
     "employeeId": 5,
     "employeeName": "Mateusz",
     "employeeSurname": "Janiszewski",
-    "employeePosition": "INF"
+    "employeePosition": "INF",
+    "placeId": "station5"
   },
   {
     "employeeId": 6,
     "employeeName": "Marcin",
     "employeeSurname": "Spasiński",
-    "employeePosition": "INF"
+    "employeePosition": "INF",
+    "placeId": "station6"
   },
   {
     "employeeId": 7,
     "employeeName": "Mateusz",
     "employeeSurname": "Janiszewski",
-    "employeePosition": "INF"
+    "employeePosition": "INF",
+    "placeId": "station7"
   },
   {
     "employeeId": 8,
     "employeeName": "Adrian",
     "employeeSurname": "Wąż",
-    "employeePosition": "INF"
+    "employeePosition": "INF",
+    "placeId": "station8"
   },
   {
     "employeeId": 9,
     "employeeName": "Jan",
     "employeeSurname": "Kowalski",
-    "employeePosition": "HR"
+    "employeePosition": "HR",
+    "placeId": "station9"
   },
   {
     "employeeId": 10,
     "employeeName": "Arnold",
     "employeeSurname": "Boczek",
-    "employeePosition": "BOSS"
-  },
-  {
-    "employeeId": 11,
-    "employeeName": "Kuba",
-    "employeeSurname": "Ubak",
-    "employeePosition": "Eee"
-  },
-  {
-    "employeeId": 12,
-    "employeeName": "Cristiano",
-    "employeeSurname": "Ronaldo",
-    "employeePosition": "RM"
-  },
-  {
-    "employeeId": 13,
-    "employeeName": "Leo",
-    "employeeSurname": "Messi",
-    "employeePosition": "FCB"
-  },
-  {
-    "employeeId": 14,
-    "employeeName": "Józef",
-    "employeeSurname": "Robak",
-    "employeePosition": "WWW"
-  },
-  {
-    "employeeId": 15,
-    "employeeName": "Maciej",
-    "employeeSurname": "Rasdads",
-    "employeePosition": "RdsM"
-  },
-  {
-    "employeeId": 16,
-    "employeeName": "Peter",
-    "employeeSurname": "Griffin",
-    "employeePosition": "BOSS"
-  },
-  {
-    "employeeId": 17,
-    "employeeName": "dasdsad",
-    "employeeSurname": "dasd",
-    "employeePosition": "ddas"
-  },
-  {
-    "employeeId": 18,
-    "employeeName": "dsabc",
-    "employeeSurname": "bcv",
-    "employeePosition": "czc"
-  },
-  {
-    "employeeId": 19,
-    "employeeName": "aewqe",
-    "employeeSurname": "ewqe",
-    "employeePosition": "rqwrqr"
-  },
-  {
-    "employeeId": 20,
-    "employeeName": "tryurt",
-    "employeeSurname": "uytut",
-    "employeePosition": "tretret"
+    "employeePosition": "BOSS",
+    "placeId": "station10"
   }
 ]

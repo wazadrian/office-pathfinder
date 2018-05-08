@@ -24,6 +24,11 @@ namespace WebAPI
 
             services.AddMvc();
             services.AddSingleton<ICosmosDBService, CosmosDBService>();
+
+            var serviceProvider = services.BuildServiceProvider();
+            var cosmosDBService = serviceProvider.GetService<ICosmosDBService>();
+
+            var generator = new SampleDataGenerator(cosmosDBService);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

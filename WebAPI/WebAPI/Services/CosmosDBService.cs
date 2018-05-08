@@ -32,14 +32,20 @@ namespace WebAPI.Services
                 case "employees":
                     query = _client.CreateDocumentQuery<Employee>(documentUri, queryOptions);
                     break;
-                case "desks":
-                    query = _client.CreateDocumentQuery<Desk>(documentUri, queryOptions);
+                case "stations":
+                    query = _client.CreateDocumentQuery<Station>(documentUri, queryOptions);
                     break;
                 case "guests":
                     query = _client.CreateDocumentQuery<Guest>(documentUri, queryOptions);
                     break;
                 case "rooms":
                     query = _client.CreateDocumentQuery<Room>(documentUri, queryOptions);
+                    break;
+                case "offices":
+                    query = _client.CreateDocumentQuery<Office>(documentUri, queryOptions);
+                    break;
+                case "conferenceRooms":
+                    query = _client.CreateDocumentQuery<ConferenceRoom>(documentUri, queryOptions);
                     break;
                 default:
                     query = null;
