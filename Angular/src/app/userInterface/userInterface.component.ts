@@ -28,14 +28,12 @@ export class UserInterfaceComponent implements OnInit, AfterContentChecked {
   rooms: IRoom[] = [];
   stations: IStation[] = [];
   guests: IGuest[] = [];
-  filteredEmployes: IEmployee [];
-  foundEmployee: IEmployee;
-  showEmployee: boolean = false;
+
+  foundThing: string = "";
 
   sillyChange: boolean = false;
   errorMessage: string;
   placeClicked:string;
-  placeNumber:number;
   wantToWCShine : boolean = false;
   wantToElevatorShine : boolean = false;
   wantToWaterShine : boolean = false;
@@ -52,18 +50,45 @@ export class UserInterfaceComponent implements OnInit, AfterContentChecked {
   
   showSearchDiv : boolean = false;
   buttonWasClicked : boolean = true;
-  btnIdSearchSlide : string = "buttonSearchSlide";
-  btnIdWC : string = "buttonWC";
-  btnIdElevator : string = "buttonElev";
-  dataForSearch : string;
+  buttonsIDs: string [] = ["buttonSearchSlide", "buttonWC", "buttonElev", "buttonWater", "buttonFire", "buttonCoffee", "buttonAid", 
+                        "buttonPrinter", "buttonEat", "buttonInfo", "buttonBed", "buttonActive", "buttonHealth"];
 
 
   constructor(private _apiService: ApiService, private _data: DataService) { }
 
   ngOnInit(): void {
     this._data.currentMessage.subscribe(message => this.placeClicked = message);
-   // this._data.currentMsgSearch.subscribe(wanted => this.shySearchCheck = wanted);
+    this.getAll();
+  }
 
+  ngAfterContentChecked() {
+    this.sillyChange = !this.sillyChange;
+
+    if (this.placeClicked[0] != 's') {
+      this.shySearchCheck = false;
+      this._data.changeMsgSearch(this.shySearchCheck);
+    }
+
+    
+    if (!this.equalsBtn(this.placeClicked)) {
+      this.buttonWasClicked = false;
+      this.shySearchCheck = false;
+      if (this.placeClicked != "buttonWC") {
+        this.wantToWCShine = false;
+        this._data.changeMsg(this.wantToWCShine);
+      }
+      if (this.placeClicked != "buttonElev") {
+        this.wantToElevatorShine = false;
+        this._data.changeMsg(this.wantToElevatorShine);
+      }
+    }
+    else this.buttonWasClicked = true;
+     
+    this._data.changeMsg(this.wantToWCShine);
+    this._data.changeMsgElevator(this.wantToElevatorShine);
+  }
+
+  getAll(){
     this._apiService.getEmployees()
       .subscribe(employees => this.employees = employees,
       error => this.errorMessage = <any>error);
@@ -87,115 +112,130 @@ export class UserInterfaceComponent implements OnInit, AfterContentChecked {
     this._apiService.getGuest()
       .subscribe(guests => this.guests = guests,
       error => this.errorMessage = <any>error);
-
-  }
-
-  ngAfterContentChecked() {
-    this.filterPlace();
-   // this.shySearchCheck = false;
-    //this.dataForSearch = "";
-    this.sillyChange = !this.sillyChange;
-   // if (this.placeClicked != "buttonSearchSlide")
-    //this.showSearchDiv = false;
-
-    if (this.placeClicked[0] != 's') {
-      this.shySearchCheck = false;
-      this._data.changeMsgSearch(this.shySearchCheck);
-    }
-
-    
-    if (!this.equalsBtn(this.placeClicked)) {
-      this.buttonWasClicked = false;
-      this.shySearchCheck = false;
-      if (this.placeClicked != "buttonWC") {
-        this.wantToWCShine = false;
-        this._data.changeMsg(this.wantToWCShine);
-      }
-      if (this.placeClicked != "buttonElev") {
-        this.wantToElevatorShine = false;
-        this._data.changeMsg(this.wantToElevatorShine);
-      }
-    }
-    else this.buttonWasClicked = true;
-     
-
-    this._data.changeMsg(this.wantToWCShine);
-    this._data.changeMsgElevator(this.wantToElevatorShine);
-
-    /*if (this.dataForSearch != "") {
-    this.filteredEmployes = this.employees.filter((employee: IEmployee) =>
-    employee.employeeSurname ===this.dataForSearch);
-    }*/
-
-    //filtrowanie by jedna osoba sie wyswietlala
-    this.filteredEmployes = this.employees.filter((employee: IEmployee) =>
-    employee.employeeId ===this.placeNumber);
-    
-  }
-
-  ngAfterViewInit() {
-    //console.log(this.searchInput.nativeElement);
   }
 
   equalsBtn(a : string) : boolean {
-      if (a === this.btnIdSearchSlide || a === this.btnIdWC || a === this.btnIdElevator
-          ||a === "buttonWater" ||a === "buttonFire"||a === "buttonCoffee"
-          ||a === "buttonAid" ||a === "buttonPrinter"||a === "buttonEat"
-          ||a === "buttonInfo" ||a === "buttonBed"||a === "buttonActive"
-          ||a === "buttonHealth") return true; 
-      else return false;
-  }
-
-  filterPlace(){
-    let place;
-    let str = this.placeClicked.substr(0, 4);
-
-    if( str === "room"){
-      place = this.placeClicked.substr(4, 2); //naciśnięty został pokój
-    }
-    else if( str === "offi"){
-      place = this.placeClicked.substr(6, 2); //naciśnięty został office
-    }
-    else{
-      place = this.placeClicked.substr(7, 3); //naciśnięta została stacja
-    }
-
-
-    this.placeNumber = +place;
-    console.log(this.placeNumber);
+    let pom = false;
+    this.buttonsIDs.forEach(element => {
+      if (element === a) pom = true;
+    });
+    return pom;
   }
 
   onClickSearchSlide(event : Event): void {
-    //this.showEmployee = !this.showEmployee;
     this._data.changeMessage(event.srcElement.id);
     this.showSearchDiv = !this.showSearchDiv;
   }
 
   onClickSearch(inputData : string): void {
-    if (inputData) {
-     // this.shySearchCheck = !this.shySearchCheck;
-      this.dataForSearch = inputData;
-      console.log(this.dataForSearch);
-      if (this.dataForSearch != "") {
-        this.employees.forEach(element => {
-          if (this.dataForSearch === element.employeeSurname) {
-           // this.placeClicked = element.employeeId.toString();
-            this.filteredEmployes = this.employees.filter((employee: IEmployee) =>
-            employee.employeeSurname ===this.dataForSearch);
-            this.placeClicked = "station" + element.employeeId.toString();
-            this._data.changeMessage(this.placeClicked);
+      console.log(inputData);
+      if (inputData != "") {
+
+        var person;
+        if(person = this.findEmployee(inputData) != null) {
+          this.findPlace(person.placeId);
+        }
+        if(person = this.findGuest(inputData) != null) {
+        //this.findPlace(person.placeId);
+        }
+        
+      } 
+  }
+
+  findEmployee(data : string): IEmployee {
+    this.employees.forEach(element => {
+      if (data === element.employeeName || data === element.employeeSurname || +data === element.employeeId) {
+        this.foundThing += element.employeeName + " " + element.employeeSurname + " " 
+        + element.employeePosition;
+        console.log("To je pracownik");
+        return element;
+      }
+    });
+    return null;
+  }
+
+  findGuest(data : string): IGuest {
+    this.guests.forEach(element => {
+      if (data === element.guestName || data === element.guestSurname) {
+        this.foundThing += element.guestName + " " + element.guestSurname + " " 
+          + element.startDate + " - " + element.endDate;
+        console.log("To je gosc");
+        return element;
+      }
+    });
+    return null;
+  }
+  
+
+  findPlace(data : string): void {
+    var personNotFoundJet = false;
+    if(this.foundThing === "") {
+      var personNotFoundJet = true;
+    }
+    
+    this.rooms.forEach(element => {
+      if (data === element.roomName || +data === element.roomNumber || data === element.roomId) {
+        console.log("To je pokój");
+        this.foundThing += element.roomNumber + " " + element.roomName;
+        if(personNotFoundJet === true) {
+          if (this.findEmployee(element.employeeId.toString()) === null) {
+            this.findGuest(element.guestId.toString());
+          }
+        }
+        return;
+      }
+    });
+
+    this.stations.forEach(element => {
+      if (data === element.stationId) {
+        console.log("To je stanowisko");
+        this.foundThing +="\nBiurko nr. " + element.stationId.slice(7,8);
+        if(personNotFoundJet === true) {
+          if (this.findEmployee(element.employeeId.toString()) === null) {
+            this.findGuest(element.guestId.toString());
+          }
+        }
+        return;
+      }
+    });
+
+    this.offices.forEach(element => {
+      if (data === element.officeName || +data === element.officeNumber || data === element.officeId) {
+        console.log("To je office");
+        this.foundThing += element.officeNumber + " " + element.officeName;
+        if(personNotFoundJet === true) {
+          if (this.findEmployee(element.employeeId.toString()) === null) {
+            this.findGuest(element.guestId.toString());
+          }
+        }
+        return;
+      }
+    });
+
+    this.conferenceRooms.forEach(element => {
+      if (data === element.conferenceRoomName || +data === element.conferenceRoomNumber || data === element.conferenceRoomId) {
+        console.log("To je conferenceRoom");
+        this.foundThing += element.conferenceRoomNumber + " " + element.conferenceRoomName;
+        if(personNotFoundJet === true) {
+          if (this.findEmployee(element.employeeId.toString()) === null) {
+            this.findGuest(element.guestId.toString());
+          }
+        }
+        return;
+      }
+    });
+  }
+
+
+
+
+/*
+this.filteredEmployes = this.employees.filter((employee: IEmployee) =>
+            employee.employeeSurname ===inputData);
+            this._data.changeMessage(element.placeId);
             this.shySearchCheck = true;
             this._data.changeMsgSearch(this.shySearchCheck);
-          }
-         // console.log(this.filteredEmployes[0].employeeId + this.filteredEmployes[0].employeeName);
-        });
-      } 
-     /* else {
-        this.shySearchCheck = false;
-        this._data.changeMsgSearch(this.shySearchCheck);
-      }*/
-    }
-  }
+            */
 
   onClickElevator(event : Event) {
     this.wantToElevatorShine = !this.wantToElevatorShine;
@@ -211,74 +251,45 @@ export class UserInterfaceComponent implements OnInit, AfterContentChecked {
 
   onClickWater(event : Event) {
     this.wantToWaterShine = !this.wantToWaterShine;
-    this._data.changeMsgWater(this.wantToWaterShine);
-    this._data.changeMessage(event.srcElement.id);
-    console.log(event.srcElement.id + " User " + this.wantToWaterShine);
   }
 
   onClickFire(event : Event) {
     this.wantToFireShine = !this.wantToFireShine;
-    this._data.changeMsgFire(this.wantToFireShine);
-    this._data.changeMessage(event.srcElement.id);
 
   }
 
   onClickCoffee(event : Event) {
     this.wantToCoffeeShine = !this.wantToCoffeeShine;
-    this._data.changeMsgCoffee(this.wantToCoffeeShine);
-    this._data.changeMessage(event.srcElement.id);
   }
 
   onClickAid(event : Event) {
     this.wantToAidShine = !this.wantToAidShine;
-    this._data.changeMsgAid(this.wantToAidShine);
-    this._data.changeMessage(event.srcElement.id);
   }
 
   onClickPrinter(event : Event) {
     this.wantToPrinterShine = !this.wantToPrinterShine;
-    this._data.changeMsgPrinter(this.wantToPrinterShine);
-    this._data.changeMessage(event.srcElement.id);
   }
 
   onClickEat(event : Event) {
     this.wantToEatShine = !this.wantToEatShine;
-    this._data.changeMsgEat(this.wantToEatShine);
-    this._data.changeMessage(event.srcElement.id);
   }
 
   onClickInfo(event : Event) {
     this.wantToInfoShine = !this.wantToInfoShine;
-    this._data.changeMsgInfo(this.wantToInfoShine);
-    this._data.changeMessage(event.srcElement.id);
   }
 
   onClickBed(event : Event) {
     this.wantToBedShine = !this.wantToBedShine;
-    this._data.changeMsgBed(this.wantToBedShine);
-    this._data.changeMessage(event.srcElement.id);
   }
 
   onClickActive(event : Event) {
     this.wantToActiveShine = !this.wantToActiveShine;
-    this._data.changeMsgActive(this.wantToActiveShine);
-    this._data.changeMessage(event.srcElement.id);
   }
 
   onClickHealth(event : Event) {
     this.wantToHealthShine = !this.wantToHealthShine;
-    this._data.changeMsgHealth(this.wantToHealthShine);
-    this._data.changeMessage(event.srcElement.id);
   }
   
-
- /* filterEmoplyees():void{
-    for (let employee of this.employees){
-       if(employee.employeeId == this.stationNumber){
-         this.foundEmployee = employee;
-       }
-     }
-   }*/
 } 
 
  

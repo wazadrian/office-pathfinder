@@ -17,7 +17,6 @@ import { IGuest } from './guests/guest';
 
 @Injectable()
 export class ApiService {
-
   
   private _officeUrl = 'http://localhost:49528/api/offices';
   private _roomUrl = 'http://localhost:49528/api/rooms';
@@ -28,7 +27,6 @@ export class ApiService {
   private _guestUrl = 'http://localhost:49528/api/guests';
 
   constructor(private _http: HttpClient) { }
-
 
   getOffice(): Observable<IOffice[]>{
     return this._http.get<IOffice[]>(this._officeUrl)
