@@ -10,22 +10,21 @@ import { DataService } from "../data.service";
 })
 export class StationsComponent implements OnInit {
 
-  stationClicked:string;
+  stationClicked : string;
+  prevStationClicked : string = "";
   prevEventSrcID : string = "";
   lastSearchID: string = "";
-  prevElement : Element;
   placeClicked : string;
   doubleClick : boolean = false;
   wasSearching : boolean = false;
+  buttonsIDs: string [] = ["buttonSearchSlide", "buttonWC", "buttonElev", "buttonWater", "buttonFire", "buttonCoffee", "buttonAid", 
+                        "buttonPrinter", "buttonEat", "buttonInfo", "buttonBed", "buttonActive", "buttonHealth"]; 
   constructor(private _data: DataService) { }
 
   ngOnInit() {
     this._data.currentMessage.subscribe(message => this.stationClicked = message);
     this._data.currentMessage.subscribe(message => this.placeClicked = message);
     this._data.currentMsgSearch.subscribe(messageSearch => this.wasSearching = messageSearch);
-    //this.someInput.nativeElement.class = "shining";
-    //var element = document.getElementById('station1');
-    //element.setAttribute('class', 'shining');
   }
 
   ngAfterViewInit() {
@@ -35,34 +34,29 @@ export class StationsComponent implements OnInit {
   ngAfterContentChecked() {
     if (this.wasSearching ) {
       if (this.prevEventSrcID != "") {
-      if (this.prevEventSrcID[0] === 's') 
-        document.getElementById(this.prevEventSrcID).setAttribute('class', 'st27');
+        if (this.prevEventSrcID[0] === 's' && !this.equalsBtn(this.placeClicked))
+          this.fadeOut(this.prevEventSrcID);
       }
-      document.getElementById(this.placeClicked).setAttribute('class', 'shining');
+      this.letMeShine(this.placeClicked);
       this.prevEventSrcID = this.placeClicked;
       this.lastSearchID = this.prevEventSrcID;
     }
-    else if (!this.wasSearching && this.lastSearchID != "") {
-      document.getElementById(this.lastSearchID).setAttribute('class', 'st27');
+    else if (!this.wasSearching && this.lastSearchID != "" && !this.equalsBtn(this.placeClicked)) {
+     this.fadeOut(this.lastSearchID);
     }
 
-
-    if (this.placeClicked[0] != 's' && this.prevElement != null) {
-      //console.log("Poprzedni element odczytany data after: " + this.placeClicked);
+    if (this.placeClicked[0] != 's' && this.prevStationClicked != "" && !this.equalsBtn(this.placeClicked)) {
       this.prevEventSrcID = this.placeClicked;
-      this.fadeOut();
-  //    this.someInput.nativeElement.class = "shining";
+      this.fadeOut(this.prevStationClicked);
     }    
   }
 
-  fadeOut() {
-    this.prevElement.removeAttribute("class");
-    this.prevElement.setAttribute("class", "st27");
+  fadeOut(id : string) {
+    document.getElementById(id).setAttribute('class', 'st27');
   }
 
-  letMeShine() {
-    event.srcElement.removeAttribute("class");
-    event.srcElement.setAttribute("class", "shining");
+  letMeShine(id : string) {
+    document.getElementById(id).setAttribute('class', 'shining');
   }
 
   onClick(event : Event) {
@@ -72,25 +66,29 @@ export class StationsComponent implements OnInit {
     this._data.changeMessage(this.stationClicked);
 
     if (this.prevEventSrcID === event.srcElement.id && !this.doubleClick) {
-      this.fadeOut();
+      this.fadeOut(this.prevStationClicked);
       this.doubleClick = true;
     } else {
-      if (this.prevEventSrcID != event.srcElement.id && this.prevElement != null) {
-        //console.log("Poprzedni element odczytany: " + this.prevElement.id);
-        this.fadeOut();
+      if (this.prevEventSrcID != event.srcElement.id && this.prevStationClicked != "") {
+        this.fadeOut(this.prevStationClicked);
       }
       this.doubleClick = false;
-      this.letMeShine();
+      this.letMeShine(this.stationClicked);
     }
 
     this._data.changeMsgSearch(false);
 
     this.prevEventSrcID = event.srcElement.id;
-    this.prevElement = event.srcElement;
+    this.prevStationClicked = event.srcElement.id;
   }
 
-
-
+  equalsBtn(a : string) : boolean {
+    let pom = false;
+    this.buttonsIDs.forEach(element => {
+      if (element === a) pom = true;       
+    });
+    return pom;
+  }
 
 
 }

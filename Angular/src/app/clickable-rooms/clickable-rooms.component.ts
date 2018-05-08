@@ -9,11 +9,12 @@ import { DataService } from "../data.service";
 export class ClickableRoomsComponent implements OnInit {
 
   roomClicked : string;
+  prevRoomClicked : string = "";
   prevEventSrcID : string;
-  prevElement : Element;
   placeClicked : string;
   doubleClick : boolean = false;
-  sillyCheck : boolean = true;
+  buttonsIDs: string [] = ["buttonSearchSlide", "buttonWC", "buttonElev", "buttonWater", "buttonFire", "buttonCoffee", "buttonAid", 
+                        "buttonPrinter", "buttonEat", "buttonInfo", "buttonBed", "buttonActive", "buttonHealth"]; 
 
   constructor(private _data: DataService) { }
 
@@ -24,44 +25,48 @@ export class ClickableRoomsComponent implements OnInit {
   }
 
   ngAfterContentChecked() {
-    if (this.placeClicked[0] != 'r' && this.prevElement != null) {
+    if (this.placeClicked[0] != 'r' && this.prevRoomClicked != "" && !this.equalsBtn(this.placeClicked)) {
       //console.log("Poprzedni element odczytany data after: " + this.placeClicked);
       this.prevEventSrcID = this.placeClicked;
-      this.fadeOut();
+      this.fadeOut(this.prevRoomClicked);
     }    
   }
 
-  fadeOut() {
-    this.prevElement.removeAttribute("class");
-    this.prevElement.setAttribute("class", "st15");
+  fadeOut(id : string) {
+    document.getElementById(id).setAttribute('class', 'st15');
   }
 
-  letMeShine() {
-    event.srcElement.removeAttribute("class");
-    event.srcElement.setAttribute("class", "shining");
+  letMeShine(id : string) {
+    document.getElementById(id).setAttribute('class', 'shining');
   }
 
   onClick(event : Event) {
     
     this.roomClicked = event.srcElement.id;
     this._data.changeMessage(this.roomClicked);
-    //console.log("Poprzedni element odczytany data: " + this.placeClicked);
 
     if (this.prevEventSrcID === event.srcElement.id && !this.doubleClick) {
-      this.fadeOut();
+      this.fadeOut(this.prevRoomClicked);
       this.doubleClick = true;
     } else {
-      if (this.prevEventSrcID != event.srcElement.id && this.prevElement != null) {
-        //console.log("Poprzedni element odczytany: " + this.prevElement.id);
-        this.fadeOut();
+      if (this.prevEventSrcID != event.srcElement.id && this.prevRoomClicked != "") {
+        this.fadeOut(this.prevRoomClicked);
       }
       this.doubleClick = false;
-      this.letMeShine();
+      this.letMeShine(this.roomClicked);
     }
 
     this.prevEventSrcID = event.srcElement.id;
-    this.prevElement = event.srcElement;
+    this.prevRoomClicked = event.srcElement.id;
 
+  }
+
+  equalsBtn(a : string) : boolean {
+    let pom = false;
+    this.buttonsIDs.forEach(element => {
+      if (element === a) pom = true;       
+    });
+    return pom;
   }
 
 }

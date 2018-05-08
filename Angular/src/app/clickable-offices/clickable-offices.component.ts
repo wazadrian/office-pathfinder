@@ -8,11 +8,13 @@ import { DataService } from "../data.service";
 })
 export class ClickableOfficesComponent implements OnInit {
 
-  officeClicked:string;
+  officeClicked : string;
+  prevOfficeClicked : string = "";
   prevEventSrcID : string;
-  prevElement : Element;
   placeClicked : string;
   doubleClick : boolean = false;
+  buttonsIDs: string [] = ["buttonSearchSlide", "buttonWC", "buttonElev", "buttonWater", "buttonFire", "buttonCoffee", "buttonAid", 
+                        "buttonPrinter", "buttonEat", "buttonInfo", "buttonBed", "buttonActive", "buttonHealth"]; 
   constructor(private _data: DataService) { }
 
   ngOnInit() {
@@ -22,44 +24,48 @@ export class ClickableOfficesComponent implements OnInit {
   }
 
   ngAfterContentChecked() {
-    if (this.placeClicked[0] != 'o' && this.prevElement != null) {
+    if (this.placeClicked[0] != 'o' && this.prevOfficeClicked != "" && !this.equalsBtn(this.placeClicked)) {
       //console.log("Poprzedni element odczytany data after: " + this.placeClicked);
       this.prevEventSrcID = this.placeClicked;
-      this.fadeOut();
+      this.fadeOut(this.prevOfficeClicked);
     }    
   }
 
-  fadeOut() {
-    this.prevElement.removeAttribute("class");
-    this.prevElement.setAttribute("class", "st16");
+  fadeOut(id : string) {
+    document.getElementById(id).setAttribute('class', 'st16');
   }
 
-  letMeShine() {
-    event.srcElement.removeAttribute("class");
-    event.srcElement.setAttribute("class", "shining");
+  letMeShine(id : string) {
+    document.getElementById(id).setAttribute('class', 'shining');
   }
 
   onClick(event : Event) {
     
-    console.log(event.srcElement.id);
     this.officeClicked = event.srcElement.id;
     this._data.changeMessage(this.officeClicked);
 
 
     if (this.prevEventSrcID === event.srcElement.id && !this.doubleClick) {
-      this.fadeOut();
+      this.fadeOut(this.prevOfficeClicked);
       this.doubleClick = true;
     } else {
-      if (this.prevEventSrcID != event.srcElement.id && this.prevElement != null) {
-        //console.log("Poprzedni element odczytany: " + this.prevElement.id);
-        this.fadeOut();
+      if (this.prevEventSrcID != event.srcElement.id && this.prevOfficeClicked != "") {
+        this.fadeOut(this.prevOfficeClicked);
       }
       this.doubleClick = false;
-      this.letMeShine();
+      this.letMeShine(this.officeClicked);
     }
     this.prevEventSrcID = event.srcElement.id;
-    this.prevElement = event.srcElement;
+    this.prevOfficeClicked = event.srcElement.id;
 
+  }
+
+  equalsBtn(a : string) : boolean {
+    let pom = false;
+    this.buttonsIDs.forEach(element => {
+      if (element === a) pom = true;       
+    });
+    return pom;
   }
 
 }

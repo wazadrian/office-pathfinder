@@ -10,54 +10,57 @@
         </div>
     
       <div>
-        <a id='buttonSearchSlide' class= 'btn btn-warning' (click)='onClickSearchSlide($event)'>
+        <a id='buttonSearchSlide' data-toggle="tooltip" title="Search" class= 'btn btn-warning' (click)='onClickSearchSlide($event)'>
           SEARCH
           <span id='buttonSearchSlide' class="glyphicon glyphicon-search" aria-hidden="true"></span>
         </a>    
-        <a id='buttonElev' class= 'btn btn-success' (click)='onClickElevator($event)'>
+        <a id='buttonElev' data-toggle="tooltip" title="Elevator" class= 'btn btn-secondary' (click)='onClickElevator($event)'>
           <span id='buttonElev' class="glyphicon glyphicon-sort" aria-hidden="true" style="font-size: 30px"></span>
         </a>
-        <a id='buttonWC' class= 'btn btn-info' (click)='onClickWC($event)'>
+        <a id='buttonInfo' data-toggle="tooltip" title="Reception" class= 'btn btn-secondary' (click)='onClickInfo($event)'>
+          <i id='buttonInfo' class="fas fa-info" style="font-size: 35px"></i>
+        </a>
+        <a id='buttonWC' data-toggle="tooltip" title="Toilets" class= 'btn btn-secondary' (click)='onClickWC($event)'>
           <i id='buttonWC' class="material-icons" style="font-size: 30px">wc</i>
         </a>
-        <a id='buttonWater' class= 'btn btn-primary' (click)='onClickWater($event)'>
-          <i class="fas fa-tint" style="font-size: 30px"></i>
+        <a id='buttonWater' data-toggle="tooltip" title="Water" class= 'btn btn-primary' (click)='onClickWater($event)'>
+          <i id='buttonWater' class="fas fa-tint" style="font-size: 30px"></i>
         </a>
-        <a id='buttonFire' class= 'btn btn-danger' (click)='onClickFire($event)'>
-          <i class="fas fa-fire-extinguisher" style="font-size: 30px"></i>
+        <a id='buttonFire' data-toggle="tooltip" title="Fire Extinguisher" class= 'btn btn-primary' (click)='onClickFire($event)'>
+          <i id='buttonFire' class="fas fa-fire-extinguisher" style="font-size: 30px"></i>
         </a>
-        <a id='buttonCoffee' class= 'btn btn-danger' (click)='onClickCoffee($event)'>
-          <i class="fas fa-coffee" style="font-size: 30px"></i>
-        </a>
-        <a id='buttonAid' class= 'btn btn-primary' (click)='onClickAid($event)'>
-          <i class="fas fa-first-aid" style="font-size: 30px"></i>
+        <a id='buttonAid' data-toggle="tooltip" title="First Aid" class= 'btn btn-primary' (click)='onClickAid($event)'>
+          <i id='buttonAid' class="fas fa-first-aid" style="font-size: 30px"></i>
         </a>
         <br>
-        <a id='buttonPrinter' class= 'btn btn-info' (click)='onClickPrinter($event)'>
-          <i class="fas fa-print" style="font-size: 30px"></i>
+        <a id='buttonPrinter' data-toggle="tooltip" title="Print Corner" class= 'btn btn-info' (click)='onClickPrinter($event)'>
+          <i id='buttonPrinter' class="fas fa-print" style="font-size: 30px"></i>
         </a>
-        <a id='buttonEat' class= 'btn btn-danger' (click)='onClickEat($event)'>
-          <i class="fas fa-utensils" style="font-size: 30px"></i>
+        <a id='buttonEat' data-toggle="tooltip" title="Food" class= 'btn btn-success' (click)='onClickEat($event)'>
+          <i id='buttonEat' class="fas fa-utensils" style="font-size: 30px"></i>
         </a>
-        <a id='buttonInfo' class= 'btn btn-primary' (click)='onClickInfo($event)'>
-          <i class="fas fa-info" style="font-size: 30px"></i>
+        <a id='buttonCoffee' data-toggle="tooltip" title="Coffee" class= 'btn btn-success' (click)='onClickCoffee($event)'>
+          <i id='buttonCoffee' class="fas fa-coffee" style="font-size: 30px"></i>
         </a>
-        <a id='buttonBed' class= 'btn btn-success' (click)='onClickBed($event)'>
-          <i class="fas fa-bed" style="font-size: 30px"></i>
+        <a id='buttonBed' data-toggle="tooltip" title="Quiet Room" class= 'btn btn-success' (click)='onClickBed($event)'>
+          <i id='buttonBed' class="fas fa-bed" style="font-size: 30px"></i>
         </a>
-        <a id='buttonActive' class= 'btn btn-success' (click)='onClickActive($event)'>
-          <i class="fas fa-table-tennis" style="font-size: 30px"></i>
+        <a id='buttonActive' data-toggle="tooltip" title="Active Room" class= 'btn btn-success' (click)='onClickActive($event)'>
+          <i id='buttonActive' class="fas fa-table-tennis" style="font-size: 30px"></i>
         </a>
-        <a id='buttonHealth' class= 'btn btn-danger' (click)='onClickHealth($event)'>
-          <i class="fas fa-heart" style="font-size: 30px"></i>
+        <a id='buttonHealth' data-toggle="tooltip" title="Wellness Room" class= 'btn btn-success' (click)='onClickHealth($event)'>
+          <i id='buttonHealth' class="fas fa-heart" style="font-size: 30px"></i>
         </a>    
+        <a id='buttonClear' data-toggle="tooltip" title="Clear all" class= 'btn btn-danger' (click)='onClickClear($event)'>
+          <i id='buttonClear' class="fa fa-times" style="font-size: 35px"></i>
+        </a>  
       </div>
 
     <div>
         <div id='search' class='table animated fadeIn' *ngIf ='showSearchDiv === true;'>
             <h2>
               <input #searchInput (keyup.enter)="onClickSearch(searchInput.value);">
-              <a id='buttonSearch' class= 'btn btn-warning' (click)='onClickSearch(searchInput.value);'>
+              <a id='buttonSearch' data-toggle="tooltip" title="Search" class= 'btn btn-warning' (click)='onClickSearch(searchInput.value);'>
                   SEARCH
                   <span id='buttonSearch' class="glyphicon glyphicon-search" aria-hidden="true"></span>
               </a>     
@@ -65,27 +68,27 @@
         </div>
     </div>
 
-    <!--<div *ngIf ='buttonWasClicked === false;'>-->
-  <div *ngIf ='foundThing !== "";'>
+    <div *ngIf ='foundThing !== "";'>
     
-    <div *ngIf ='sillyChange === true;else twin'>
-
-      <div id='info' class='table animated fadeIn' >
-          <h1>Dane: </h1>
-          <h1>
-            {{ foundThing }}
-          </h1>
-      </div>
-    </div>
-
-    <ng-template #twin>
+      <div *ngIf ='sillyChange === true;else twin'>
+  
         <div id='info' class='table animated fadeIn' >
-          <h1>Dane: </h1>
-          <h1>
-            {{ foundThing }}
-          </h1>
+            <h1>Dane: </h1>
+            <h1>
+              {{ foundThing }}
+            </h1>
         </div>
-    </ng-template>
+      </div>
+  
+      <ng-template #twin>
+          <div id='info' class='table animated fadeIn' >
+            <h1>Dane: </h1>
+            <h1>
+              {{ foundThing }}
+            </h1>
+          </div>
+      </ng-template>
+    </div>
   </div>
 
 </div>
