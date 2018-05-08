@@ -10,6 +10,7 @@ namespace WebAPI.Models
         public string guestSurname { get; set; }
         public DateTime startDate { get; set; }
         public DateTime endDate { get; set; }
+		public string placeId { get; set; }
 
         public override string ToString()
         {
