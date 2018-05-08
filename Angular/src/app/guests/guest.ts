@@ -4,4 +4,5 @@ export interface IGuest{
     guestSurname: string;   //nazwisko
     startDate:  Date;
     endDate:    Date;
+    placeId: string;
 }

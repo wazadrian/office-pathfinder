@@ -28,6 +28,8 @@ export class UserInterfaceComponent implements OnInit, AfterContentChecked {
   rooms: IRoom[] = [];
   stations: IStation[] = [];
   guests: IGuest[] = [];
+  searchedEmployee :IEmployee = null;
+  searchedGuest :IGuest = null;
 
   foundThing: string = "";
 
@@ -129,41 +131,58 @@ export class UserInterfaceComponent implements OnInit, AfterContentChecked {
 
   onClickSearch(inputData : string): void {
       console.log(inputData);
+      this.foundThing = "";
+      this.searchedEmployee = null;
+      this.searchedGuest = null;
       if (inputData != "") {
 
-        var person;
-        if(person = this.findEmployee(inputData) != null) {
-          this.findPlace(person.placeId);
+        this.findEmployee(inputData);
+        console.log(this.searchedEmployee);
+        if(this.searchedEmployee != null) {
+          this.foundThing = "";
+          console.log("ehhh");
+          this.findPlace(this.searchedEmployee.placeId);
+          this.searchedGuest = null;          //have to???
+          return;
         }
-        if(person = this.findGuest(inputData) != null) {
-        //this.findPlace(person.placeId);
+        else if(this.searchedEmployee === null){ 
+          this.foundThing = "";
+          this.findGuest(inputData);
+
+          if(this.searchedGuest != null) {
+            this.findPlace(this.searchedGuest.placeId);
+            this.searchedEmployee = null;
+          }
+          else{
+            this.findPlace(inputData);
+            this.searchedEmployee = null;
+            this.searchedGuest = null; 
+          }
         }
         
       } 
   }
 
-  findEmployee(data : string): IEmployee {
+  findEmployee(data : string): void {
     this.employees.forEach(element => {
       if (data === element.employeeName || data === element.employeeSurname || +data === element.employeeId) {
         this.foundThing += element.employeeName + " " + element.employeeSurname + " " 
-        + element.employeePosition;
+        + element.employeePosition + " ";
         console.log("To je pracownik");
-        return element;
+        this.searchedEmployee = element;
       }
     });
-    return null;
   }
 
-  findGuest(data : string): IGuest {
+  findGuest(data : string): void {
     this.guests.forEach(element => {
       if (data === element.guestName || data === element.guestSurname) {
         this.foundThing += element.guestName + " " + element.guestSurname + " " 
-          + element.startDate + " - " + element.endDate;
+          + element.startDate + " - " + element.endDate + " ";
         console.log("To je gosc");
-        return element;
+        this.searchedGuest = element;
       }
     });
-    return null;
   }
   
 
@@ -172,11 +191,10 @@ export class UserInterfaceComponent implements OnInit, AfterContentChecked {
     if(this.foundThing === "") {
       var personNotFoundJet = true;
     }
-    
     this.rooms.forEach(element => {
       if (data === element.roomName || +data === element.roomNumber || data === element.roomId) {
         console.log("To je pokój");
-        this.foundThing += element.roomNumber + " " + element.roomName;
+        this.foundThing += element.roomNumber + " " + element.roomName + " ";
         if(personNotFoundJet === true) {
           if (this.findEmployee(element.employeeId.toString()) === null) {
             this.findGuest(element.guestId.toString());
@@ -189,7 +207,7 @@ export class UserInterfaceComponent implements OnInit, AfterContentChecked {
     this.stations.forEach(element => {
       if (data === element.stationId) {
         console.log("To je stanowisko");
-        this.foundThing +="\nBiurko nr. " + element.stationId.slice(7,8);
+        this.foundThing +="\nBiurko nr. " + element.stationId.slice(7,8) + " ";
         if(personNotFoundJet === true) {
           if (this.findEmployee(element.employeeId.toString()) === null) {
             this.findGuest(element.guestId.toString());
@@ -202,7 +220,7 @@ export class UserInterfaceComponent implements OnInit, AfterContentChecked {
     this.offices.forEach(element => {
       if (data === element.officeName || +data === element.officeNumber || data === element.officeId) {
         console.log("To je office");
-        this.foundThing += element.officeNumber + " " + element.officeName;
+        this.foundThing += element.officeNumber + " " + element.officeName + " ";
         if(personNotFoundJet === true) {
           if (this.findEmployee(element.employeeId.toString()) === null) {
             this.findGuest(element.guestId.toString());
@@ -215,7 +233,7 @@ export class UserInterfaceComponent implements OnInit, AfterContentChecked {
     this.conferenceRooms.forEach(element => {
       if (data === element.conferenceRoomName || +data === element.conferenceRoomNumber || data === element.conferenceRoomId) {
         console.log("To je conferenceRoom");
-        this.foundThing += element.conferenceRoomNumber + " " + element.conferenceRoomName;
+        this.foundThing += element.conferenceRoomNumber + " " + element.conferenceRoomName + " ";
         if(personNotFoundJet === true) {
           if (this.findEmployee(element.employeeId.toString()) === null) {
             this.findGuest(element.guestId.toString());
