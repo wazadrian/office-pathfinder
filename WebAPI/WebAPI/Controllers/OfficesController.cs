@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using WebAPI.Interfaces;
 using WebAPI.Models;
 
@@ -28,19 +29,19 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost]
-        public async void CreateOfficeAsync([FromBody] Office office)
+        public async Task CreateOfficeAsync([FromBody] Office office)
         {
             await _cosmosDBService.CreateDocumentIfNotExistsAsync(_databaseName, _collectionName, office);
         }
 
         [HttpDelete("{id}")]
-        public async void DeleteOfficeAsync(string id)
+        public async Task DeleteOfficeAsync(string id)
         {
             await _cosmosDBService.DeleteDocumentAsync(_databaseName, _collectionName, id);
         }
 
         [HttpPut("{id}")]
-        public async void UpdateOfficeAsync(string id, [FromBody] Office office)
+        public async Task UpdateOfficeAsync(string id, [FromBody] Office office)
         {
             office.id = Guid.Parse(id);
             await _cosmosDBService.UpdateDocumentAsync(_databaseName, _collectionName, id, office);

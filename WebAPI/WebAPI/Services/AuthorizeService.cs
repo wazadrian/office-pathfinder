@@ -68,5 +68,34 @@ namespace WebAPI.Services
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
+
+        public bool CreateAdminAccount(Admin admin, string databaseName, string collectionName)
+        {
+            if (LoginExist(admin, databaseName, collectionName))
+            {
+                return false;
+            }
+            var documentId = Guid.NewGuid();
+            admin.id = documentId;
+            admin.password = Eramake.eCryptography.Encrypt(admin.password);
+
+            var documentUri = UriFactory.CreateDocumentCollectionUri(databaseName, collectionName);
+            _client.CreateDocumentAsync(documentUri, admin).Wait();
+            return true;
+        }
+
+        private bool LoginExist(Admin admin, string databaseName, string collectionName)
+        {
+            var queryOptions = new FeedOptions { MaxItemCount = -1 };
+            var documentUri = UriFactory.CreateDocumentCollectionUri(databaseName, collectionName);
+            var query = _client.CreateDocumentQuery<Admin>(documentUri, queryOptions);
+            var entities = new List<Admin>(query);
+
+            if (entities.Exists(p => p.login == admin.login))
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

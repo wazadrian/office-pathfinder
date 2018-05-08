@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using WebAPI.Interfaces;
 using WebAPI.Models;
 
@@ -28,19 +29,19 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost]
-        public async void CreateGuestAsync([FromBody] Guest guest)
+        public async Task CreateGuestAsync([FromBody] Guest guest)
         {
             await _cosmosDBService.CreateDocumentIfNotExistsAsync(_databaseName, _collectionName, guest);
         }
 
         [HttpDelete("{id}")]
-        public async void DeleteGuestAsync(string id)
+        public async Task DeleteGuestAsync(string id)
         {
             await _cosmosDBService.DeleteDocumentAsync(_databaseName, _collectionName, id);
         }
 
         [HttpPut("{id}")]
-        public async void UpdateGuestAsync(string id, [FromBody] Guest guest)
+        public async Task UpdateGuestAsync(string id, [FromBody] Guest guest)
         {
             guest.id = Guid.Parse(id);
             await _cosmosDBService.UpdateDocumentAsync(_databaseName, _collectionName, id, guest);

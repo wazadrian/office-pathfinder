@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using WebAPI.Interfaces;
 using WebAPI.Models;
+using System.Threading.Tasks;
 
 namespace WebAPI.Controllers
 {
@@ -28,19 +29,19 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost]
-        public async void CreateConferenceRoomAsync([FromBody] ConferenceRoom conferenceRoom)
+        public async Task CreateConferenceRoomAsync([FromBody] ConferenceRoom conferenceRoom)
         {
             await _cosmosDBService.CreateDocumentIfNotExistsAsync(_databaseName, _collectionName, conferenceRoom);
         }
 
         [HttpDelete("{id}")]
-        public async void DeleteConferenceRoomAsync(string id)
+        public async Task DeleteConferenceRoomAsync(string id)
         {
             await _cosmosDBService.DeleteDocumentAsync(_databaseName, _collectionName, id);
         }
 
         [HttpPut("{id}")]
-        public async void UpdateConferenceRoomAsync(string id, [FromBody] ConferenceRoom conferenceRoom)
+        public async Task UpdateConferenceRoomAsync(string id, [FromBody] ConferenceRoom conferenceRoom)
         {
             conferenceRoom.id = Guid.Parse(id);
             await _cosmosDBService.UpdateDocumentAsync(_databaseName, _collectionName, id, conferenceRoom);
