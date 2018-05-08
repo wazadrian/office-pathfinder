@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
-import { EmployeesService } from './employees/employees.service';
+import { ApiService } from './api.service';
 import { DataService } from './data.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers:[EmployeesService, DataService]
+  providers:[ApiService, DataService]
 })
 export class AppComponent {
   title = 'Welcome to PPG: We protect and beautify the world';
 }
+

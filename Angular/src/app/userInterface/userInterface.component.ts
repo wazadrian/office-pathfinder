@@ -1,8 +1,13 @@
 import { Component, OnInit, Input, AfterContentChecked, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { IEmployee } from '../employees/employee';
-import { EmployeesService } from '../employees/employees.service';
+import { ApiService } from '../api.service';
 import { DataService } from "../data.service";
 import { equal } from 'assert';
+import { IOffice } from '../clickable-offices/office';
+import { IConferenceRoom } from '../conference-rooms/conferenceRoom';
+import { IRoom } from '../clickable-rooms/room';
+import { IStation } from '../clickable-stations/station';
+import { IGuest } from '../guests/guest';
 
 @Component({
   selector: 'app-userInterface',
@@ -18,6 +23,11 @@ export class UserInterfaceComponent implements OnInit, AfterContentChecked {
 
   title = 'Who or what you want to find?';
   employees: IEmployee[] = [];
+  offices: IOffice[] = [];
+  conferenceRooms: IConferenceRoom[] = [];
+  rooms: IRoom[] = [];
+  stations: IStation[] = [];
+  guests: IGuest[] = [];
   filteredEmployes: IEmployee [];
   foundEmployee: IEmployee;
   showEmployee: boolean = false;
@@ -48,14 +58,34 @@ export class UserInterfaceComponent implements OnInit, AfterContentChecked {
   dataForSearch : string;
 
 
-  constructor(private _employeesService: EmployeesService, private _data: DataService) { }
+  constructor(private _apiService: ApiService, private _data: DataService) { }
 
   ngOnInit(): void {
     this._data.currentMessage.subscribe(message => this.placeClicked = message);
    // this._data.currentMsgSearch.subscribe(wanted => this.shySearchCheck = wanted);
 
-    this._employeesService.getEmployees()
+    this._apiService.getEmployees()
       .subscribe(employees => this.employees = employees,
+      error => this.errorMessage = <any>error);
+
+    this._apiService.getConferenceRoom()
+      .subscribe(conferenceRooms => this.conferenceRooms = conferenceRooms,
+      error => this.errorMessage = <any>error);
+
+    this._apiService.getOffice()
+      .subscribe(offices => this.offices = offices,
+      error => this.errorMessage = <any>error);
+
+    this._apiService.getRoom()
+      .subscribe(rooms => this.rooms = rooms,
+      error => this.errorMessage = <any>error);
+
+    this._apiService.getStation()
+      .subscribe(stations => this.stations = stations,
+      error => this.errorMessage = <any>error);
+
+    this._apiService.getGuest()
+      .subscribe(guests => this.guests = guests,
       error => this.errorMessage = <any>error);
 
   }
