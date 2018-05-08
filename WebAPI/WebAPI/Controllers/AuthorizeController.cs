@@ -40,6 +40,22 @@ namespace WebAPI.Controllers
             return response;
         }
 
+        [HttpPost("Register"), Authorize]
+        public IActionResult Register([FromBody] LoginRegisterViewModel model)
+        {
+            var admin = new Admin
+            {
+                login = model.login,
+                password = model.password,
+            };
+            if (_authorizeService.CreateAdminAccount(admin, _databaseName, _collectionName))
+            {
+                return Ok();
+            }
+            return BadRequest();
+        }
+        
+
         [HttpGet, Authorize]
         public IActionResult GetLoginOfLoggedUser()
         {

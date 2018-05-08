@@ -9,5 +9,6 @@ namespace WebAPI.Interfaces
     public interface IAuthorizeService
     {
         string Authenticate(Admin admin, string databaseName, string collectionName);
+        bool CreateAdminAccount(Admin admin, string databaseName, string collectionName);
     }
 }

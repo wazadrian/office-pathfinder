@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using WebAPI.Interfaces;
 using WebAPI.Models;
 
@@ -29,19 +30,19 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost]
-        public async void CreateEmployeeAsync([FromBody] Employee employee)
+        public async Task CreateEmployeeAsync([FromBody] Employee employee)
         {
             await _cosmosDBService.CreateDocumentIfNotExistsAsync(_databaseName, _collectionName, employee);
         }
 
         [HttpDelete("{id}")]
-        public async void DeleteEmployeeAsync(string id)
+        public async Task DeleteEmployeeAsync(string id)
         {
             await _cosmosDBService.DeleteDocumentAsync(_databaseName, _collectionName, id);
         }
 
         [HttpPut("{id}")]
-        public async void UpdateEmployeeAsync(string id, [FromBody] Employee employee)
+        public async Task UpdateEmployeeAsync(string id, [FromBody] Employee employee)
         {
             employee.id = Guid.Parse(id);
             await _cosmosDBService.UpdateDocumentAsync(_databaseName, _collectionName, id, employee);

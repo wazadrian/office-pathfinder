@@ -58,25 +58,10 @@ namespace WebAPI.Services
 
         public async Task CreateDocumentIfNotExistsAsync(string databaseName, string collectionName, BaseEntity entity)
         {
-            try
-            {
-                var documentId = Guid.NewGuid();
-                entity.id = documentId;
-                var documentUri = UriFactory.CreateDocumentUri(databaseName, collectionName, entity.id.ToString());
-                await _client.ReadDocumentAsync(documentUri);
-            }
-            catch (DocumentClientException de)
-            {
-                if (de.StatusCode == HttpStatusCode.NotFound)
-                {
-                    var documentUri = UriFactory.CreateDocumentCollectionUri(databaseName, collectionName);
-                    await _client.CreateDocumentAsync(documentUri, entity);
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            var documentId = Guid.NewGuid();
+            entity.id = documentId;
+            var documentUri = UriFactory.CreateDocumentCollectionUri(databaseName, collectionName);
+            await _client.CreateDocumentAsync(documentUri, entity);
         }
 
         public async Task DeleteDocumentAsync(string databaseName, string collectionName, string documentId)
