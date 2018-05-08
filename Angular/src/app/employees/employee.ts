@@ -3,4 +3,5 @@ export interface IEmployee{
     employeeName: string;
     employeeSurname: string;
     employeePosition: string;
+    //placeId: string;
 }
