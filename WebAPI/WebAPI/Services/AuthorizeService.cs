@@ -1,12 +1,8 @@
-﻿using Microsoft.Azure.Documents.Client;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Claims;
-using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using WebAPI.Interfaces;
@@ -16,38 +12,34 @@ namespace WebAPI.Services
 {
     public class AuthorizeService : IAuthorizeService
     {
-        private const string EndpointUri = "https://officepathfinder.documents.azure.com:443/";
-        private const string PrimaryKey = "WPNnm5XPIEcw5INS2Pxb3iNJqJIpNGJ0jqlb0jH7Nn1fgyEcvLTwEI0NCp2MjuPke2MACQKi0FonFnlvoeSCyg==";
-        private readonly DocumentClient _client;
-        IConfiguration _config;
+        private const string CollectionName = "AdministratorsCollection";
+        private readonly IConfiguration _config;
+        private readonly ICosmosDBRepository<Admin> _repository;
 
-        public AuthorizeService(IConfiguration config)
+        public AuthorizeService(IConfiguration config, ICosmosDBRepository<Admin> repository)
         {
-            _client = new DocumentClient(new Uri(EndpointUri), PrimaryKey);
             _config = config;
+            _repository = repository;
         }
 
-        public string Authenticate(Admin admin, string databaseName, string collectionName)
+        public string Authenticate(Admin admin)
         {
-            if (CheckLoginAndPassword(admin, databaseName, collectionName))
-            {
+            if (CheckLoginAndPassword(admin))
                 return BuildToken(admin);
-            }
+
             return null;
         }
 
-        private bool CheckLoginAndPassword(Admin admin, string databaseName, string collectionName)
+        private bool CheckLoginAndPassword(Admin admin)
         {
-            var queryOptions = new FeedOptions { MaxItemCount = -1 };
-            var documentUri = UriFactory.CreateDocumentCollectionUri(databaseName, collectionName);
-            var query = _client.CreateDocumentQuery<Admin>(documentUri, queryOptions);
-            var entities = new List<Admin>(query);
+            var entities = _repository.GetAllEntities(CollectionName);
 
             if (entities.Exists(p => p.login == admin.login
             && p.password == Eramake.eCryptography.Encrypt(admin.password)))
             {
                 return true;
             }
+
             return false;
         }
 
@@ -69,32 +61,23 @@ namespace WebAPI.Services
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
-        public bool CreateAdminAccount(Admin admin, string databaseName, string collectionName)
+        public async Task<bool> CreateAdminAccount(Admin admin)
         {
-            if (LoginExist(admin, databaseName, collectionName))
-            {
+            if (LoginExist(admin))
                 return false;
-            }
-            var documentId = Guid.NewGuid();
-            admin.id = documentId;
+
             admin.password = Eramake.eCryptography.Encrypt(admin.password);
 
-            var documentUri = UriFactory.CreateDocumentCollectionUri(databaseName, collectionName);
-            _client.CreateDocumentAsync(documentUri, admin).Wait();
+            await _repository.InsertEntityAsync(CollectionName, admin);
             return true;
         }
 
-        private bool LoginExist(Admin admin, string databaseName, string collectionName)
+        private bool LoginExist(Admin admin)
         {
-            var queryOptions = new FeedOptions { MaxItemCount = -1 };
-            var documentUri = UriFactory.CreateDocumentCollectionUri(databaseName, collectionName);
-            var query = _client.CreateDocumentQuery<Admin>(documentUri, queryOptions);
-            var entities = new List<Admin>(query);
-
+            var entities = _repository.GetAllEntities(CollectionName);
             if (entities.Exists(p => p.login == admin.login))
-            {
                 return true;
-            }
+
             return false;
         }
     }

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
@@ -15,8 +13,6 @@ namespace WebAPI.Controllers
     [Route("api/[controller]")]
     public class AuthorizeController : Controller
     {
-        private string _databaseName = "Office";
-        private string _collectionName = "AuthorizationCollection";
         private readonly IAuthorizeService _authorizeService;
 
         public AuthorizeController(IAuthorizeService authorizeService)
@@ -29,32 +25,37 @@ namespace WebAPI.Controllers
         public IActionResult CreateToken([FromBody] LoginRegisterViewModel model)
         {
             IActionResult response = Unauthorized();
+
             var admin = new Admin
             {
                 login = model.login,
                 password = model.password,
             };
-            var tokenString = _authorizeService.Authenticate(admin, _databaseName, _collectionName);
+
+            var tokenString = _authorizeService.Authenticate(admin);
             if (tokenString != null)
                 return Ok(new { token = tokenString });
+
             return response;
         }
 
         [HttpPost("Register"), Authorize]
-        public IActionResult Register([FromBody] LoginRegisterViewModel model)
+        public async Task<IActionResult> Register([FromBody] LoginRegisterViewModel model)
         {
             var admin = new Admin
             {
                 login = model.login,
                 password = model.password,
             };
-            if (_authorizeService.CreateAdminAccount(admin, _databaseName, _collectionName))
-            {
+
+            var operationSucceeded =
+                await _authorizeService.CreateAdminAccount(admin);
+
+            if (operationSucceeded)
                 return Ok();
-            }
+
             return BadRequest();
         }
-        
 
         [HttpGet, Authorize]
         public IActionResult GetLoginOfLoggedUser()

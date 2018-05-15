@@ -1,6 +1,4 @@
-﻿using Newtonsoft.Json;
-
-namespace WebAPI.Models
+﻿namespace WebAPI.Models
 {
     public class Employee : BaseEntity
     {
@@ -9,10 +7,5 @@ namespace WebAPI.Models
         public string employeeSurname { get; set; }
         public string employeePosition { get; set; }
         public string placeId { get; set; }
-
-        public override string ToString()
-        {
-            return JsonConvert.SerializeObject(this);
-        }
     }
 }

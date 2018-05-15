@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -11,20 +10,19 @@ namespace WebAPI.Controllers
     [Route("api/[controller]")]
     public class EmployeesController : Controller
     {
-        private string _databaseName = "Office";
-        private string _collectionName = "EmployeesCollection";
-        private readonly ICosmosDBService _cosmosDBService;
+        private const string CollectionName = "EmployeesCollection";
+        private readonly ICosmosDBRepository<Employee> _repository;
 
-        public EmployeesController(ICosmosDBService cosmosDBService)
+        public EmployeesController(ICosmosDBRepository<Employee> repository)
         {
-            _cosmosDBService = cosmosDBService;
+            _repository = repository;
         }
 
         [HttpGet]
-        public List<BaseEntity> GetAll()
+        public List<Employee> GetAll()
         {
             var employees =
-                 _cosmosDBService.GetAllEntities(_databaseName, _collectionName, "employees");
+                 _repository.GetAllEntities(CollectionName);
 
             return employees;
         }
@@ -32,20 +30,20 @@ namespace WebAPI.Controllers
         [HttpPost]
         public async Task CreateEmployeeAsync([FromBody] Employee employee)
         {
-            await _cosmosDBService.CreateDocumentIfNotExistsAsync(_databaseName, _collectionName, employee);
+            await _repository.InsertEntityAsync(CollectionName, employee);
         }
 
         [HttpDelete("{id}")]
         public async Task DeleteEmployeeAsync(string id)
         {
-            await _cosmosDBService.DeleteDocumentAsync(_databaseName, _collectionName, id);
+            await _repository.DeleteEntityAsync(CollectionName, id);
         }
 
         [HttpPut("{id}")]
         public async Task UpdateEmployeeAsync(string id, [FromBody] Employee employee)
         {
             employee.id = Guid.Parse(id);
-            await _cosmosDBService.UpdateDocumentAsync(_databaseName, _collectionName, id, employee);
+            await _repository.UpdateEntityAsync(CollectionName, id, employee);
         }
     }
 }

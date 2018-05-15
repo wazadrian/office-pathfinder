@@ -10,20 +10,19 @@ namespace WebAPI.Controllers
     [Route("api/[controller]")]
     public class ConferenceRoomsController : Controller
     {
-        private string _databaseName = "Office";
-        private string _collectionName = "ConferenceRoomsCollection";
-        private readonly ICosmosDBService _cosmosDBService;
+        private const string CollectionName = "ConferenceRoomsCollection";
+        private readonly ICosmosDBRepository<ConferenceRoom> _repository;
 
-        public ConferenceRoomsController(ICosmosDBService cosmosDBService)
+        public ConferenceRoomsController(ICosmosDBRepository<ConferenceRoom> repository)
         {
-            _cosmosDBService = cosmosDBService;
+            _repository = repository;
         }
 
         [HttpGet]
-        public List<BaseEntity> GetAll()
+        public List<ConferenceRoom> GetAll()
         {
             var conferenceRooms =
-                 _cosmosDBService.GetAllEntities(_databaseName, _collectionName, "conferenceRooms");
+                 _repository.GetAllEntities(CollectionName);
 
             return conferenceRooms;
         }
@@ -31,20 +30,20 @@ namespace WebAPI.Controllers
         [HttpPost]
         public async Task CreateConferenceRoomAsync([FromBody] ConferenceRoom conferenceRoom)
         {
-            await _cosmosDBService.CreateDocumentIfNotExistsAsync(_databaseName, _collectionName, conferenceRoom);
+            await _repository.InsertEntityAsync(CollectionName, conferenceRoom);
         }
 
         [HttpDelete("{id}")]
         public async Task DeleteConferenceRoomAsync(string id)
         {
-            await _cosmosDBService.DeleteDocumentAsync(_databaseName, _collectionName, id);
+            await _repository.DeleteEntityAsync(CollectionName, id);
         }
 
         [HttpPut("{id}")]
         public async Task UpdateConferenceRoomAsync(string id, [FromBody] ConferenceRoom conferenceRoom)
         {
             conferenceRoom.id = Guid.Parse(id);
-            await _cosmosDBService.UpdateDocumentAsync(_databaseName, _collectionName, id, conferenceRoom);
+            await _repository.UpdateEntityAsync(CollectionName, id, conferenceRoom);
         }
     }
 }

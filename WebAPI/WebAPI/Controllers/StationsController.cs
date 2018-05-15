@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Threading.Tasks;
+using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc;
 using WebAPI.Interfaces;
 using WebAPI.Models;
 
@@ -10,41 +10,40 @@ namespace WebAPI.Controllers
     [Route("api/[controller]")]
     public class StationsController : Controller
     {
-        private string _databaseName = "Office";
-        private string _collectionName = "StationsCollection";
-        private readonly ICosmosDBService _cosmosDBService;
+        private const string CollectionName = "StationsCollection";
+        private readonly ICosmosDBRepository<Station> _repository;
 
-        public StationsController(ICosmosDBService cosmosDBService)
+        public StationsController(ICosmosDBRepository<Station> repository)
         {
-            _cosmosDBService = cosmosDBService;
+            _repository = repository;
         }
 
         [HttpGet]
-        public List<BaseEntity> GetAll()
+        public List<Station> GetAll()
         {
-            var desks =
-                 _cosmosDBService.GetAllEntities(_databaseName, _collectionName, "stations");
+            var stations =
+                 _repository.GetAllEntities(CollectionName);
 
-            return desks;
+            return stations;
         }
 
         [HttpPost]
         public async Task CreateStationAsync([FromBody] Station station)
         {
-            await _cosmosDBService.CreateDocumentIfNotExistsAsync(_databaseName, _collectionName, station);
+            await _repository.InsertEntityAsync(CollectionName, station);
         }
 
         [HttpDelete("{id}")]
         public async Task DeleteStationAsync(string id)
         {
-            await _cosmosDBService.DeleteDocumentAsync(_databaseName, _collectionName, id);
+            await _repository.DeleteEntityAsync(CollectionName, id);
         }
 
         [HttpPut("{id}")]
         public async Task UpdateStationAsync(string id, [FromBody] Station station)
         {
             station.id = Guid.Parse(id);
-            await _cosmosDBService.UpdateDocumentAsync(_databaseName, _collectionName, id, station);
+            await _repository.UpdateEntityAsync(CollectionName, id, station);
         }
     }
 }

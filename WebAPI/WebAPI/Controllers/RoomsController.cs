@@ -10,20 +10,20 @@ namespace WebAPI.Controllers
     [Route("api/[controller]")]
     public class RoomsController : Controller
     {
-        private string _databaseName = "Office";
-        private string _collectionName = "RoomsCollection";
-        private readonly ICosmosDBService _cosmosDBService;
+        private const string DatabaseName = "Office";
+        private const string CollectionName = "RoomsCollection";
+        private readonly ICosmosDBRepository<Room> _repository;
 
-        public RoomsController(ICosmosDBService cosmosDBService)
+        public RoomsController(ICosmosDBRepository<Room> repository)
         {
-            _cosmosDBService = cosmosDBService;
+            _repository = repository;
         }
 
         [HttpGet]
-        public List<BaseEntity> GetAll()
+        public List<Room> GetAll()
         {
             var rooms =
-                 _cosmosDBService.GetAllEntities(_databaseName, _collectionName, "rooms");
+                 _repository.GetAllEntities(CollectionName);
 
             return rooms;
         }
@@ -31,20 +31,20 @@ namespace WebAPI.Controllers
         [HttpPost]
         public async Task CreateRoomAsync([FromBody] Room room)
         {
-            await _cosmosDBService.CreateDocumentIfNotExistsAsync(_databaseName, _collectionName, room);
+            await _repository.InsertEntityAsync(CollectionName, room);
         }
 
         [HttpDelete("{id}")]
         public async Task DeleteRoomAsync(string id)
         {
-            await _cosmosDBService.DeleteDocumentAsync(_databaseName, _collectionName, id);
+            await _repository.DeleteEntityAsync(CollectionName, id);
         }
 
         [HttpPut("{id}")]
         public async Task UpdateRoomAsync(string id, [FromBody] Room room)
         {
             room.id = Guid.Parse(id);
-            await _cosmosDBService.UpdateDocumentAsync(_databaseName, _collectionName, id, room);
+            await _repository.UpdateEntityAsync(CollectionName, id, room);
         }
     }
 }
