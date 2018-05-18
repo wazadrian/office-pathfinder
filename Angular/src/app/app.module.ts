@@ -4,7 +4,6 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
-
 import { AppComponent } from './app.component';
 import { StationsComponent } from './clickable-stations/stations.component';
 import { ConferenceRoomsComponent } from './conference-rooms/conference-rooms.component';
@@ -15,6 +14,15 @@ import { ClickableOfficesComponent } from './clickable-offices/clickable-offices
 import { ClickableRoomsComponent } from './clickable-rooms/clickable-rooms.component';
 import { ClickableOthersComponent } from './clickable-others/clickable-others.component';
 
+import { AuthService } from './auth/auth.service';
+import { AuthGuardService } from './auth/auth-guard.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from './interceptors/token.interceptor';
+import { ApiInterceptor } from './interceptors/api.interceptor';
+import { RouterModule, Routes } from '@angular/router';
+import { AppRoutingModule } from './app-routing.module';
+import { SignUpComponent } from './auth/sign-up/sign-up.component';
+import { SignInComponent } from './auth/sign-in/sign-in.component';
 
 @NgModule({
   declarations: [
@@ -27,15 +35,31 @@ import { ClickableOthersComponent } from './clickable-others/clickable-others.co
     ClickableOfficesComponent,
     ClickableRoomsComponent,
     ClickableOthersComponent,
+    SignUpComponent,
+    SignInComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    MDBBootstrapModule.forRoot()
+    MDBBootstrapModule.forRoot(),
+    AppRoutingModule
   ],
-  schemas: [ NO_ERRORS_SCHEMA ],
-  providers: [],
+  schemas: [NO_ERRORS_SCHEMA],
+  providers: [
+    AuthService,
+    AuthGuardService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ApiInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
