@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 
 
@@ -14,6 +15,7 @@ import { HelpComponent } from './help/help.component';
 import { ClickableOfficesComponent } from './clickable-offices/clickable-offices.component';
 import { ClickableRoomsComponent } from './clickable-rooms/clickable-rooms.component';
 import { ClickableOthersComponent } from './clickable-others/clickable-others.component';
+import { AdminComponent } from './admin/admin.component';
 
 
 @NgModule({
@@ -27,12 +29,18 @@ import { ClickableOthersComponent } from './clickable-others/clickable-others.co
     ClickableOfficesComponent,
     ClickableRoomsComponent,
     ClickableOthersComponent,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    MDBBootstrapModule.forRoot()
+    MDBBootstrapModule.forRoot(),
+    RouterModule.forRoot([
+      { path: 'admin', component: AdminComponent},
+      { path: '', component: AppComponent},
+      { path: '**', redirectTo: '', pathMatch: 'full'}
+    ]), 
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [],
