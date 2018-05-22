@@ -121,8 +121,8 @@ export class UserInterfaceComponent implements OnInit, AfterContentChecked {
 
     this._data.changeMsg(this.wantToWCShine);
     this._data.changeMsgElevator(this.wantToElevatorShine);*/
-
-
+    this.foundThing = "";
+    this.findPlace(this.placeClicked);
     
   }
 

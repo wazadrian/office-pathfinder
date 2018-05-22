@@ -2,9 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-
 
 import { AppComponent } from './app.component';
 import { StationsComponent } from './clickable-stations/stations.component';
@@ -15,8 +13,17 @@ import { HelpComponent } from './help/help.component';
 import { ClickableOfficesComponent } from './clickable-offices/clickable-offices.component';
 import { ClickableRoomsComponent } from './clickable-rooms/clickable-rooms.component';
 import { ClickableOthersComponent } from './clickable-others/clickable-others.component';
-import { AdminComponent } from './admin/admin.component';
 
+import { AuthService } from './auth/auth.service';
+import { AuthGuardService } from './auth/auth-guard.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from './interceptors/token.interceptor';
+import { ApiInterceptor } from './interceptors/api.interceptor';
+import { RouterModule, Routes } from '@angular/router';
+import { AppRoutingModule } from './app-routing.module';
+import { SignUpComponent } from './auth/sign-up/sign-up.component';
+import { SignInComponent } from './auth/sign-in/sign-in.component';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 
 @NgModule({
   declarations: [
@@ -29,21 +36,32 @@ import { AdminComponent } from './admin/admin.component';
     ClickableOfficesComponent,
     ClickableRoomsComponent,
     ClickableOthersComponent,
-    AdminComponent,
+    SignUpComponent,
+    SignInComponent,
+    AdminPanelComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
     MDBBootstrapModule.forRoot(),
-    RouterModule.forRoot([
-      { path: 'admin', component: AdminComponent},
-      { path: '', component: AppComponent},
-      { path: '**', redirectTo: '', pathMatch: 'full'}
-    ]), 
+    AppRoutingModule
   ],
-  schemas: [ NO_ERRORS_SCHEMA ],
-  providers: [],
+  schemas: [NO_ERRORS_SCHEMA],
+  providers: [
+    AuthService,
+    AuthGuardService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ApiInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
