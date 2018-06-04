@@ -175,6 +175,9 @@ export class UserInterfaceComponent implements OnInit, AfterContentChecked {
           console.log("ehhh");
           this.findPlace(this.searchedEmployee.placeId);
           this.searchedGuest = null;          //have to???
+
+        this.shySearchCheck = true;
+        this._data.changeMsgSearch(this.shySearchCheck);
           return;
         }
         else if(this.searchedEmployee === null){ 
@@ -191,7 +194,11 @@ export class UserInterfaceComponent implements OnInit, AfterContentChecked {
             this.searchedGuest = null; 
           }
         }
-        
+        if (this.foundThing != "") {
+
+        this.shySearchCheck = true;
+        this._data.changeMsgSearch(this.shySearchCheck);
+        }
       } 
   }
 
@@ -228,8 +235,6 @@ export class UserInterfaceComponent implements OnInit, AfterContentChecked {
         console.log("To je pokój");
         this.foundThing += element.roomNumber + " " + element.roomName + " ";
         this._data.changeMessage(element.roomId);
-        this.shySearchCheck = true;
-        this._data.changeMsgSearch(this.shySearchCheck);
         if(personNotFoundJet === true) {
           if (this.findEmployee(element.employeeId.toString()) === null) {
             this.findGuest(element.guestId.toString());
@@ -244,8 +249,6 @@ export class UserInterfaceComponent implements OnInit, AfterContentChecked {
         console.log("To je stanowisko");
         this.foundThing +="\nBiurko nr. " + element.stationId.slice(7,8) + " ";
         this._data.changeMessage(element.stationId);
-        this.shySearchCheck = true;
-        this._data.changeMsgSearch(this.shySearchCheck);
         console.log("zara zobacze " + element.stationId);
         if(personNotFoundJet === true) {
           if (this.findEmployee(element.employeeId.toString()) === null) {
@@ -261,8 +264,6 @@ export class UserInterfaceComponent implements OnInit, AfterContentChecked {
         console.log("To je office");
         this.foundThing += element.officeNumber + " " + element.officeName + " ";
         this._data.changeMessage(element.officeId);
-        this.shySearchCheck = true;
-        this._data.changeMsgSearch(this.shySearchCheck);
         if(personNotFoundJet === true) {
           if (this.findEmployee(element.employeeId.toString()) === null) {
             this.findGuest(element.guestId.toString());
@@ -277,8 +278,6 @@ export class UserInterfaceComponent implements OnInit, AfterContentChecked {
         console.log("To je conferenceRoom");
         this.foundThing += element.conferenceRoomNumber + " " + element.conferenceRoomName + " ";
         this._data.changeMessage(element.conferenceRoomId);
-        this.shySearchCheck = true;
-        this._data.changeMsgSearch(this.shySearchCheck);
         if(personNotFoundJet === true) {
           if (this.findEmployee(element.employeeId.toString()) === null) {
             this.findGuest(element.guestId.toString());

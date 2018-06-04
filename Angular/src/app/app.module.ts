@@ -15,6 +15,7 @@ import { ClickableRoomsComponent } from './clickable-rooms/clickable-rooms.compo
 import { ClickableOthersComponent } from './clickable-others/clickable-others.component';
 
 import { AuthService } from './auth/auth.service';
+import { PanelService } from './admin-panel/panel.service';
 import { AuthGuardService } from './auth/auth-guard.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './interceptors/token.interceptor';
@@ -50,6 +51,7 @@ import { AdminPanelComponent } from './admin-panel/admin-panel.component';
   schemas: [NO_ERRORS_SCHEMA],
   providers: [
     AuthService,
+    PanelService,
     AuthGuardService,
     {
       provide: HTTP_INTERCEPTORS,

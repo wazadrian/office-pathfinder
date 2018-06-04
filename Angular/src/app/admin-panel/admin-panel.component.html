@@ -23,23 +23,45 @@
     </div>
   </nav>
 </div>
-<div class="addForm">
-  <div id='addEmployee' class='text-center animated fadeIn' *ngIf ='showAddEmployee === true;'>
+
+
+<form (ngSubmit)="addEmployee(f)" #f="ngForm" (keydown.enter)="$event.preventDefault()" ngNativeValidate>
+  <div id='addEmployee' class='addForm text-center animated fadeIn' *ngIf ='showAddEmployee === true;'>
     <h1 style="font-size: 26px">First Name:</h1>
-    <input type="text" placeholder="First Name" style="font-size: 19px" ngModel class="form-control" #name>
+    <input class="form-control" type="text" name= "first" placeholder="First Name" style="font-size: 19px" ngModel #name required>
     <h1 style="font-size: 26px">Second Name:</h1>
-    <input type="text" placeholder="Second Name" style="font-size: 19px" ngModel class="form-control" #sndname>
+    <input class="form-control" type="text" name= "last" placeholder="Second Name" style="font-size: 19px" ngModel #sndname required>
     <h1 style="font-size: 26px">Position:</h1>
-    <input type="text" placeholder="Position" style="font-size: 19px" ngModel class="form-control" #position>
+    <input class="form-control" type="text" name= "position" placeholder="Position" style="font-size: 19px" ngModel #position required>
     <div class="checkbox">
         <label style="font-size: 19px"><input id="box" type="checkbox" (click)='onBox(box.checked);' #box>Set place</label>
     </div>
-    <div *ngIf ='boxChecked === true;'>
-        <h1 style="font-size: 26px">Place:</h1>
-        <input type="text" placeholder="Place" style="font-size: 19px" ngModel class="form-control" #place>
-    </div>
-    <a id='buttonAdd' style="font-size: 19px" data-toggle="tooltip" title="Add" class= 'btn btn-warning' (click)='addEmployee(name.value, sndname.value, position.value);'>
+
+    <h1 style="font-size: 26px">Place:</h1>
+    <input type="text" name= "place" placeholder="Place" style="font-size: 19px" ngModel class="form-control" [disabled]="isDisabled()" #place>
+    <button type="submit" id='buttonAdd' style="font-size: 19px" data-toggle="tooltip" title="Add" class= 'btn btn-warning'>
       Save
-    </a>  
+    </button>  
   </div>
-</div>
+</form>
+
+
+<form (ngSubmit)="addEmployee(d)" #d="ngForm" (keydown.enter)="$event.preventDefault()" ngNativeValidate>
+  <div id='addEmployee' class='addForm text-center animated fadeIn' *ngIf ='showAddGuest === true;'>
+    <h1 style="font-size: 26px">First Name:</h1>
+    <input class="form-control" type="text" name= "first" placeholder="First Name" style="font-size: 19px" ngModel #name required>
+    <h1 style="font-size: 26px">Second Name:</h1>
+    <input class="form-control" type="text" name= "last" placeholder="Second Name" style="font-size: 19px" ngModel #sndname required>
+    <h1 style="font-size: 26px">Position:</h1>
+    <input class="form-control" type="text" name= "position" placeholder="Position" style="font-size: 19px" ngModel #position required>
+    <div class="checkbox">
+        <label style="font-size: 19px"><input id="box" type="checkbox" (click)='onBox(box.checked);' #box>Set place</label>
+    </div>
+
+    <h1 style="font-size: 26px">Place:</h1>
+    <input type="text" name= "place" placeholder="Place" style="font-size: 19px" ngModel class="form-control" [disabled]="isDisabled()" #place>
+    <button type="submit" id='buttonAdd' style="font-size: 19px" data-toggle="tooltip" title="Add" class= 'btn btn-warning'>
+      Save
+    </button>  
+  </div>
+</form>

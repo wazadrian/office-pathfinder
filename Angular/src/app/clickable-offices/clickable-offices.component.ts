@@ -13,6 +13,7 @@ export class ClickableOfficesComponent implements OnInit {
   prevEventSrcID : string;
   placeClicked : string;
   doubleClick : boolean = false;
+  wasSearching : boolean = false;
   buttonsIDs: string [] = ["buttonSearchSlide", "buttonWC", "buttonElev", "buttonWater", "buttonFire", "buttonCoffee", "buttonAid", 
                         "buttonPrinter", "buttonEat", "buttonInfo", "buttonBed", "buttonActive", "buttonHealth"]; 
   constructor(private _data: DataService) { }
@@ -20,6 +21,7 @@ export class ClickableOfficesComponent implements OnInit {
   ngOnInit() {
     this._data.currentMessage.subscribe(message => this.officeClicked = message)
     this._data.currentMessage.subscribe(message => this.placeClicked = message);
+    this._data.currentMsgSearch.subscribe(messageSearch => this.wasSearching = messageSearch);
 
   }
 

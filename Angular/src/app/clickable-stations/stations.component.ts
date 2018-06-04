@@ -1,7 +1,10 @@
 import { Component, OnInit, Output, EventEmitter, ViewChild,
   AfterViewInit,
   ElementRef , Renderer } from '@angular/core';
+  import { Observable } from 'rxjs/Observable';
 import { DataService } from "../data.service";
+import { IStation } from "./station";
+import { ApiService } from '../api.service';
 
 @Component({
   selector: '[app-stations]',
@@ -19,19 +22,27 @@ export class StationsComponent implements OnInit {
   wasSearching : boolean = false;
   buttonsIDs: string [] = ["buttonSearchSlide", "buttonWC", "buttonElev", "buttonWater", "buttonFire", "buttonCoffee", "buttonAid", 
                         "buttonPrinter", "buttonEat", "buttonInfo", "buttonBed", "buttonActive", "buttonHealth"]; 
-  constructor(private _data: DataService) { }
+  stations: IStation[] = [];
+  constructor(private _apiService: ApiService, private _data: DataService) { }
 
   ngOnInit() {
     this._data.currentMessage.subscribe(message => this.stationClicked = message);
     this._data.currentMessage.subscribe(message => this.placeClicked = message);
     this._data.currentMsgSearch.subscribe(messageSearch => this.wasSearching = messageSearch);
+    this._apiService.getStation().subscribe(stat => this.stations = stat);
   }
 
   ngAfterViewInit() {
-
   }
 
   ngAfterContentChecked() {
+    this.stations.forEach(element => {
+      if (element.employeeId === -1) {
+        document.getElementById(element.stationId).setAttribute('class', 'shadow');
+      }
+    });
+
+    console.log("prev: " + this.prevStationClicked + " click: " + this.stationClicked + " was: " + this.wasSearching);
     if (this.wasSearching ) {
       if (this.prevEventSrcID != "") {
         if (this.prevEventSrcID[0] === 's' && !this.equalsBtn(this.placeClicked))
@@ -61,7 +72,6 @@ export class StationsComponent implements OnInit {
 
   onClick(event : Event) {
     
-    //console.log(event.srcElement.id);
     this.stationClicked = event.srcElement.id;
     this._data.changeMessage(this.stationClicked);
 
