@@ -34,11 +34,16 @@ export class AdminPanelComponent implements OnInit {
 
   addEmployee(form: NgForm) {
     //console.log(form.value.first + " "+ form.value.last + " " + form.value.position + " " + form.value.place);
-    form.reset();
     // to zakomentowane nizej jest niedzialajace, ale struktura argumentow jest ok chyba
     //this.panelService.addEmployeeDB(form.value.first, form.value.last, form.value.position, form.value.place);
-  } 
-  
+
+    this.panelService.addEmployeeDB(form.value.first, form.value.last, form.value.position, form.value.place);
+
+    form.reset();
+  }
+
+
+
   addGuest(form: NgForm) {
     //console.log(form.value.first + " "+ form.value.last + " " + form.value.position + " " + form.value.place + " " + form.value.dateFrom + " " + form.value.dateTo);
     form.reset();
