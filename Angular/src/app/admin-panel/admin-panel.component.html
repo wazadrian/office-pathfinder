@@ -7,7 +7,7 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="/"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span>Show map</a>
+          <a class="nav-link" href="/"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>   Show map</a>
         </li>
         <li class="nav-item active">
           <a (click)='onAddEmployee()'  class="nav-link"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>   Add employee</a>
@@ -16,7 +16,10 @@
           <a (click)='onAddGuest()'  class="nav-link"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>   Add guest</a>
         </li>
         <li class="nav-item active">
-          <a (click)='onSetPlace()' class="nav-link"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>   Set place</a>
+          <a (click)='onSetPlace()' class="nav-link"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>   Set station</a>
+        </li>
+        <li class="nav-item active">
+          <a (click)='onDeletePlace()' class="nav-link"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span>   Remove from station</a>
         </li>
       </ul>
         <button (click)='onLogout()' class="btn btn-outline-white my-2 my-sm-0" type="submit" style="font-size: 25px">Logout</button>
@@ -25,7 +28,8 @@
 </div>
 
 
-<form (ngSubmit)="addEmployee(f)" #f="ngForm" (keydown.enter)="$event.preventDefault()" ngNativeValidate>
+<!--Dodaj pracownika-->
+<form (ngSubmit)="addEmployee(addE)" #addE="ngForm" (keydown.enter)="$event.preventDefault()" ngNativeValidate>
   <div id='addEmployee' class='addForm text-center animated fadeIn' *ngIf ='showAddEmployee === true;'>
     <h1 style="font-size: 26px">First Name:</h1>
     <input class="form-control" type="text" name= "first" placeholder="First Name" style="font-size: 19px" ngModel #name required>
@@ -37,7 +41,7 @@
         <label style="font-size: 19px"><input id="box" type="checkbox" (click)='onBox(box.checked);' #box>Set place</label>
     </div>
 
-    <h1 style="font-size: 26px">Place:</h1>
+    <h1 style="font-size: 26px">Place ID:</h1>
     <input type="text" name= "place" placeholder="Place" style="font-size: 19px" ngModel class="form-control" [disabled]="isDisabled()" #place>
     <button type="submit" id='buttonAdd' style="font-size: 19px" data-toggle="tooltip" title="Add" class= 'btn btn-warning'>
       Save
@@ -45,23 +49,62 @@
   </div>
 </form>
 
-
-<form (ngSubmit)="addEmployee(d)" #d="ngForm" (keydown.enter)="$event.preventDefault()" ngNativeValidate>
+<!--Dodaj gościa-->
+<form (ngSubmit)="addGuest(addG)" #addG="ngForm" (keydown.enter)="$event.preventDefault()" ngNativeValidate>
   <div id='addEmployee' class='addForm text-center animated fadeIn' *ngIf ='showAddGuest === true;'>
     <h1 style="font-size: 26px">First Name:</h1>
-    <input class="form-control" type="text" name= "first" placeholder="First Name" style="font-size: 19px" ngModel #name required>
+    <input class="form-control" type="text" name="first" placeholder="First Name" style="font-size: 19px" ngModel #name required>
     <h1 style="font-size: 26px">Second Name:</h1>
-    <input class="form-control" type="text" name= "last" placeholder="Second Name" style="font-size: 19px" ngModel #sndname required>
+    <input class="form-control" type="text" name="last" placeholder="Second Name" style="font-size: 19px" ngModel #sndname required>
     <h1 style="font-size: 26px">Position:</h1>
-    <input class="form-control" type="text" name= "position" placeholder="Position" style="font-size: 19px" ngModel #position required>
+    <input class="form-control" type="text" name="position" placeholder="Position" style="font-size: 19px" ngModel #position required>
     <div class="checkbox">
         <label style="font-size: 19px"><input id="box" type="checkbox" (click)='onBox(box.checked);' #box>Set place</label>
     </div>
 
-    <h1 style="font-size: 26px">Place:</h1>
+    <h1 style="font-size: 26px">Place ID:</h1>
     <input type="text" name= "place" placeholder="Place" style="font-size: 19px" ngModel class="form-control" [disabled]="isDisabled()" #place>
+    <h1 style="font-size: 26px">Registration period:</h1>
+    <h1 style="font-size: 20px"><i>From:</i></h1>
+    <input class="form-control" type="date" name="dateFrom" style="font-size: 19px" ngModel #dateFrom required>
+    <h1 style="font-size: 20px"><i>To:</i></h1>
+    <input class="form-control" type="date" name="dateTo" style="font-size: 19px" ngModel #dateTo required>
     <button type="submit" id='buttonAdd' style="font-size: 19px" data-toggle="tooltip" title="Add" class= 'btn btn-warning'>
       Save
     </button>  
   </div>
 </form>
+
+<!--Ustaw biurko do pracownika-->
+<form (ngSubmit)="setPlace(set)" #set="ngForm" (keydown.enter)="$event.preventDefault()" ngNativeValidate>
+  <div id='addEmployee' class='addForm text-center animated fadeIn' *ngIf ='showSetPlace === true;'>
+    <h1 style="font-size: 20px"><i>Type desk ID and pick one employee</i></h1>
+    <h1 style="font-size: 26px">Place ID:</h1>
+    <input class="form-control" type="text" name= "place" placeholder="Place" style="font-size: 19px" ngModel #position required>
+    <h1 style="font-size: 26px">List of employees:</h1>
+    <select name="selectEmployee" id="selectEmployee" (change)="setSelected(selectedValue)" [(ngModel)]="selectedValue"  (ngModelChange)="selectedValue=$event;" size="10" value="{{ selectedValue }}" required>
+      <option style="font-size: 19px" *ngFor="let emp of employees" [value]="emp.employeeId">
+            {{ emp.employeeName }} {{ emp.employeeSurname }} - {{ emp.employeePosition }} - {{ emp.placeId }}
+      </option>
+    </select>
+    <button type="submit" id='buttonAdd' style="font-size: 19px" data-toggle="tooltip" title="Add" class= 'btn btn-warning'>
+      Save
+    </button>  
+  </div>
+</form>
+
+<!--Usuń biurko od pracownika-->
+<form (ngSubmit)="deletePlace()" #del="ngForm" (keydown.enter)="$event.preventDefault()" ngNativeValidate>
+    <div id='addEmployee' class='addForm text-center animated fadeIn' *ngIf ='showDeletePlace === true;'>
+      <h1 style="font-size: 20px"><i>Pick one employee</i></h1>
+      <h1 style="font-size: 26px">List of employees:</h1>
+      <select name="selectEmployee" id="selectEmployee" (change)="setSelected(selectedValue)" [(ngModel)]="selectedValue"  (ngModelChange)="selectedValue=$event;" size="10" value="{{ selectedValue }}" required>
+        <option style="font-size: 19px" *ngFor="let emp of employees" [value]="emp.employeeId">
+                {{ emp.placeId }} - {{ emp.employeeName }} {{ emp.employeeSurname }}
+        </option>
+      </select>      
+      <button type="submit" id='buttonAdd' style="font-size: 19px" data-toggle="tooltip" title="Add" class= 'btn btn-warning'>
+        Save
+      </button>  
+    </div>
+  </form>

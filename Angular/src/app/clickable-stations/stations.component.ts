@@ -1,7 +1,5 @@
-import { Component, OnInit, Output, EventEmitter, ViewChild,
-  AfterViewInit,
-  ElementRef , Renderer } from '@angular/core';
-  import { Observable } from 'rxjs/Observable';
+import { Component, OnInit, Output, EventEmitter, ViewChild, AfterViewInit, ElementRef , Renderer } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 import { DataService } from "../data.service";
 import { IStation } from "./station";
 import { ApiService } from '../api.service';
