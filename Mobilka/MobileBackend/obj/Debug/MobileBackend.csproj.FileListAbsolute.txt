@@ -1,0 +1,13 @@
+D:\Uczelnia\Projekt PPG\Mobilka\MobileBackend\MobileBackend\bin\Debug\Microsoft.Azure.Documents.ServiceInterop.dll
+D:\Uczelnia\Projekt PPG\Mobilka\MobileBackend\MobileBackend\bin\Debug\DocumentDB.Spatial.Sql.dll
+D:\Uczelnia\Projekt PPG\Mobilka\MobileBackend\MobileBackend\bin\Debug\MobileBackend.dll
+D:\Uczelnia\Projekt PPG\Mobilka\MobileBackend\MobileBackend\bin\Debug\MobileBackend.pdb
+D:\Uczelnia\Projekt PPG\Mobilka\MobileBackend\MobileBackend\bin\Debug\Microsoft.Azure.Documents.Client.dll
+D:\Uczelnia\Projekt PPG\Mobilka\MobileBackend\MobileBackend\bin\Debug\Newtonsoft.Json.dll
+D:\Uczelnia\Projekt PPG\Mobilka\MobileBackend\MobileBackend\bin\Debug\Microsoft.Azure.Documents.Client.xml
+D:\Uczelnia\Projekt PPG\Mobilka\MobileBackend\MobileBackend\bin\Debug\Newtonsoft.Json.xml
+D:\Uczelnia\Projekt PPG\Mobilka\MobileBackend\MobileBackend\obj\Debug\MobileBackend.csprojAssemblyReference.cache
+D:\Uczelnia\Projekt PPG\Mobilka\MobileBackend\MobileBackend\obj\Debug\MobileBackend.csproj.CoreCompileInputs.cache
+D:\Uczelnia\Projekt PPG\Mobilka\MobileBackend\MobileBackend\obj\Debug\MobileBackend.csproj.CopyComplete
+D:\Uczelnia\Projekt PPG\Mobilka\MobileBackend\MobileBackend\obj\Debug\MobileBackend.dll
+D:\Uczelnia\Projekt PPG\Mobilka\MobileBackend\MobileBackend\obj\Debug\MobileBackend.pdb

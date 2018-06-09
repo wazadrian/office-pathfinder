@@ -1,0 +1,2 @@
+D:\Uczelnia\Projekt PPG\Mobilka\MobileBackend\PathFinder\obj\Debug\PathFinder.csprojAssemblyReference.cache
+D:\Uczelnia\Projekt PPG\Mobilka\MobileBackend\PathFinder\obj\Debug\PathFinder.csproj.CoreCompileInputs.cache
