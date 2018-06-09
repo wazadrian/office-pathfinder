@@ -450,11 +450,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Uczelnia\\Projekt PPG\\Mobilka\\MobileBackend\\PathFinder\\PathFinder.csproj",
+      "projectUniqueName": "D:\\Uczelnia\\Projekt PPG\\Mobilka\\Mobilka\\PathFinder\\PathFinder.csproj",
       "projectName": "PathFinder",
-      "projectPath": "D:\\Uczelnia\\Projekt PPG\\Mobilka\\MobileBackend\\PathFinder\\PathFinder.csproj",
+      "projectPath": "D:\\Uczelnia\\Projekt PPG\\Mobilka\\Mobilka\\PathFinder\\PathFinder.csproj",
       "packagesPath": "C:\\Users\\Master\\.nuget\\packages\\",
-      "outputPath": "D:\\Uczelnia\\Projekt PPG\\Mobilka\\MobileBackend\\PathFinder\\obj\\",
+      "outputPath": "D:\\Uczelnia\\Projekt PPG\\Mobilka\\Mobilka\\PathFinder\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "configFilePaths": [
