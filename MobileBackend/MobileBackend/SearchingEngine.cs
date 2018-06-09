@@ -21,7 +21,7 @@ namespace MobileBackend
             _repository = new CosmosDBRepository();
 
             // Do testów można zmienić warunek w tym ifie na false, żeby sprawdzić czy pobiera dane z jsonów
-            if (!CheckForInternetConnection())
+            if (CheckForInternetConnection())
             {
                 _employees = _repository.GetAllEmployees();
                 _stations = _repository.GetAllStations();
