@@ -9,22 +9,26 @@
     android:paddingLeft="20dp"
     android:paddingRight="20dp"
     android:background="@android:color/holo_orange_light">
-    <TextView
-        android:text="Tu może wyszukiwanie oddzielnie zrobic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/niewiemTextView"
-        android:layout_marginTop="20dp"
-        android:textSize="16dp"
-        android:textStyle="bold"
-        android:layout_gravity="center_horizontal"
-        android:textColor="@android:color/white" />
     <Button
-        android:text="Szukać czy nie szukać"
-        android:layout_width="wrap_content"
+        android:text="(left arrow) Home"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textSize="14dp"
-        android:id="@+id/JakisButton"
-        android:background="@android:color/holo_green_dark" />
+        android:id="@+id/homeButton" />
+    <EditText
+        android:id="@+id/searchLayoutTextBox"
+        android:minWidth="300px"
+        android:inputType="text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <Button
+        android:text="Search"
+        android:id="@+id/searchLayoutSearchButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <ListView
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/searchLayoutList" />
 </LinearLayout>

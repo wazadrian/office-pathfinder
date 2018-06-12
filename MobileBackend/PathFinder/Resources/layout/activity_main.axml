@@ -15,26 +15,19 @@
         android:layout_height="100.0dp"
         android:id="@+id/mainImageView"
         android:layout_gravity="center_horizontal" />
-    <TextView
-        android:text="Welcome in our application"
-        android:layout_width="wrap_content"
+    <EditText
+        android:inputType="text"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/welcomeTextView"
-        android:paddingTop="20dp"
-        android:textSize="25dp"
+        android:id="@+id/inputText" />
+    <Button
+        android:text="Search"
         android:textStyle="bold"
-        android:layout_gravity="center_horizontal"
-        android:textColor="@android:color/black" />
-    <TextView
-        android:text="Click the buttons bellow to to certein action"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/descriptionTextView"
-        android:layout_marginTop="20dp"
-        android:textSize="16dp"
-        android:textStyle="bold"
-        android:layout_gravity="center_horizontal"
-        android:textColor="@android:color/white" />
+        android:textSize="14dp"
+        android:id="@+id/searchButton"
+        android:background="@android:color/holo_green_dark"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
     <RelativeLayout
         android:orientation="horizontal"
         android:layout_width="fill_parent"
@@ -58,25 +51,5 @@
             android:id="@+id/exitButton"
             android:background="@android:color/holo_red_dark"
             android:layout_toRightOf="@id/mapButton" />
-        <Button
-            android:text="Search"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:textSize="14dp"
-            android:id="@+id/searchButton"
-            android:background="@android:color/holo_green_dark"
-            android:layout_toRightOf="@id/exitButton" />
     </RelativeLayout>
-    <EditText
-        android:inputType="date"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/inputText" />
-    <ListView
-        android:minWidth="25px"
-        android:minHeight="25px"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/outputListView" />
 </LinearLayout>
