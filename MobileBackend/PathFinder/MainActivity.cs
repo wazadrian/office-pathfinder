@@ -1,12 +1,8 @@
 ﻿using Android.App;
-using Android.Widget;
+using Android.Content;
 using Android.OS;
 using Android.Support.V7.App;
-using Android.Views;
-using System.Collections.Generic;
-using MobileBackend.Models;
-using PathFinder.Data;
-
+using Android.Widget;
 
 namespace PathFinder
 {
@@ -17,43 +13,25 @@ namespace PathFinder
         {
             base.OnCreate(savedInstanceState);
 
-            IDatabaseConnection databaseConnection = new MockDatabase();
 
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
 
-            var imageView = FindViewById<ImageView>(Resource.Id.mainImageView);
-            imageView.SetImageResource(Resource.Drawable.ppg);
+            var mainImageView = FindViewById<ImageView>(Resource.Id.mainImageView);
+            mainImageView.SetImageResource(Resource.Drawable.ppg);
 
-            var buttonMap = FindViewById<Button>(Resource.Id.mapButton);
-            var buttonSearch = FindViewById<Button>(Resource.Id.searchButton);
-            var buttonExit = FindViewById<Button>(Resource.Id.exitButton);
-            var inputText = FindViewById<EditText>(Resource.Id.inputText);
-
-
-
-            var homeButton = FindViewById<Button>(Resource.Id.homeButton);
-            //searchLayout
-            var searchLayoutList = FindViewById<ListView>(Resource.Id.searchLayoutList);
-            var searchLayoutTextBox = FindViewById<EditText>(Resource.Id.searchLayoutTextBox);
-            var searchLayoutSearchButton = FindViewById<Button>(Resource.Id.searchLayoutSearchButton);
-            // /searchLayout
+            var mapButton = FindViewById<Button>(Resource.Id.mapButton);
+            var searchButton = FindViewById<Button>(Resource.Id.searchButton);
+            var exitButton = FindViewById<Button>(Resource.Id.exitButton);
+            var inputEditText = FindViewById<EditText>(Resource.Id.inputEditText);
 
 
-
-            buttonSearch.Click += (e, o) =>
+            searchButton.Click += (e, o) =>
             {
-                SetContentView(Resource.Layout.searchLayout);
+                var nextActivity = new Intent(this, typeof(SearchActivity));
+                nextActivity.PutExtra("keyword", inputEditText.Text);
+                StartActivity(nextActivity);
             };
-
-            /*homeButton.Click += (e, o) =>
-            {
-                SetContentView(Resource.Layout.activity_main);
-            };*/
-
-
-
         }
     }
 }
-

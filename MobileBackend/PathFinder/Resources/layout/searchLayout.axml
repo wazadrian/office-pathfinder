@@ -15,14 +15,14 @@
         android:layout_height="wrap_content"
         android:id="@+id/homeButton" />
     <EditText
-        android:id="@+id/searchLayoutTextBox"
+        android:id="@+id/inputEditText"
         android:minWidth="300px"
         android:inputType="text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <Button
         android:text="Search"
-        android:id="@+id/searchLayoutSearchButton"
+        android:id="@+id/searchButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <ListView
@@ -30,5 +30,5 @@
         android:minHeight="25px"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/searchLayoutList" />
+        android:id="@+id/resultListView" />
 </LinearLayout>

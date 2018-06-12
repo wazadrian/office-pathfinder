@@ -19,7 +19,7 @@
         android:inputType="text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/inputText" />
+        android:id="@+id/inputEditText" />
     <Button
         android:text="Search"
         android:textStyle="bold"
@@ -50,6 +50,6 @@
             android:textSize="14dp"
             android:id="@+id/exitButton"
             android:background="@android:color/holo_red_dark"
-            android:layout_toRightOf="@id/mapButton" />
+            android:layout_toRightOf="@id/exitButton" />
     </RelativeLayout>
 </LinearLayout>
