@@ -58,7 +58,14 @@
     <Reference Include="Mono.Android" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\DatabaseConnection.cs" />
+    <Compile Include="Data\MockDatabase.cs" />
     <Compile Include="MainActivity.cs" />
+    <Compile Include="Models\BaseEntity.cs" />
+    <Compile Include="Models\Employee.cs" />
+    <Compile Include="Models\Office.cs" />
+    <Compile Include="Models\Room.cs" />
+    <Compile Include="Models\Station.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -95,12 +102,6 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Xamarin.Android.Support.Design" Version="27.0.2" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\MobileBackend\MobileBackend.csproj">
-      <Project>{85fd279b-4209-44ec-9b87-80759a8f9efc}</Project>
-      <Name>MobileBackend</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\ppg.jpg" />

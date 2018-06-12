@@ -3,8 +3,6 @@ using Android.Widget;
 using Android.OS;
 using Android.Support.V7.App;
 using Android.Views;
-using MobileBackend;
-using MobileBackend.Models;
 using System.Collections.Generic;
 
 
@@ -13,8 +11,6 @@ namespace PathFinder
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
     public class MainActivity : AppCompatActivity
     {
-        SearchingEngine _searchingEngine;
-        List<Employee> _employees;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -30,7 +26,7 @@ namespace PathFinder
             var inputText = FindViewById<EditText>(Resource.Id.inputText);
             var outputListView = FindViewById<ListView>(Resource.Id.outputListView);
 
-            _searchingEngine = new SearchingEngine();
+            //_searchingEngine = new SearchingEngine();
             //imageView.SetImageResource(Resource.Drawable.ppg);
 
             buttonSearch.Click += (e, o) =>
