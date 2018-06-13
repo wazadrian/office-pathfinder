@@ -1,10 +1,8 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Widget;
-using MobileBackend.Models;
 using PathFinder.Data;
 
 namespace PathFinder
@@ -12,7 +10,7 @@ namespace PathFinder
     [Activity(Label = "RoomDetailsActivity")]
     public class RoomDetailsActivity : Activity
     {
-        readonly IDatabaseConnection _databaseConnection = Database.Connection;
+        private readonly IDatabaseConnection _databaseConnection = Database.Connection;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {

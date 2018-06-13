@@ -1,23 +1,24 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:local="http://schemas.android.com/apk/lib/com.app.chasebank"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
+              xmlns:local="http://schemas.android.com/apk/lib/com.app.chasebank"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:paddingTop="50dp"
+              android:paddingLeft="20dp"
+              android:paddingRight="20dp"
+              android:background="@android:color/holo_orange_light">
+  <Button
+    android:text="(left arrow) Home"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingTop="50dp"
-    android:paddingLeft="20dp"
-    android:paddingRight="20dp"
-    android:background="@android:color/holo_orange_light">
-    <Button
-        android:text="(left arrow) Home"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/homeButton" />
-    <ListView
-        android:minWidth="25px"
-        android:minHeight="25px"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/resultListView" />
+    android:layout_height="wrap_content"
+    android:id="@+id/homeButton" />
+  <ListView
+    android:minWidth="25px"
+    android:minHeight="25px"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/resultListView" />
 </LinearLayout>

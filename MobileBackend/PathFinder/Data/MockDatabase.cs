@@ -80,7 +80,7 @@ namespace PathFinder.Data
                 }
             };
 
-            _stations = new List<Station>()
+            _stations = new List<Station>
             {
                 new Station
                 {
@@ -99,7 +99,7 @@ namespace PathFinder.Data
                     stationName = "Desk 2"
                 }
             };
-            _rooms = new List<Room>()
+            _rooms = new List<Room>
             {
                 new Room
                 {
@@ -120,7 +120,7 @@ namespace PathFinder.Data
                     roomName = "Room 2"
                 }
             };
-            _offices = new List<Office>()
+            _offices = new List<Office>
             {
                 new Office
                 {

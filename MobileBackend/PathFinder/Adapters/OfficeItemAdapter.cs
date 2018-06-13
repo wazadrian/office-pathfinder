@@ -18,7 +18,7 @@ namespace PathFinder.Adapters
             this.context = context;
             this.offices = offices;
         }
-        
+
         public override int Count => offices.Count;
 
         public override Object GetItem(int position)
@@ -51,6 +51,7 @@ namespace PathFinder.Adapters
     {
         //Your adapter views to re-use
         public TextView Title { get; set; }
+
         public TextView TitleCd { get; set; }
     }
 }

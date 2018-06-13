@@ -19,7 +19,7 @@ namespace PathFinder
 
             var mainImageView = FindViewById<ImageView>(Resource.Id.mainImageView);
             mainImageView.SetImageResource(Resource.Drawable.ppg);
-            
+
             var searchButton = FindViewById<Button>(Resource.Id.searchButton);
             var inputEditText = FindViewById<EditText>(Resource.Id.inputEditText);
             var employeesButton = FindViewById<Button>(Resource.Id.employeesButton);

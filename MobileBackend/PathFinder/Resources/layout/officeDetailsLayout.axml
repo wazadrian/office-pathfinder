@@ -1,74 +1,75 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+  <Button
+    android:text="(left arrow) Home"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <Button
-        android:text="(left arrow) Home"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/homeButton" />
+    android:layout_height="wrap_content"
+    android:id="@+id/homeButton" />
+  <TextView
+    android:text="Office"
+    android:textAppearance="?android:attr/textAppearanceLarge"
+    android:id="@+id/officeLabel"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" />
+  <RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/relativeLayout1">
     <TextView
-        android:text="Office"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:id="@+id/officeLabel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/relativeLayout1">
-        <TextView
-            android:text="Name: "
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:id="@+id/NameLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <TextView
-            android:text="Name"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:id="@+id/nameTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/NameLabel"
-            android:layout_marginLeft="6.0dp" />
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/relativeLayout3">
-        <TextView
-            android:text="Number: "
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:id="@+id/NumberLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <TextView
-            android:text="Number"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:id="@+id/numberTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/NumberLabel"
-            android:layout_marginLeft="6.0dp" />
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/relativeLayout4">
-        <TextView
-            android:text="Employee: "
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:id="@+id/EmployeeLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <TextView
-            android:text="Employee"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:id="@+id/employeeTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/EmployeeLabel"
-            android:layout_marginLeft="6.0dp" />
-    </RelativeLayout>
+      android:text="Name: "
+      android:textAppearance="?android:attr/textAppearanceLarge"
+      android:id="@+id/NameLabel"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content" />
+    <TextView
+      android:text="Name"
+      android:textAppearance="?android:attr/textAppearanceLarge"
+      android:id="@+id/nameTextView"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_toRightOf="@id/NameLabel"
+      android:layout_marginLeft="6.0dp" />
+  </RelativeLayout>
+  <RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/relativeLayout3">
+    <TextView
+      android:text="Number: "
+      android:textAppearance="?android:attr/textAppearanceLarge"
+      android:id="@+id/NumberLabel"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content" />
+    <TextView
+      android:text="Number"
+      android:textAppearance="?android:attr/textAppearanceLarge"
+      android:id="@+id/numberTextView"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_toRightOf="@id/NumberLabel"
+      android:layout_marginLeft="6.0dp" />
+  </RelativeLayout>
+  <RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/relativeLayout4">
+    <TextView
+      android:text="Employee: "
+      android:textAppearance="?android:attr/textAppearanceLarge"
+      android:id="@+id/EmployeeLabel"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content" />
+    <TextView
+      android:text="Employee"
+      android:textAppearance="?android:attr/textAppearanceLarge"
+      android:id="@+id/employeeTextView"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_toRightOf="@id/EmployeeLabel"
+      android:layout_marginLeft="6.0dp" />
+  </RelativeLayout>
 </LinearLayout>

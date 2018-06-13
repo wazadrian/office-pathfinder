@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -13,8 +12,8 @@ namespace PathFinder
     [Activity(Label = "OfficesActivity")]
     public class OfficesActivity : Activity
     {
+        private readonly IDatabaseConnection _databaseConnection = Database.Connection;
         private List<Office> _foundOffices;
-        readonly IDatabaseConnection _databaseConnection = Database.Connection;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -24,10 +23,10 @@ namespace PathFinder
 
             var homeButton = FindViewById<Button>(Resource.Id.homeButton);
             var officeResultListView = FindViewById<ListView>(Resource.Id.resultListView);
-            
-            
+
+
             _foundOffices = _databaseConnection.GetAllOffices();
-            
+
 
             var officeAdapter = new OfficeItemAdapter(this, _foundOffices);
             officeResultListView.Adapter = officeAdapter;
@@ -39,7 +38,6 @@ namespace PathFinder
                 var nextActivity = new Intent(this, typeof(MainActivity));
                 StartActivity(nextActivity);
             };
-
         }
 
         private void ResultListView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)

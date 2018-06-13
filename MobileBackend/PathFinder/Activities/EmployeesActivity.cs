@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -13,8 +12,8 @@ namespace PathFinder
     [Activity(Label = "EmployeesActivity")]
     public class EmployeesActivity : Activity
     {
+        private readonly IDatabaseConnection _databaseConnection = Database.Connection;
         private List<Employee> _foundEmployees;
-        readonly IDatabaseConnection _databaseConnection = Database.Connection;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -24,7 +23,7 @@ namespace PathFinder
 
             var homeButton = FindViewById<Button>(Resource.Id.homeButton);
             var employeeResultListView = FindViewById<ListView>(Resource.Id.resultListView);
-            
+
 
             _foundEmployees = _databaseConnection.GetAllEmployees();
 
@@ -37,7 +36,6 @@ namespace PathFinder
                 var nextActivity = new Intent(this, typeof(MainActivity));
                 StartActivity(nextActivity);
             };
-
         }
 
         private void ResultListView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)

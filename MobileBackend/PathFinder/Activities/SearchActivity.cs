@@ -13,11 +13,11 @@ namespace PathFinder
     [Activity(Label = "SearchActivity")]
     public class SearchActivity : Activity
     {
+        private readonly IDatabaseConnection _databaseConnection = Database.Connection;
         private List<Employee> _foundEmployees;
-        private List<Station> _foundStations;
         private List<Office> _foundOffices;
         private List<Room> _foundRooms;
-        readonly IDatabaseConnection _databaseConnection = Database.Connection;
+        private List<Station> _foundStations;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -36,10 +36,13 @@ namespace PathFinder
             var keyword = Intent.GetStringExtra("keyword" ?? "");
             //inputEditText.Text = keyword;
 
-            _foundEmployees = _databaseConnection.GetAllEmployees().Where(x => x.employeeName.Contains(keyword) || x.employeeSurname.Contains(keyword)).ToList();
+            _foundEmployees = _databaseConnection.GetAllEmployees()
+                .Where(x => x.employeeName.Contains(keyword) || x.employeeSurname.Contains(keyword)).ToList();
             _foundStations = _databaseConnection.GetAllStations().Where(x => x.stationName.Contains(keyword)).ToList();
-            _foundOffices = _databaseConnection.GetAllOffices().Where(x => x.officeName.Contains(keyword) || x.officeNumber.ToString().Contains(keyword)).ToList();
-            _foundRooms = _databaseConnection.GetAllRooms().Where(x => x.roomName.Contains(keyword) || x.roomNumber.ToString().Contains(keyword)).ToList();
+            _foundOffices = _databaseConnection.GetAllOffices()
+                .Where(x => x.officeName.Contains(keyword) || x.officeNumber.ToString().Contains(keyword)).ToList();
+            _foundRooms = _databaseConnection.GetAllRooms()
+                .Where(x => x.roomName.Contains(keyword) || x.roomNumber.ToString().Contains(keyword)).ToList();
 
             var employeeAdapter = new EmployeeItemAdapter(this, _foundEmployees);
             employeeResultListView.Adapter = employeeAdapter;
@@ -76,18 +79,21 @@ namespace PathFinder
             nextActivity.PutExtra("id", _foundEmployees[e.Position].id.ToString());
             StartActivity(nextActivity);
         }
+
         private void StationListView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
             var nextActivity = new Intent(this, typeof(StationDetailsActivity));
             nextActivity.PutExtra("id", _foundStations[e.Position].id.ToString());
             StartActivity(nextActivity);
         }
+
         private void RoomListView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
             var nextActivity = new Intent(this, typeof(RoomDetailsActivity));
             nextActivity.PutExtra("id", _foundEmployees[e.Position].id.ToString());
             StartActivity(nextActivity);
         }
+
         private void OfficeListView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
             var nextActivity = new Intent(this, typeof(OfficeDetailsActivity));

@@ -10,15 +10,15 @@ namespace PathFinder.Adapters
 {
     internal class StationItemAdapter : BaseAdapter
     {
-        private readonly Context context;
         private readonly List<Station> _stations;
+        private readonly Context context;
 
         public StationItemAdapter(Context context, List<Station> stations)
         {
             this.context = context;
-            this._stations = stations;
+            _stations = stations;
         }
-        
+
         public override int Count => _stations.Count;
 
         public override Object GetItem(int position)
@@ -51,6 +51,7 @@ namespace PathFinder.Adapters
     {
         //Your adapter views to re-use
         public TextView Title { get; set; }
+
         public TextView TitleCd { get; set; }
     }
 }
