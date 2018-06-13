@@ -58,6 +58,9 @@
     <Reference Include="Mono.Android" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Adapters\OfficeItemAdapter.cs" />
+    <Compile Include="Adapters\RoomItemAdapter.cs" />
+    <Compile Include="Adapters\StationItemAdapter.cs" />
     <Compile Include="Adapters\EmployeeItemAdapter.cs" />
     <Compile Include="Data\Database.cs" />
     <Compile Include="Data\IDatabaseConnection.cs" />

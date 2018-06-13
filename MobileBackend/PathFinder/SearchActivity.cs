@@ -13,7 +13,10 @@ namespace PathFinder
     [Activity(Label = "SearchActivity")]
     public class SearchActivity : Activity
     {
-        private List<Employee> _foundItems;
+        private List<Employee> _foundEmployees;
+        private List<Station> _foundStations;
+        private List<Office> _foundOffices;
+        private List<Room> _foundRooms;
         readonly IDatabaseConnection _databaseConnection = Database.Connection;
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -25,17 +28,31 @@ namespace PathFinder
             var homeButton = FindViewById<Button>(Resource.Id.homeButton);
             var inputEditText = FindViewById<EditText>(Resource.Id.inputEditText);
             var searchButton = FindViewById<Button>(Resource.Id.searchButton);
-            var resultListView = FindViewById<ListView>(Resource.Id.resultListView);
+            var employeeResultListView = FindViewById<ListView>(Resource.Id.employeeResultListView);
+            var stationResultListView = FindViewById<ListView>(Resource.Id.stationResultListView);
+            var officeResultListView = FindViewById<ListView>(Resource.Id.officeResultListView);
+            var roomResultListView = FindViewById<ListView>(Resource.Id.roomResultListView);
 
             var keyword = Intent.GetStringExtra("keyword" ?? "");
             //inputEditText.Text = keyword;
 
-            _foundItems = _databaseConnection.GetAllEmployees().Where(x => x.employeeName.Contains(keyword) || x.employeeSurname.Contains(keyword)).ToList();
+            _foundEmployees = _databaseConnection.GetAllEmployees().Where(x => x.employeeName.Contains(keyword) || x.employeeSurname.Contains(keyword)).ToList();
+            _foundStations = _databaseConnection.GetAllStations().Where(x => x.stationName.Contains(keyword)).ToList();
+            _foundOffices = _databaseConnection.GetAllOffices().Where(x => x.officeName.Contains(keyword) || x.officeNumber.ToString().Contains(keyword)).ToList();
+            _foundRooms = _databaseConnection.GetAllRooms().Where(x => x.roomName.Contains(keyword) || x.roomNumber.ToString().Contains(keyword)).ToList();
 
-            var adapter = new EmployeeItemAdapter(this, _foundItems);
-            resultListView.Adapter = adapter;
+            var employeeAdapter = new EmployeeItemAdapter(this, _foundEmployees);
+            employeeResultListView.Adapter = employeeAdapter;
+            employeeResultListView.ItemClick += ResultListView_ItemClick;
 
-            resultListView.ItemClick += ResultListView_ItemClick;
+            var stationAdapter = new StationItemAdapter(this, _foundStations);
+            stationResultListView.Adapter = stationAdapter;
+
+            var officeAdapter = new OfficeItemAdapter(this, _foundOffices);
+            officeResultListView.Adapter = officeAdapter;
+
+            var roomAdapter = new RoomItemAdapter(this, _foundRooms);
+            roomResultListView.Adapter = roomAdapter;
 
             homeButton.Click += (e, o) =>
             {
@@ -46,14 +63,14 @@ namespace PathFinder
             /*searchButton.Click += (e, o) =>
             {
                 keyword = inputEditText.Text;
-                _foundItems = _databaseConnection.GetAllEmployees().Where(x => x.employeeName.Contains(keyword) || x.employeeSurname.Contains(keyword)).ToList();
+                _foundEmployees = _databaseConnection.GetAllEmployees().Where(x => x.employeeName.Contains(keyword) || x.employeeSurname.Contains(keyword)).ToList();
             };*/
         }
 
         private void ResultListView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
             var nextActivity = new Intent(this, typeof(EmployeeDetailsActivity));
-            nextActivity.PutExtra("id", _foundItems[e.Position].id.ToString());
+            nextActivity.PutExtra("id", _foundEmployees[e.Position].id.ToString());
             StartActivity(nextActivity);
         }
     }

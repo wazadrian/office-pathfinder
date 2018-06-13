@@ -80,9 +80,67 @@ namespace PathFinder.Data
                 }
             };
 
-            _stations = new List<Station>();
-            _rooms = new List<Room>();
-            _offices = new List<Office>();
+            _stations = new List<Station>()
+            {
+                new Station
+                {
+                    id = Guid.NewGuid(),
+                    employeeId = 1,
+                    guestId = 1,
+                    stationId = "station20",
+                    stationName = "Desk 1"
+                },
+                new Station
+                {
+                    id = Guid.NewGuid(),
+                    employeeId = 2,
+                    guestId = 2,
+                    stationId = "station21",
+                    stationName = "Desk 2"
+                }
+            };
+            _rooms = new List<Room>()
+            {
+                new Room
+                {
+                    id = Guid.NewGuid(),
+                    employeeId = 1,
+                    guestId = 1,
+                    roomNumber = 1,
+                    roomId = "room1",
+                    roomName = "Room 1"
+                },
+                new Room
+                {
+                    id = Guid.NewGuid(),
+                    employeeId = 2,
+                    guestId = 2,
+                    roomNumber = 2,
+                    roomId = "room2",
+                    roomName = "Room 2"
+                }
+            };
+            _offices = new List<Office>()
+            {
+                new Office
+                {
+                    id = Guid.NewGuid(),
+                    employeeId = 1,
+                    guestId = 1,
+                    officeNumber = 1,
+                    officeId = "office1",
+                    officeName = "Office 1"
+                },
+                new Office
+                {
+                    id = Guid.NewGuid(),
+                    employeeId = 2,
+                    guestId = 2,
+                    officeNumber = 2,
+                    officeId = "office2",
+                    officeName = "Office 2"
+                }
+            };
         }
 
         public List<Employee> GetAllEmployees()

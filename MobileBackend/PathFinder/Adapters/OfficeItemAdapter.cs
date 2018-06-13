@@ -8,18 +8,18 @@ using MobileBackend.Models;
 
 namespace PathFinder.Adapters
 {
-    internal class EmployeeItemAdapter : BaseAdapter
+    internal class OfficeItemAdapter : BaseAdapter
     {
         private readonly Context context;
-        private readonly List<Employee> employees;
+        private readonly List<Office> offices;
 
-        public EmployeeItemAdapter(Context context, List<Employee> employees)
+        public OfficeItemAdapter(Context context, List<Office> offices)
         {
             this.context = context;
-            this.employees = employees;
+            this.offices = offices;
         }
         
-        public override int Count => employees.Count;
+        public override int Count => offices.Count;
 
         public override Object GetItem(int position)
         {
@@ -28,7 +28,7 @@ namespace PathFinder.Adapters
 
         public override long GetItemId(int position)
         {
-            return employees[position].employeeId;
+            return offices[position].employeeId;
         }
 
         public override View GetView(int position, View convertView, ViewGroup parent)
@@ -40,14 +40,14 @@ namespace PathFinder.Adapters
             var Title = view.FindViewById<TextView>(Resource.Id.Title);
             var TitleCd = view.FindViewById<TextView>(Resource.Id.TitleCd);
 
-            Title.Text = employees[position].employeeName;
-            TitleCd.Text = employees[position].employeeSurname;
+            Title.Text = offices[position].officeName;
+            TitleCd.Text = offices[position].officeNumber.ToString();
 
             return view;
         }
     }
 
-    internal class EmployeeItemAdapterViewHolder : Object
+    internal class OfficeItemAdapterViewHolder : Object
     {
         //Your adapter views to re-use
         public TextView Title { get; set; }
