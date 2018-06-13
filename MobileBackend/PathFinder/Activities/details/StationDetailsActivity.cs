@@ -27,7 +27,7 @@ namespace PathFinder
             {
                 var station = _databaseConnection.GetAllStations().Single(x => x.id.ToString() == id);
                 nameTextView.Text = station.stationName;
-                employeeTextView.Text = "TODO"; // TODO: change id to Name Surname
+                employeeTextView.Text = "John Locke"; 
             }
             homeButton.Click += (e, o) =>
             {

@@ -66,11 +66,31 @@ namespace PathFinder
                 StartActivity(nextActivity);
             };
 
-            /*searchButton.Click += (e, o) =>
+            searchButton.Click += (e, o) =>
             {
                 keyword = inputEditText.Text;
+
                 _foundEmployees = _databaseConnection.GetAllEmployees().Where(x => x.employeeName.Contains(keyword) || x.employeeSurname.Contains(keyword)).ToList();
-            };*/
+                _foundStations = _databaseConnection.GetAllStations().Where(x => x.stationName.Contains(keyword)).ToList();
+                _foundOffices = _databaseConnection.GetAllOffices().Where(x => x.officeName.Contains(keyword) || x.officeNumber.ToString().Contains(keyword)).ToList();
+                _foundRooms = _databaseConnection.GetAllRooms().Where(x => x.roomName.Contains(keyword) || x.roomNumber.ToString().Contains(keyword)).ToList();
+
+                var employeeAdapter2 = new EmployeeItemAdapter(this, _foundEmployees);
+                employeeResultListView.Adapter = employeeAdapter2;
+                employeeResultListView.ItemClick += EmployeeListView_ItemClick;
+
+                var stationAdapter2 = new StationItemAdapter(this, _foundStations);
+                stationResultListView.Adapter = stationAdapter2;
+                stationResultListView.ItemClick += StationListView_ItemClick;
+
+                var officeAdapter2 = new OfficeItemAdapter(this, _foundOffices);
+                officeResultListView.Adapter = officeAdapter2;
+                officeResultListView.ItemClick += OfficeListView_ItemClick;
+
+                var roomAdapter2 = new RoomItemAdapter(this, _foundRooms);
+                roomResultListView.Adapter = roomAdapter2;
+                roomResultListView.ItemClick += RoomListView_ItemClick;
+            };
         }
 
         private void EmployeeListView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)

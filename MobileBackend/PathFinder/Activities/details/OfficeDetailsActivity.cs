@@ -29,7 +29,7 @@ namespace PathFinder
                 var office = _databaseConnection.GetAllOffices().Single(x => x.id.ToString() == id);
                 nameTextView.Text = office.officeName;
                 numberTextView.Text = office.officeNumber.ToString();
-                employeeTextView.Text = "TODO"; // TODO: change id to Name Surname
+                employeeTextView.Text = "Lucas Phelps"; // TODO: change id to Name Surname
             }
             homeButton.Click += (e, o) =>
             {

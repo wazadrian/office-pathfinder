@@ -88,7 +88,7 @@ namespace PathFinder.Data
                     employeeId = 1,
                     guestId = 1,
                     stationId = "station20",
-                    stationName = "Desk 1"
+                    stationName = "Desk First"
                 },
                 new Station
                 {
@@ -96,7 +96,7 @@ namespace PathFinder.Data
                     employeeId = 2,
                     guestId = 2,
                     stationId = "station21",
-                    stationName = "Desk 2"
+                    stationName = "Desk Last"
                 }
             };
             _rooms = new List<Room>
@@ -104,20 +104,20 @@ namespace PathFinder.Data
                 new Room
                 {
                     id = Guid.NewGuid(),
-                    employeeId = 1,
+                    employeeId = 3,
                     guestId = 1,
                     roomNumber = 1,
                     roomId = "room1",
-                    roomName = "Room 1"
+                    roomName = "Room - Magic"
                 },
                 new Room
                 {
                     id = Guid.NewGuid(),
-                    employeeId = 2,
+                    employeeId = 4,
                     guestId = 2,
                     roomNumber = 2,
                     roomId = "room2",
-                    roomName = "Room 2"
+                    roomName = "Room - Peace"
                 }
             };
             _offices = new List<Office>
@@ -125,20 +125,20 @@ namespace PathFinder.Data
                 new Office
                 {
                     id = Guid.NewGuid(),
-                    employeeId = 1,
+                    employeeId = 5,
                     guestId = 1,
                     officeNumber = 1,
                     officeId = "office1",
-                    officeName = "Office 1"
+                    officeName = "Office - Blue Dreams"
                 },
                 new Office
                 {
                     id = Guid.NewGuid(),
-                    employeeId = 2,
+                    employeeId = 6,
                     guestId = 2,
                     officeNumber = 2,
                     officeId = "office2",
-                    officeName = "Office 2"
+                    officeName = "Office - Great Love"
                 }
             };
         }
