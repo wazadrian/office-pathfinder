@@ -61,6 +61,7 @@
     <Compile Include="Activities\details\StationDetailsActivity.cs" />
     <Compile Include="Activities\details\RoomDetailsActivity.cs" />
     <Compile Include="Activities\details\OfficeDetailsActivity.cs" />
+    <Compile Include="Activities\MapActivity.cs" />
     <Compile Include="Adapters\OfficeItemAdapter.cs" />
     <Compile Include="Adapters\RoomItemAdapter.cs" />
     <Compile Include="Adapters\StationItemAdapter.cs" />
@@ -149,6 +150,14 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\stationDetailsLayout.axml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\mapLayout.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\map.JPG" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

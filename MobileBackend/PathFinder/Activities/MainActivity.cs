@@ -3,6 +3,7 @@ using Android.Content;
 using Android.OS;
 using Android.Support.V7.App;
 using Android.Widget;
+using PathFinder.Activities;
 
 namespace PathFinder
 {
@@ -26,7 +27,7 @@ namespace PathFinder
             var roomsButton = FindViewById<Button>(Resource.Id.roomsButton);
             var officesButton = FindViewById<Button>(Resource.Id.officesButton);
             var stationsButton = FindViewById<Button>(Resource.Id.stationsButton);
-
+            var mapButton = FindViewById<Button>(Resource.Id.mapButton);
 
             searchButton.Click += (e, o) =>
             {
@@ -52,6 +53,11 @@ namespace PathFinder
             stationsButton.Click += (e, o) =>
             {
                 var nextActivity = new Intent(this, typeof(StationsActivity));
+                StartActivity(nextActivity);
+            };
+            mapButton.Click += (e, o) =>
+            {
+                var nextActivity = new Intent(this, typeof(MapActivity));
                 StartActivity(nextActivity);
             };
         }

@@ -8,22 +8,35 @@
     android:paddingTop="50dp"
     android:paddingLeft="20dp"
     android:paddingRight="20dp"
+    android:descendantFocusability="beforeDescendants"
+    android:focusableInTouchMode="true"
     android:background="@android:color/holo_orange_light">
     <Button
-        android:text="(left arrow) Home"
+        android:text="Go back"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/homeButton" />
-<!-- <EditText
+        android:layout_marginLeft="120dp"
+        android:layout_marginRight="120dp"
+        android:id="@+id/homeButton"
+        android:textStyle="bold"
+        android:background="#ffd32f2f"
+        android:textColor="#ff000000" />
+    <EditText
         android:id="@+id/inputEditText"
         android:inputType="text"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" /> -->
+        android:layout_height="wrap_content" />
     <Button
         android:text="Search"
         android:id="@+id/searchButton"
+        android:layout_marginLeft="70dp"
+        android:layout_marginRight="70dp"
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:background="#ff2979ff"
+        android:textStyle="bold"
+        android:textColor="#ffffffff" />
     <ListView
         android:minWidth="25px"
         android:minHeight="25px"
