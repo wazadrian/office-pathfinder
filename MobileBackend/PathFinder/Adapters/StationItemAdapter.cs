@@ -41,7 +41,7 @@ namespace PathFinder.Adapters
             var TitleCd = view.FindViewById<TextView>(Resource.Id.TitleCd);
 
             Title.Text = _stations[position].stationName;
-            //TitleCd.Text = _stations[position].;
+            TitleCd.Text = "";
 
             return view;
         }

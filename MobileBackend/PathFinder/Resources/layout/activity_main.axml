@@ -28,28 +28,29 @@
         android:background="@android:color/holo_green_dark"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-    <RelativeLayout
-        android:orientation="horizontal"
-        android:layout_width="fill_parent"
-        android:layout_marginTop="20dp"
+    <GridLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/relativeLayout1">
+        android:columnCount="2"
+        android:rowCount="2"
+        android:id="@+id/gridLayout1">
         <Button
-            android:text="Show map"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:textSize="14dp"
-            android:id="@+id/mapButton"
-            android:background="@android:color/holo_orange_light" />
+            android:text="Employees"
+            android:layout_gravity="fill_horizontal"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:id="@+id/employeesButton" />
         <Button
-            android:text="Exit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:textSize="14dp"
-            android:id="@+id/exitButton"
-            android:background="@android:color/holo_red_dark"
-            android:layout_toRightOf="@id/exitButton" />
-    </RelativeLayout>
+            android:text="Desks"
+            android:layout_gravity="fill_horizontal"
+            android:id="@+id/stationsButton" />
+        <Button
+            android:text="Offices"
+            android:layout_gravity="fill_horizontal"
+            android:id="@+id/officesButton" />
+        <Button
+            android:text="Rooms"
+            android:layout_gravity="fill_horizontal"
+            android:id="@+id/roomsButton" />
+    </GridLayout>
 </LinearLayout>
