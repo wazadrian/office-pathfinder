@@ -22,10 +22,10 @@ namespace PathFinder
 
             var id = Intent.GetStringExtra("id" ?? "");
 
-            var nameTextView = FindViewById<TextView>(Resource.Id.nameTextView);
-            var surnameTextView = FindViewById<TextView>(Resource.Id.surnameTextView);
-            var positionTextView = FindViewById<TextView>(Resource.Id.positionTextView);
-            var placeTextView = FindViewById<TextView>(Resource.Id.placeTextView);
+            var nameTextView = FindViewById<TextView>(Resource.Id.employeeNameTextView);
+            var surnameTextView = FindViewById<TextView>(Resource.Id.employeeSurnameTextView);
+            var positionTextView = FindViewById<TextView>(Resource.Id.employeePositionTextView);
+            var placeTextView = FindViewById<TextView>(Resource.Id.employeePlaceTextView);
 
             if (id != "")
             {

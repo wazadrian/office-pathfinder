@@ -43,16 +43,19 @@ namespace PathFinder
 
             var employeeAdapter = new EmployeeItemAdapter(this, _foundEmployees);
             employeeResultListView.Adapter = employeeAdapter;
-            employeeResultListView.ItemClick += ResultListView_ItemClick;
+            employeeResultListView.ItemClick += EmployeeListView_ItemClick;
 
             var stationAdapter = new StationItemAdapter(this, _foundStations);
             stationResultListView.Adapter = stationAdapter;
+            stationResultListView.ItemClick += StationListView_ItemClick;
 
             var officeAdapter = new OfficeItemAdapter(this, _foundOffices);
             officeResultListView.Adapter = officeAdapter;
+            officeResultListView.ItemClick += OfficeListView_ItemClick;
 
             var roomAdapter = new RoomItemAdapter(this, _foundRooms);
             roomResultListView.Adapter = roomAdapter;
+            roomResultListView.ItemClick += RoomListView_ItemClick;
 
             homeButton.Click += (e, o) =>
             {
@@ -67,10 +70,28 @@ namespace PathFinder
             };*/
         }
 
-        private void ResultListView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
+        private void EmployeeListView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
             var nextActivity = new Intent(this, typeof(EmployeeDetailsActivity));
             nextActivity.PutExtra("id", _foundEmployees[e.Position].id.ToString());
+            StartActivity(nextActivity);
+        }
+        private void StationListView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
+        {
+            var nextActivity = new Intent(this, typeof(StationDetailsActivity));
+            nextActivity.PutExtra("id", _foundStations[e.Position].id.ToString());
+            StartActivity(nextActivity);
+        }
+        private void RoomListView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
+        {
+            var nextActivity = new Intent(this, typeof(RoomDetailsActivity));
+            nextActivity.PutExtra("id", _foundEmployees[e.Position].id.ToString());
+            StartActivity(nextActivity);
+        }
+        private void OfficeListView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
+        {
+            var nextActivity = new Intent(this, typeof(OfficeDetailsActivity));
+            nextActivity.PutExtra("id", _foundOffices[e.Position].id.ToString());
             StartActivity(nextActivity);
         }
     }

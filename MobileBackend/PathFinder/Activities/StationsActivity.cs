@@ -30,6 +30,7 @@ namespace PathFinder
 
             var stationAdapter = new StationItemAdapter(this, _foundStations);
             stationResultListView.Adapter = stationAdapter;
+            stationResultListView.ItemClick += ResultListView_ItemClick;
 
             homeButton.Click += (e, o) =>
             {
@@ -41,6 +42,9 @@ namespace PathFinder
 
         private void ResultListView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
+            var nextActivity = new Intent(this, typeof(StationDetailsActivity));
+            nextActivity.PutExtra("id", _foundStations[e.Position].id.ToString());
+            StartActivity(nextActivity);
         }
     }
 }

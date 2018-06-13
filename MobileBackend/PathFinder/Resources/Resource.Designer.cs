@@ -2333,29 +2333,29 @@ namespace PathFinder
 			// aapt resource value: 0x7f080033
 			public const int CTRL = 2131230771;
 			
+			// aapt resource value: 0x7f0800ca
+			public const int EmployeeLabel = 2131230922;
+			
 			// aapt resource value: 0x7f080034
 			public const int FUNCTION = 2131230772;
 			
 			// aapt resource value: 0x7f080035
 			public const int META = 2131230773;
 			
-			// aapt resource value: 0x7f0800a4
-			public const int NameLabel = 2131230884;
+			// aapt resource value: 0x7f0800c6
+			public const int NameLabel = 2131230918;
 			
-			// aapt resource value: 0x7f0800ad
-			public const int PlaceLabel = 2131230893;
+			// aapt resource value: 0x7f0800c8
+			public const int NumberLabel = 2131230920;
 			
-			// aapt resource value: 0x7f0800aa
-			public const int PositionLabel = 2131230890;
+			// aapt resource value: 0x7f0800cc
+			public const int RoomLabel = 2131230924;
 			
 			// aapt resource value: 0x7f080036
 			public const int SHIFT = 2131230774;
 			
 			// aapt resource value: 0x7f080037
 			public const int SYM = 2131230775;
-			
-			// aapt resource value: 0x7f0800a7
-			public const int SurnameLabel = 2131230887;
 			
 			// aapt resource value: 0x7f0800af
 			public const int Title = 2131230895;
@@ -2522,11 +2522,38 @@ namespace PathFinder
 			// aapt resource value: 0x7f08007e
 			public const int edit_query = 2131230846;
 			
-			// aapt resource value: 0x7f0800c5
-			public const int employeeResultListView = 2131230917;
-			
 			// aapt resource value: 0x7f0800a2
-			public const int employeeTextView = 2131230882;
+			public const int employeeLabel = 2131230882;
+			
+			// aapt resource value: 0x7f0800a4
+			public const int employeeNameLabel = 2131230884;
+			
+			// aapt resource value: 0x7f0800a5
+			public const int employeeNameTextView = 2131230885;
+			
+			// aapt resource value: 0x7f0800ad
+			public const int employeePlaceLabel = 2131230893;
+			
+			// aapt resource value: 0x7f0800ae
+			public const int employeePlaceTextView = 2131230894;
+			
+			// aapt resource value: 0x7f0800aa
+			public const int employeePositionLabel = 2131230890;
+			
+			// aapt resource value: 0x7f0800ab
+			public const int employeePositionTextView = 2131230891;
+			
+			// aapt resource value: 0x7f0800cd
+			public const int employeeResultListView = 2131230925;
+			
+			// aapt resource value: 0x7f0800a7
+			public const int employeeSurnameLabel = 2131230887;
+			
+			// aapt resource value: 0x7f0800a8
+			public const int employeeSurnameTextView = 2131230888;
+			
+			// aapt resource value: 0x7f0800cb
+			public const int employeeTextView = 2131230923;
 			
 			// aapt resource value: 0x7f08008f
 			public const int employeesButton = 2131230863;
@@ -2627,14 +2654,14 @@ namespace PathFinder
 			// aapt resource value: 0x7f08008b
 			public const int mainImageView = 2131230859;
 			
-			// aapt resource value: 0x7f0800cb
-			public const int masked = 2131230923;
+			// aapt resource value: 0x7f0800d4
+			public const int masked = 2131230932;
 			
 			// aapt resource value: 0x7f0800b8
 			public const int media_actions = 2131230904;
 			
-			// aapt resource value: 0x7f0800c9
-			public const int message = 2131230921;
+			// aapt resource value: 0x7f0800d2
+			public const int message = 2131230930;
 			
 			// aapt resource value: 0x7f080031
 			public const int middle = 2131230769;
@@ -2645,8 +2672,8 @@ namespace PathFinder
 			// aapt resource value: 0x7f080028
 			public const int multiply = 2131230760;
 			
-			// aapt resource value: 0x7f0800a5
-			public const int nameTextView = 2131230885;
+			// aapt resource value: 0x7f0800c7
+			public const int nameTextView = 2131230919;
 			
 			// aapt resource value: 0x7f08009b
 			public const int navigation_header_container = 2131230875;
@@ -2669,8 +2696,14 @@ namespace PathFinder
 			// aapt resource value: 0x7f0800ba
 			public const int notification_main_column_container = 2131230906;
 			
-			// aapt resource value: 0x7f0800c7
-			public const int officeResultListView = 2131230919;
+			// aapt resource value: 0x7f0800c9
+			public const int numberTextView = 2131230921;
+			
+			// aapt resource value: 0x7f0800c5
+			public const int officeLabel = 2131230917;
+			
+			// aapt resource value: 0x7f0800cf
+			public const int officeResultListView = 2131230927;
 			
 			// aapt resource value: 0x7f080091
 			public const int officesButton = 2131230865;
@@ -2686,12 +2719,6 @@ namespace PathFinder
 			
 			// aapt resource value: 0x7f08004d
 			public const int pin = 2131230797;
-			
-			// aapt resource value: 0x7f0800ae
-			public const int placeTextView = 2131230894;
-			
-			// aapt resource value: 0x7f0800ab
-			public const int positionTextView = 2131230891;
 			
 			// aapt resource value: 0x7f080006
 			public const int progress_circular = 2131230726;
@@ -2726,8 +2753,8 @@ namespace PathFinder
 			// aapt resource value: 0x7f0800bc
 			public const int right_side = 2131230908;
 			
-			// aapt resource value: 0x7f0800c8
-			public const int roomResultListView = 2131230920;
+			// aapt resource value: 0x7f0800d0
+			public const int roomResultListView = 2131230928;
 			
 			// aapt resource value: 0x7f080092
 			public const int roomsButton = 2131230866;
@@ -2837,8 +2864,11 @@ namespace PathFinder
 			// aapt resource value: 0x7f08004b
 			public const int start = 2131230795;
 			
-			// aapt resource value: 0x7f0800c6
-			public const int stationResultListView = 2131230918;
+			// aapt resource value: 0x7f0800ce
+			public const int stationResultListView = 2131230926;
+			
+			// aapt resource value: 0x7f0800d1
+			public const int stationTextView = 2131230929;
 			
 			// aapt resource value: 0x7f080090
 			public const int stationsButton = 2131230864;
@@ -2851,9 +2881,6 @@ namespace PathFinder
 			
 			// aapt resource value: 0x7f080087
 			public const int submit_area = 2131230855;
-			
-			// aapt resource value: 0x7f0800a8
-			public const int surnameTextView = 2131230888;
 			
 			// aapt resource value: 0x7f08001f
 			public const int tabMode = 2131230751;
@@ -2930,8 +2957,8 @@ namespace PathFinder
 			// aapt resource value: 0x7f080016
 			public const int view_offset_helper = 2131230742;
 			
-			// aapt resource value: 0x7f0800ca
-			public const int visible = 2131230922;
+			// aapt resource value: 0x7f0800d3
+			public const int visible = 2131230931;
 			
 			// aapt resource value: 0x7f08003c
 			public const int withText = 2131230780;
@@ -3173,22 +3200,31 @@ namespace PathFinder
 			public const int notification_template_part_time = 2130968634;
 			
 			// aapt resource value: 0x7f04003b
-			public const int searchLayout = 2130968635;
+			public const int officeDetailsLayout = 2130968635;
 			
 			// aapt resource value: 0x7f04003c
-			public const int select_dialog_item_material = 2130968636;
+			public const int roomDetailsLayout = 2130968636;
 			
 			// aapt resource value: 0x7f04003d
-			public const int select_dialog_multichoice_material = 2130968637;
+			public const int searchLayout = 2130968637;
 			
 			// aapt resource value: 0x7f04003e
-			public const int select_dialog_singlechoice_material = 2130968638;
+			public const int select_dialog_item_material = 2130968638;
 			
 			// aapt resource value: 0x7f04003f
-			public const int support_simple_spinner_dropdown_item = 2130968639;
+			public const int select_dialog_multichoice_material = 2130968639;
 			
 			// aapt resource value: 0x7f040040
-			public const int tooltip = 2130968640;
+			public const int select_dialog_singlechoice_material = 2130968640;
+			
+			// aapt resource value: 0x7f040041
+			public const int stationDetailsLayout = 2130968641;
+			
+			// aapt resource value: 0x7f040042
+			public const int support_simple_spinner_dropdown_item = 2130968642;
+			
+			// aapt resource value: 0x7f040043
+			public const int tooltip = 2130968643;
 			
 			static Layout()
 			{

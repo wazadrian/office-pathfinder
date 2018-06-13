@@ -31,7 +31,8 @@ namespace PathFinder
 
             var officeAdapter = new OfficeItemAdapter(this, _foundOffices);
             officeResultListView.Adapter = officeAdapter;
-            
+            officeResultListView.ItemClick += ResultListView_ItemClick;
+
 
             homeButton.Click += (e, o) =>
             {
@@ -43,6 +44,9 @@ namespace PathFinder
 
         private void ResultListView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
+            var nextActivity = new Intent(this, typeof(OfficeDetailsActivity));
+            nextActivity.PutExtra("id", _foundOffices[e.Position].id.ToString());
+            StartActivity(nextActivity);
         }
     }
 }

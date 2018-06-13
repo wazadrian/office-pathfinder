@@ -30,6 +30,7 @@ namespace PathFinder
 
             var roomAdapter = new RoomItemAdapter(this, _foundRooms);
             roomResultListView.Adapter = roomAdapter;
+            roomResultListView.ItemClick += ResultListView_ItemClick;
 
             homeButton.Click += (e, o) =>
             {
@@ -41,6 +42,9 @@ namespace PathFinder
 
         private void ResultListView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
+            var nextActivity = new Intent(this, typeof(RoomDetailsActivity));
+            nextActivity.PutExtra("id", _foundRooms[e.Position].id.ToString());
+            StartActivity(nextActivity);
         }
     }
 }
