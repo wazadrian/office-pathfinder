@@ -8,4 +8,86 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/homeButton" />
+    <TextView
+        android:text="Employee"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/employeeTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/relativeLayout1">
+        <TextView
+            android:text="Name: "
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/NameLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:text="Name"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/nameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/NameLabel"
+            android:layout_marginLeft="6.0dp" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/relativeLayout2">
+        <TextView
+            android:text="Surname: "
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/SurnameLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:text="Surname"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/surnameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/SurnameLabel"
+            android:layout_marginLeft="6.0dp" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/relativeLayout3">
+        <TextView
+            android:text="Department: "
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/PositionLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:text="Position"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/positionTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/PositionLabel"
+            android:layout_marginLeft="6.0dp" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/relativeLayout4">
+        <TextView
+            android:text="Place: "
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/PlaceLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:text="Place"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/placeTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/PlaceLabel"
+            android:layout_marginLeft="6.0dp" />
+    </RelativeLayout>
 </LinearLayout>

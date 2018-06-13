@@ -18,7 +18,7 @@ namespace PathFinder.Data
                 new Employee
                 {
                     id = Guid.NewGuid(),
-                    employeeId = 0,
+                    employeeId = 1,
                     employeeName = "John",
                     employeeSurname = "Locke",
                     employeePosition = "IT",
@@ -27,7 +27,7 @@ namespace PathFinder.Data
                 new Employee
                 {
                     id = Guid.NewGuid(),
-                    employeeId = 0,
+                    employeeId = 2,
                     employeeName = "Kevin",
                     employeeSurname = "Cochran",
                     employeePosition = "IT",
@@ -36,7 +36,7 @@ namespace PathFinder.Data
                 new Employee
                 {
                     id = Guid.NewGuid(),
-                    employeeId = 0,
+                    employeeId = 3,
                     employeeName = "George",
                     employeeSurname = "Bates",
                     employeePosition = "IT",
@@ -45,7 +45,7 @@ namespace PathFinder.Data
                 new Employee
                 {
                     id = Guid.NewGuid(),
-                    employeeId = 0,
+                    employeeId = 4,
                     employeeName = "Noah",
                     employeeSurname = "Dyer",
                     employeePosition = "IT",
@@ -54,7 +54,7 @@ namespace PathFinder.Data
                 new Employee
                 {
                     id = Guid.NewGuid(),
-                    employeeId = 0,
+                    employeeId = 5,
                     employeeName = "Lucas",
                     employeeSurname = "Phelps",
                     employeePosition = "IT",
@@ -63,11 +63,20 @@ namespace PathFinder.Data
                 new Employee
                 {
                     id = Guid.NewGuid(),
-                    employeeId = 0,
+                    employeeId = 6,
                     employeeName = "Jacob",
                     employeeSurname = "Andrews",
                     employeePosition = "IT",
                     placeId = "station25"
+                },
+                new Employee
+                {
+                    id = Guid.NewGuid(),
+                    employeeId = 7,
+                    employeeName = "John",
+                    employeeSurname = "Wick",
+                    employeePosition = "IT",
+                    placeId = "station26"
                 }
             };
 

@@ -58,8 +58,11 @@
     <Reference Include="Mono.Android" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\DatabaseConnection.cs" />
+    <Compile Include="Adapters\EmployeeItemAdapter.cs" />
+    <Compile Include="Data\Database.cs" />
+    <Compile Include="Data\IDatabaseConnection.cs" />
     <Compile Include="Data\MockDatabase.cs" />
+    <Compile Include="EmployeeDetailsActivity.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Models\BaseEntity.cs" />
     <Compile Include="Models\Employee.cs" />
@@ -109,6 +112,16 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\searchLayout.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\employeeDetailsLayout.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\listItemLayout.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
