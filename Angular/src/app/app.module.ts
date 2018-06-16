@@ -9,7 +9,6 @@ import { StationsComponent } from './clickable-stations/stations.component';
 import { ConferenceRoomsComponent } from './conference-rooms/conference-rooms.component';
 import { MapComponent } from './map/map.component';
 import { UserInterfaceComponent } from './userInterface/userInterface.component';
-import { HelpComponent } from './help/help.component';
 import { ClickableOfficesComponent } from './clickable-offices/clickable-offices.component';
 import { ClickableRoomsComponent } from './clickable-rooms/clickable-rooms.component';
 import { ClickableOthersComponent } from './clickable-others/clickable-others.component';
@@ -33,7 +32,6 @@ import { AdminPanelComponent } from './admin-panel/admin-panel.component';
     ConferenceRoomsComponent,
     MapComponent,
     UserInterfaceComponent,
-    HelpComponent,
     ClickableOfficesComponent,
     ClickableRoomsComponent,
     ClickableOthersComponent,

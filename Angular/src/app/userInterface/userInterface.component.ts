@@ -1,19 +1,20 @@
 import { Component, OnInit, Input, AfterContentChecked, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
-import { IEmployee } from '../employees/employee';
 import { ApiService } from '../api.service';
 import { DataService } from "../data.service";
 import { equal } from 'assert';
-import { IOffice } from '../clickable-offices/office';
-import { IConferenceRoom } from '../conference-rooms/conferenceRoom';
-import { IRoom } from '../clickable-rooms/room';
-import { IStation } from '../clickable-stations/station';
-import { IGuest } from '../guests/guest';
+import { EmployeeModel } from '../models/employee.model';
+import { OfficeModel } from '../models/office.model';
+import { ConferenceRoomModel } from '../models/conference-room';
+import { RoomModel } from '../models/room.model';
+import { StateKey } from '@angular/platform-browser';
+import { StationModel } from '../models/station.model';
+import { GuestModel } from '../models/guest.model';
 
 @Component({
   selector: 'app-userInterface',
   templateUrl: './userInterface.component.html',
   styleUrls: ['./userInterface.component.css'],
- 
+
 })
 
 
@@ -22,14 +23,14 @@ export class UserInterfaceComponent implements OnInit, AfterContentChecked {
   @ViewChild('searchInput', {read: ElementRef}) searchInput: ElementRef;
 
   title = 'Who or what you want to find?';
-  employees: IEmployee[] = [];
-  offices: IOffice[] = [];
-  conferenceRooms: IConferenceRoom[] = [];
-  rooms: IRoom[] = [];
-  stations: IStation[] = [];
-  guests: IGuest[] = [];  
-  searchedEmployee :IEmployee = null;
-  searchedGuest :IGuest = null;
+  employees: EmployeeModel[] = [];
+  offices: OfficeModel[] = [];
+  conferenceRooms: ConferenceRoomModel[] = [];
+  rooms: RoomModel[] = [];
+  stations: StationModel[] = [];
+  guests: GuestModel[] = [];
+  searchedEmployee: EmployeeModel = null;
+  searchedGuest: GuestModel = null;
 
   foundThing: string = "";
 
@@ -51,11 +52,11 @@ export class UserInterfaceComponent implements OnInit, AfterContentChecked {
   wantToActiveShine : boolean = false;
   wantToHealthShine : boolean = false;
   shySearchCheck : boolean = false;
-  
+
   showSearchDiv : boolean = false;
   buttonWasClicked : boolean = true;
-  buttonsIDs: string [] = ["buttonSearchSlide", "buttonWC", "buttonElev", "buttonWater", "buttonFire", "buttonCoffee", "buttonAid", 
-                        "buttonPrinter", "buttonEat", "buttonInfo", "buttonBed", "buttonActive", "buttonHealth"]; 
+  buttonsIDs: string [] = ["buttonSearchSlide", "buttonWC", "buttonElev", "buttonWater", "buttonFire", "buttonCoffee", "buttonAid",
+                        "buttonPrinter", "buttonEat", "buttonInfo", "buttonBed", "buttonActive", "buttonHealth"];
   btnIdSearchSlide : string = "buttonSearchSlide";
   btnIdWC : string = "buttonWC";
   btnIdElevator : string = "buttonElev";
@@ -117,13 +118,13 @@ export class UserInterfaceComponent implements OnInit, AfterContentChecked {
       }
     }
     else this.buttonWasClicked = true;
-     
+
 
     this._data.changeMsg(this.wantToWCShine);
     this._data.changeMsgElevator(this.wantToElevatorShine);*/
     this.foundThing = "";
     this.findPlace(this.placeClicked);
-    
+
   }
 
   ngAfterViewInit() {
@@ -132,7 +133,7 @@ export class UserInterfaceComponent implements OnInit, AfterContentChecked {
   equalsBtn(a : string) : boolean {
     let pom = false;
     this.buttonsIDs.forEach(element => {
-      if (element === a) pom = true;       
+      if (element === a) pom = true;
     });
     return pom;
   }
@@ -180,7 +181,7 @@ export class UserInterfaceComponent implements OnInit, AfterContentChecked {
         this._data.changeMsgSearch(this.shySearchCheck);
           return;
         }
-        else if(this.searchedEmployee === null){ 
+        else if(this.searchedEmployee === null){
           this.foundThing = "";
           this.findGuest(inputData);
 
@@ -191,7 +192,7 @@ export class UserInterfaceComponent implements OnInit, AfterContentChecked {
           else{
             this.findPlace(inputData);
             this.searchedEmployee = null;
-            this.searchedGuest = null; 
+            this.searchedGuest = null;
           }
         }
         if (this.foundThing != "") {
@@ -199,13 +200,13 @@ export class UserInterfaceComponent implements OnInit, AfterContentChecked {
         this.shySearchCheck = true;
         this._data.changeMsgSearch(this.shySearchCheck);
         }
-      } 
+      }
   }
 
   findEmployee(data : string): void {
     this.employees.forEach(element => {
       if (data === element.employeeName || data === element.employeeSurname || +data === element.employeeId) {
-        this.foundThing += element.employeeName + " " + element.employeeSurname + " " 
+        this.foundThing += element.employeeName + " " + element.employeeSurname + " "
         + element.employeePosition + " ";
         console.log("To je pracownik");
         this.searchedEmployee = element;
@@ -216,14 +217,14 @@ export class UserInterfaceComponent implements OnInit, AfterContentChecked {
   findGuest(data : string): void {
     this.guests.forEach(element => {
       if (data === element.guestName || data === element.guestSurname) {
-        this.foundThing += element.guestName + " " + element.guestSurname + " " 
+        this.foundThing += element.guestName + " " + element.guestSurname + " "
           + element.startDate + " - " + element.endDate + " ";
         console.log("To je gosc");
         this.searchedGuest = element;
       }
     });
   }
-  
+
 
   findPlace(data : string): void {
     var personNotFoundJet = false;
@@ -236,7 +237,7 @@ export class UserInterfaceComponent implements OnInit, AfterContentChecked {
         this.foundThing += element.roomNumber + " " + element.roomName + " ";
         this._data.changeMessage(element.roomId);
         if(personNotFoundJet === true) {
-          if (this.findEmployee(element.employeeId.toString()) === null) {
+          if (this.findEmployee(element.employeeId) === null) {
             this.findGuest(element.guestId.toString());
           }
         }
@@ -251,7 +252,7 @@ export class UserInterfaceComponent implements OnInit, AfterContentChecked {
         this._data.changeMessage(element.stationId);
         console.log("zara zobacze " + element.stationId);
         if(personNotFoundJet === true) {
-          if (this.findEmployee(element.employeeId.toString()) === null) {
+          if (this.findEmployee(element.employeeId) === null) {
             this.findGuest(element.guestId.toString());
           }
         }
@@ -265,7 +266,7 @@ export class UserInterfaceComponent implements OnInit, AfterContentChecked {
         this.foundThing += element.officeNumber + " " + element.officeName + " ";
         this._data.changeMessage(element.officeId);
         if(personNotFoundJet === true) {
-          if (this.findEmployee(element.employeeId.toString()) === null) {
+          if (this.findEmployee(element.employeeId) === null) {
             this.findGuest(element.guestId.toString());
           }
         }
@@ -382,6 +383,5 @@ export class UserInterfaceComponent implements OnInit, AfterContentChecked {
     this._data.changeMessage(event.srcElement.id);
   }
 
-} 
+}
 
- 

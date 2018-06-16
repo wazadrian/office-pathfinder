@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { AuthModel } from './Auth.model';
 import { Router } from '@angular/router';
 import { tokenNotExpired } from 'angular2-jwt';
+import { AuthModel } from '../models/auth.model';
 
 @Injectable()
 export class AuthService {
