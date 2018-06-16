@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { IStation } from './clickable-stations/station';
+import { StationModel } from './models/station.model';
 
 
 @Injectable()
 export class DataService {
 
 
-  private stationSource = new BehaviorSubject<IStation>( {stationId: 'string', employeeId: -1, guestId: -1 } );
+  private stationSource = new BehaviorSubject<StationModel>( {stationId: null, employeeId: null, guestId: null } );
 
   private messageSource = new BehaviorSubject<string>("");
   private messageForSearch = new BehaviorSubject<string>("");
@@ -25,7 +25,7 @@ export class DataService {
   private messageHealth = new BehaviorSubject<boolean>(false);
   private messageSearch = new BehaviorSubject<boolean>(false);
   private messageClear = new BehaviorSubject<boolean>(false);
-  
+
   currentStations = this.stationSource.asObservable();
 
   currentMessage = this.messageSource.asObservable();
@@ -47,7 +47,7 @@ export class DataService {
 
   constructor() { }
 
-  changeStations(station: IStation) {
+  changeStations(station: StationModel) {
     this.stationSource.next(station)
   }
 
@@ -106,7 +106,7 @@ export class DataService {
   changeMsgActive(wanted : boolean) {
     this.messageActive.next(wanted)
   }
-  
+
   changeMsgHealth(wanted : boolean) {
     this.messageHealth.next(wanted)
   }

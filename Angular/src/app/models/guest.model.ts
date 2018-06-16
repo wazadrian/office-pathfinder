@@ -1,6 +1,6 @@
 export class GuestModel {
   constructor(
-    public guestId: string,
+    public id: string,
     public guestName: string,
     public guestSurname: string,
     public startDate: Date,

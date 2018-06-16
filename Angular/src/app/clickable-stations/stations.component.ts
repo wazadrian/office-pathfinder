@@ -1,8 +1,8 @@
 import { Component, OnInit, Output, EventEmitter, ViewChild, AfterViewInit, ElementRef , Renderer } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { DataService } from "../data.service";
-import { IStation } from "./station";
 import { ApiService } from '../api.service';
+import { StationModel } from '../models/station.model';
 
 @Component({
   selector: '[app-stations]',
@@ -20,7 +20,7 @@ export class StationsComponent implements OnInit {
   wasSearching : boolean = false;
   buttonsIDs: string [] = ["buttonSearchSlide", "buttonWC", "buttonElev", "buttonWater", "buttonFire", "buttonCoffee", "buttonAid",
                         "buttonPrinter", "buttonEat", "buttonInfo", "buttonBed", "buttonActive", "buttonHealth"];
-  stations: IStation[] = [];
+  stations: StationModel[] = [];
   constructor(private _apiService: ApiService, private _data: DataService) { }
 
   ngOnInit() {

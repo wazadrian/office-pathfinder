@@ -1,6 +1,6 @@
 export class EmployeeModel {
   constructor(
-    public employeeId: string,
+    public id: string,
     public employeeName: string,
     public employeeSurname: string,
     public employeePosition: string,

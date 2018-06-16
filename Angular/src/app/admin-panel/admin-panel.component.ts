@@ -12,8 +12,8 @@ import { GuestModel } from '../models/guest.model';
   styleUrls: ['./admin-panel.component.css']
 })
 export class AdminPanelComponent implements OnInit {
-  selectedEmployeeId: number;
-  selectedEmployee: IEmployee;
+  selectedEmployeeId: string;
+  selectedEmployee: EmployeeModel;
   showAddEmployee: boolean = false;
   showAddGuest: boolean = false;
   showSetPlace: boolean = false;
@@ -56,21 +56,21 @@ export class AdminPanelComponent implements OnInit {
     // to co w komentarzu wyzej jest do wyslania, przy czym nie wiem w jakiej formie data jest odpowiednia dla bazy
   }
 
-  setSelected(id: number) {
+  setSelected(id: string) {
     this.selectedEmployeeId = id;
   }
 
   setPlace(form: NgForm) {
     let stationID = form.value.place; // wpisane stationID do dopisania
     this.employees.forEach(element => {
-      if (element.employeeId == this.selectedEmployeeId)
+      if (element.id == this.selectedEmployeeId)
         this.selectedEmployee = element; // pracownik do dopisania stationID
     });
   }
 
   deletePlace() {
     this.employees.forEach(element => {
-      if (element.employeeId == this.selectedEmployeeId)
+      if (element.id == this.selectedEmployeeId)
         this.selectedEmployee = element; // pracownik ktoremu trzeba usunac stationID
     });
   }

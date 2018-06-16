@@ -4,13 +4,12 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
-
-import { IOffice } from './clickable-offices/office';
-import { IRoom } from './clickable-rooms/room';
-import { IStation } from './clickable-stations/station';
-import { IConferenceRoom } from './conference-rooms/conferenceRoom';
-import { IEmployee } from './employees/employee';
-import { IGuest } from './guests/guest';
+import { OfficeModel } from './models/office.model';
+import { RoomModel } from './models/room.model';
+import { StationModel } from './models/station.model';
+import { ConferenceRoomModel } from './models/conference-room';
+import { EmployeeModel } from './models/employee.model';
+import { GuestModel } from './models/guest.model';
 
 @Injectable()
 export class ApiService {
@@ -24,41 +23,41 @@ export class ApiService {
 
   constructor(private _http: HttpClient) {}
 
-  getOffice(): Observable<IOffice[]> {
+  getOffice(): Observable<OfficeModel[]> {
     return this._http
-      .get<IOffice[]>(this._officeUrl)
+      .get<OfficeModel[]>(this._officeUrl)
       .do(data => console.log('All: ' + JSON.stringify(data)))
       .catch(this.handleError);
   }
 
-  getRoom(): Observable<IRoom[]> {
+  getRoom(): Observable<RoomModel[]> {
     return this._http
-      .get<IRoom[]>(this._roomUrl)
+      .get<RoomModel[]>(this._roomUrl)
       .do(data => console.log('All: ' + JSON.stringify(data)))
       .catch(this.handleError);
   }
-  getStation(): Observable<IStation[]> {
+  getStation(): Observable<StationModel[]> {
     return this._http
-      .get<IStation[]>(this._stationUrl)
+      .get<StationModel[]>(this._stationUrl)
       .do(data => console.log('All: ' + JSON.stringify(data)))
       .catch(this.handleError);
   }
-  getConferenceRoom(): Observable<IConferenceRoom[]> {
+  getConferenceRoom(): Observable<ConferenceRoomModel[]> {
     return this._http
-      .get<IConferenceRoom[]>(this._conferenceRoomUrl)
+      .get<ConferenceRoomModel[]>(this._conferenceRoomUrl)
       .do(data => console.log('All: ' + JSON.stringify(data)))
       .catch(this.handleError);
   }
 
-  getEmployees(): Observable<IEmployee[]> {
+  getEmployees(): Observable<EmployeeModel[]> {
     return this._http
-      .get<IEmployee[]>(this._employeeUrl)
+      .get<EmployeeModel[]>(this._employeeUrl)
       .do(data => console.log('All: ' + JSON.stringify(data)))
       .catch(this.handleError);
   }
-  getGuest(): Observable<IGuest[]> {
+  getGuest(): Observable<GuestModel[]> {
     return this._http
-      .get<IGuest[]>(this._guestUrl)
+      .get<GuestModel[]>(this._guestUrl)
       .do(data => console.log('All: ' + JSON.stringify(data)))
       .catch(this.handleError);
   }
