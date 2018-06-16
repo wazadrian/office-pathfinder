@@ -18,8 +18,8 @@ export class StationsComponent implements OnInit {
   placeClicked : string;
   doubleClick : boolean = false;
   wasSearching : boolean = false;
-  buttonsIDs: string [] = ["buttonSearchSlide", "buttonWC", "buttonElev", "buttonWater", "buttonFire", "buttonCoffee", "buttonAid", 
-                        "buttonPrinter", "buttonEat", "buttonInfo", "buttonBed", "buttonActive", "buttonHealth"]; 
+  buttonsIDs: string [] = ["buttonSearchSlide", "buttonWC", "buttonElev", "buttonWater", "buttonFire", "buttonCoffee", "buttonAid",
+                        "buttonPrinter", "buttonEat", "buttonInfo", "buttonBed", "buttonActive", "buttonHealth"];
   stations: IStation[] = [];
   constructor(private _apiService: ApiService, private _data: DataService) { }
 
@@ -35,7 +35,7 @@ export class StationsComponent implements OnInit {
 
   ngAfterContentChecked() {
     this.stations.forEach(element => {
-      if (element.employeeId === -1) {
+      if (element.employeeId === null && element.guestId === null) {
         document.getElementById(element.stationId).setAttribute('class', 'shadow');
       }
     });
@@ -57,7 +57,7 @@ export class StationsComponent implements OnInit {
     if (this.placeClicked[0] != 's' && this.prevStationClicked != "" && !this.equalsBtn(this.placeClicked)) {
       this.prevEventSrcID = this.placeClicked;
       this.fadeOut(this.prevStationClicked);
-    }    
+    }
   }
 
   fadeOut(id : string) {
@@ -69,7 +69,7 @@ export class StationsComponent implements OnInit {
   }
 
   onClick(event : Event) {
-    
+
     this.stationClicked = event.srcElement.id;
     this._data.changeMessage(this.stationClicked);
 
@@ -93,7 +93,7 @@ export class StationsComponent implements OnInit {
   equalsBtn(a : string) : boolean {
     let pom = false;
     this.buttonsIDs.forEach(element => {
-      if (element === a) pom = true;       
+      if (element === a) pom = true;
     });
     return pom;
   }
