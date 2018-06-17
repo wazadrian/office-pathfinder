@@ -42,7 +42,7 @@ namespace WebAPI.Controllers
         [HttpPut("{id}")]
         public async Task UpdateGuestAsync(string id, [FromBody] Guest guest)
         {
-            guest.id = Guid.Parse(id);
+            guest.id = Guid.Parse(id).ToString();
             await _repository.UpdateEntityAsync(CollectionName, id, guest);
         }
     }

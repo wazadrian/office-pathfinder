@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using StackExchange.Redis;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -33,16 +35,16 @@ namespace WebAPI.Controllers
             await _repository.InsertEntityAsync(CollectionName, employee);
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("{id}"), Authorize]
         public async Task DeleteEmployeeAsync(string id)
         {
             await _repository.DeleteEntityAsync(CollectionName, id);
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("{id}"), Authorize]
         public async Task UpdateEmployeeAsync(string id, [FromBody] Employee employee)
         {
-            employee.id = Guid.Parse(id);
+           // employee.id = Guid.Parse(id);
             await _repository.UpdateEntityAsync(CollectionName, id, employee);
         }
     }

@@ -4,6 +4,6 @@ namespace WebAPI.Models
 {
     public abstract class BaseEntity
     {
-        public Guid id { get; set; }
+        public string id { get; set; }
     }
 }

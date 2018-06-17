@@ -43,7 +43,7 @@ namespace WebAPI.Controllers
         [HttpPut("{id}"), Authorize]
         public async Task UpdateOfficeAsync(string id, [FromBody] Office office)
         {
-            office.id = Guid.Parse(id);
+            office.id = Guid.Parse(id).ToString();
             await _repository.UpdateEntityAsync(CollectionName, id, office);
         }
     }

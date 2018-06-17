@@ -4,7 +4,6 @@ namespace WebAPI.Models
 {
     public class Guest : BaseEntity
     {
-        public Guid id { get; set; }
         public string guestName { get; set; }
         public string guestSurname { get; set; }
         public DateTime startDate { get; set; }
