@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -27,19 +28,19 @@ namespace WebAPI.Controllers
             return offices;
         }
 
-        [HttpPost]
+        [HttpPost, Authorize]
         public async Task CreateOfficeAsync([FromBody] Office office)
         {
             await _repository.InsertEntityAsync(CollectionName, office);
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("{id}"), Authorize]
         public async Task DeleteOfficeAsync(string id)
         {
             await _repository.DeleteEntityAsync(CollectionName, id);
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("{id}"), Authorize]
         public async Task UpdateOfficeAsync(string id, [FromBody] Office office)
         {
             office.id = Guid.Parse(id);
