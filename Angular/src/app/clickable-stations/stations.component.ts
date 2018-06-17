@@ -34,30 +34,26 @@ export class StationsComponent implements OnInit {
   }
 
   ngAfterContentChecked() {
+    let empty = false;
+    let prevEmpty = false;
     this.stations.forEach(element => {
       if (element.employeeId == null && element.guestId == null) {
         document.getElementById(element.stationId).setAttribute('class', 'shadow');
+        if (this.placeClicked != "" && element.stationId == this.placeClicked) empty = true;
+        if (this.prevEventSrcID != "" && element.stationId == this.prevEventSrcID) prevEmpty = true;
       }
     });
-
-    console.log("prev: " + this.prevStationClicked + " click: " + this.stationClicked + " was: " + this.wasSearching);
-    if (this.wasSearching ) {
-      if (this.prevEventSrcID != "") {
-        if (this.prevEventSrcID[0] === 's' && !this.equalsBtn(this.placeClicked))
-          this.fadeOut(this.prevEventSrcID);
-      }
+    //console.log("Stacja prev: " + this.prevStationClicked + " click: " + this.stationClicked + " was: " + this.wasSearching);
+    if (this.prevEventSrcID[0] === 's' && !this.equalsBtn(this.placeClicked) && !prevEmpty) {
+      //console.log("fade " + this.prevEventSrcID);
+      this.fadeOut(this.prevEventSrcID);
+    }
+    if (!empty && this.placeClicked != "") {
       this.letMeShine(this.placeClicked);
-      this.prevEventSrcID = this.placeClicked;
-      this.lastSearchID = this.prevEventSrcID;
+      //console.log("shine " + this.placeClicked);
     }
-    else if (!this.wasSearching && this.lastSearchID != "" && !this.equalsBtn(this.placeClicked)) {
-     this.fadeOut(this.lastSearchID);
-    }
-
-    if (this.placeClicked[0] != 's' && this.prevStationClicked != "" && !this.equalsBtn(this.placeClicked)) {
-      this.prevEventSrcID = this.placeClicked;
-      this.fadeOut(this.prevStationClicked);
-    }
+    this.prevEventSrcID = this.placeClicked;
+    this.lastSearchID = this.placeClicked;
   }
 
   fadeOut(id : string) {
@@ -72,22 +68,6 @@ export class StationsComponent implements OnInit {
 
     this.stationClicked = event.srcElement.id;
     this._data.changeMessage(this.stationClicked);
-
-    if (this.prevEventSrcID === event.srcElement.id && !this.doubleClick) {
-      this.fadeOut(this.prevStationClicked);
-      this.doubleClick = true;
-    } else {
-      if (this.prevEventSrcID != event.srcElement.id && this.prevStationClicked != "") {
-        this.fadeOut(this.prevStationClicked);
-      }
-      this.doubleClick = false;
-      this.letMeShine(this.stationClicked);
-    }
-
-    this._data.changeMsgSearch(false);
-
-    this.prevEventSrcID = event.srcElement.id;
-    this.prevStationClicked = event.srcElement.id;
   }
 
   equalsBtn(a : string) : boolean {

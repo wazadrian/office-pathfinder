@@ -36,9 +36,6 @@ export class AdminPanelComponent implements OnInit {
   }
 
   addEmployee(form: NgForm) {
-    //console.log(form.value.first + " "+ form.value.last + " " + form.value.position + " " + form.value.place);
-    // to zakomentowane nizej jest niedzialajace, ale struktura argumentow jest ok chyba
-    //this.panelService.addEmployeeDB(form.value.first, form.value.last, form.value.position, form.value.place);
 
     this.panelService.addEmployeeDB(
       form.value.first,
@@ -51,9 +48,16 @@ export class AdminPanelComponent implements OnInit {
   }
 
   addGuest(form: NgForm) {
-    //console.log(form.value.first + " "+ form.value.last + " " + form.value.position + " " + form.value.place + " " + form.value.dateFrom + " " + form.value.dateTo);
+    console.log(form.value.first + " "+ form.value.last + " " + form.value.position + " " + form.value.place + " " + form.value.dateFrom + " " + form.value.dateTo);
+    this.panelService.addGuestDB(
+      form.value.first,
+      form.value.last,
+      form.value.position,
+      form.value.place,
+      form.value.dateFrom,
+      form.value.dateTo
+    );
     form.reset();
-    // to co w komentarzu wyzej jest do wyslania, przy czym nie wiem w jakiej formie data jest odpowiednia dla bazy
   }
 
   setSelected(id: string) {
@@ -61,10 +65,10 @@ export class AdminPanelComponent implements OnInit {
   }
 
   setPlace(form: NgForm) {
-    let stationID = form.value.place; // wpisane stationID do dopisania
+    let stationID = form.value.place;
     this.employees.forEach(element => {
       if (element.id == this.selectedEmployeeId)
-        this.selectedEmployee = element; // pracownik do dopisania stationID
+        this.selectedEmployee = element;
     });
     this.panelService.setPlaceDB(this.selectedEmployee, stationID);
   }
@@ -72,7 +76,7 @@ export class AdminPanelComponent implements OnInit {
   deletePlace() {
     this.employees.forEach(element => {
       if (element.id == this.selectedEmployeeId)
-        this.selectedEmployee = element; // pracownik ktoremu trzeba usunac stationID
+        this.selectedEmployee = element;
     });
     this.panelService.deletePlaceeDB(this.selectedEmployee);
   }

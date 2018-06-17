@@ -12,23 +12,24 @@ export class PanelService {
   url = '/api';
   employees: EmployeeModel[] = [];
   stations: StationModel[] = [];
+  //guests: GuestModel[] = [];
 
   constructor(private _http: HttpClient, private _apiService: ApiService) {
     this._apiService.getEmployees().subscribe(emp => (this.employees = emp));
     this._apiService.getStation().subscribe(st => (this.stations = st));
+    //this._apiService.getGuest().subscribe(gst => (this.guests = gst));
   }
 
   addEmployeeDB(name: string, surname: string, position: string, place: string) {
     this.employees = null;
-    console.log("jestem, zyje ");
     const employee: EmployeeModel = new EmployeeModel(null, name, surname, position, place); 
     this._http.post('employees', employee).subscribe (
       error => console.log(error));
 
-      //nie wiem jak sciagnac szybciej id guidowskie ktore ustawila sobie baza wiec troche pajacerka
-    this._apiService.getEmployees().subscribe(emp => this.employees = emp); //wczytanie od poczatku
+      //nie wiem jak sciagnac szybciej id guidowskie ktore ustawila sobie baza wiec troche prób
+   /* this._apiService.getEmployees().subscribe(emp => this.employees = emp); //wczytanie od poczatku
 
-    this.employees.forEach(emp => {         //znalezienie nowego
+    this.employees.forEach(emp => {         //znalezienie dodanego przed chwila
       if (emp.placeId == place) {
         this.stations.forEach(stat => {     //dodanie go do stacji
           if (place === stat.stationId) {
@@ -38,17 +39,15 @@ export class PanelService {
           }      
         });
       }
-    });
+    });*/
   
-    /*const employee: EmployeeModel = new EmployeeModel(null, name, surname, position, place);
-    return this._http.post('employees', employee).subscribe (
-        error => console.log(error));*/
   }
 
-  addGuestDB(name: string, surname: string, position: string, place: string, dateFrom: string, dateTo: string) {
-    /*const guest: GuestModel = new GuestModel(null, name, surname, dateFrom, dateTo, place); 
-    this._http.post('employees', employee).subscribe (
-      error => console.log(error));*/
+  addGuestDB(name: string, surname: string, position: string, place: string, dateFrom: Date, dateTo: Date) {
+    console.log(name + " " + surname + " " + place + " " + dateFrom + " " + dateTo);
+    const guest: GuestModel = new GuestModel(null, name, surname, dateFrom, dateTo, place);     //ten sam brak co z pracownikiem
+    this._http.post('guests', guest).subscribe (
+      error => console.log(error));
   }
 
   setPlaceDB(employee: EmployeeModel, stationID: string) {
