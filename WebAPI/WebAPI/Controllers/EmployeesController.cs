@@ -29,7 +29,7 @@ namespace WebAPI.Controllers
             return employees;
         }
 
-        [HttpPost]
+        [HttpPost, Authorize]
         public async Task CreateEmployeeAsync([FromBody] Employee employee)
         {
             await _repository.InsertEntityAsync(CollectionName, employee);
