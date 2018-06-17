@@ -7,7 +7,7 @@ import { StationModel } from './models/station.model';
 export class DataService {
 
 
-  private stationSource = new BehaviorSubject<StationModel>( {stationId: null, employeeId: null, guestId: null } );
+  private stationSource = new BehaviorSubject<StationModel>( { id: null, stationId: null, employeeId: null, guestId: null } );
 
   private messageSource = new BehaviorSubject<string>("");
   private messageForSearch = new BehaviorSubject<string>("");

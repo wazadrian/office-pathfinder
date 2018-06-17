@@ -24,6 +24,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { SignUpComponent } from './auth/sign-up/sign-up.component';
 import { SignInComponent } from './auth/sign-in/sign-in.component';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
+import { ApiService } from './api.service';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { AdminPanelComponent } from './admin-panel/admin-panel.component';
   schemas: [NO_ERRORS_SCHEMA],
   providers: [
     AuthService,
+    ApiService,
     PanelService,
     AuthGuardService,
     {

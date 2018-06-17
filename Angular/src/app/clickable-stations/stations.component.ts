@@ -35,7 +35,7 @@ export class StationsComponent implements OnInit {
 
   ngAfterContentChecked() {
     this.stations.forEach(element => {
-      if (element.employeeId === null && element.guestId === null) {
+      if (element.employeeId == null && element.guestId == null) {
         document.getElementById(element.stationId).setAttribute('class', 'shadow');
       }
     });

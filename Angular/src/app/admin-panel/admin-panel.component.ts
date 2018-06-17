@@ -66,6 +66,7 @@ export class AdminPanelComponent implements OnInit {
       if (element.id == this.selectedEmployeeId)
         this.selectedEmployee = element; // pracownik do dopisania stationID
     });
+    this.panelService.setPlaceDB(this.selectedEmployee, stationID);
   }
 
   deletePlace() {
@@ -73,6 +74,7 @@ export class AdminPanelComponent implements OnInit {
       if (element.id == this.selectedEmployeeId)
         this.selectedEmployee = element; // pracownik ktoremu trzeba usunac stationID
     });
+    this.panelService.deletePlaceeDB(this.selectedEmployee);
   }
 
   onLogout() {
@@ -84,6 +86,7 @@ export class AdminPanelComponent implements OnInit {
     this.showAddGuest = false;
     this.showSetPlace = false;
     this.boxChecked = false;
+    this.showDeletePlace = false;
   }
 
   onAddGuest() {

@@ -1,30 +1,80 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { tokenNotExpired } from 'angular2-jwt';
+import { ApiService } from '../api.service';
 import { EmployeeModel } from '../models/employee.model';
+import { StationModel } from '../models/station.model';
+import { GuestModel } from '../models/guest.model';
 
 @Injectable()
 export class PanelService {
-  constructor(private _http: HttpClient, private router: Router) {}
+
   url = '/api';
+  employees: EmployeeModel[] = [];
+  stations: StationModel[] = [];
+
+  constructor(private _http: HttpClient, private _apiService: ApiService) {
+    this._apiService.getEmployees().subscribe(emp => (this.employees = emp));
+    this._apiService.getStation().subscribe(st => (this.stations = st));
+  }
 
   addEmployeeDB(name: string, surname: string, position: string, place: string) {
-    const employee: EmployeeModel = new EmployeeModel(null, name, surname, position, place); // nie wiem co z tym ID, 11 jest testowo
+    this.employees = null;
+    console.log("jestem, zyje ");
+    const employee: EmployeeModel = new EmployeeModel(null, name, surname, position, place); 
+    this._http.post('employees', employee).subscribe (
+      error => console.log(error));
+
+      //nie wiem jak sciagnac szybciej id guidowskie ktore ustawila sobie baza wiec troche pajacerka
+    this._apiService.getEmployees().subscribe(emp => this.employees = emp); //wczytanie od poczatku
+
+    this.employees.forEach(emp => {         //znalezienie nowego
+      if (emp.placeId == place) {
+        this.stations.forEach(stat => {     //dodanie go do stacji
+          if (place === stat.stationId) {
+            stat.employeeId = emp.id;
+            return this._http.put<StationModel>('stations/'+stat.id, stat).subscribe (
+              error => console.log(error));
+          }      
+        });
+      }
+    });
+  
+    /*const employee: EmployeeModel = new EmployeeModel(null, name, surname, position, place);
     return this._http.post('employees', employee).subscribe (
-        error => console.log(error));
+        error => console.log(error));*/
   }
 
   addGuestDB(name: string, surname: string, position: string, place: string, dateFrom: string, dateTo: string) {
-
+    /*const guest: GuestModel = new GuestModel(null, name, surname, dateFrom, dateTo, place); 
+    this._http.post('employees', employee).subscribe (
+      error => console.log(error));*/
   }
 
-  setPlaceDB() {
-
+  setPlaceDB(employee: EmployeeModel, stationID: string) {
+    employee.placeId = stationID;
+    this._http.put<EmployeeModel>('employees/'+employee.id, employee).subscribe (
+      error => console.log(error));
+    this.stations.forEach(element => {
+      if (stationID == element.stationId) {
+        element.employeeId = employee.id;
+        return this._http.put<StationModel>('stations/'+element.id, element).subscribe (
+          error => console.log(error));
+      }      
+    });
   }
 
-  deletePlaceeDB() {
-
+  deletePlaceeDB(employee: EmployeeModel) {
+    this.stations.forEach(element => {
+      if (employee.placeId == element.stationId) {
+        element.employeeId = null;
+        return this._http.put<StationModel>('stations/'+element.id, element).subscribe (
+          error => console.log(error));
+      }      
+    });
+    employee.placeId = null;
+    this._http.put<EmployeeModel>('employees/'+employee.id, employee).subscribe (
+      error => console.log(error));
   }
 
 }

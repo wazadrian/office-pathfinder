@@ -83,7 +83,7 @@
     <input class="form-control" type="text" name= "place" placeholder="Place" style="font-size: 19px" ngModel #position required>
     <h1 style="font-size: 26px">List of employees:</h1>
     <select name="selectEmployee" id="selectEmployee" (change)="setSelected(selectedValue)" [(ngModel)]="selectedValue"  (ngModelChange)="selectedValue=$event;" size="10" value="{{ selectedValue }}" required>
-      <option style="font-size: 19px" *ngFor="let emp of employees" [value]="emp.employeeId">
+      <option style="font-size: 19px" *ngFor="let emp of employees" [value]="emp.id">
             {{ emp.employeeName }} {{ emp.employeeSurname }} - {{ emp.employeePosition }} - {{ emp.placeId }}
       </option>
     </select>
@@ -99,7 +99,7 @@
       <h1 style="font-size: 20px"><i>Pick one employee</i></h1>
       <h1 style="font-size: 26px">List of employees:</h1>
       <select name="selectEmployee" id="selectEmployee" (change)="setSelected(selectedValue)" [(ngModel)]="selectedValue"  (ngModelChange)="selectedValue=$event;" size="10" value="{{ selectedValue }}" required>
-        <option style="font-size: 19px" *ngFor="let emp of employees" [value]="emp.employeeId">
+        <option style="font-size: 19px" *ngFor="let emp of employees" [value]="emp.id">
                 {{ emp.placeId }} - {{ emp.employeeName }} {{ emp.employeeSurname }}
         </option>
       </select>      
