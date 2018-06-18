@@ -43,14 +43,15 @@ export class StationsComponent implements OnInit {
         if (this.prevEventSrcID != "" && element.stationId == this.prevEventSrcID) prevEmpty = true;
       }
     });
-    //console.log("Stacja prev: " + this.prevStationClicked + " click: " + this.stationClicked + " was: " + this.wasSearching);
-    if (this.prevEventSrcID[0] === 's' && !this.equalsBtn(this.placeClicked) && !prevEmpty) {
-      //console.log("fade " + this.prevEventSrcID);
+    console.log("Stacja prev: " + this.prevStationClicked + " click: " + this.stationClicked + " was: " + this.wasSearching);
+    //if ((this.prevEventSrcID[0] === 's' && !this.equalsBtn(this.placeClicked) && !prevEmpty) || (this.placeClicked == "buttonClear" && !prevEmpty)) {
+    if (this.prevEventSrcID[0] === 's' && (!this.equalsBtn(this.placeClicked) || this.placeClicked == "buttonClear")  && !prevEmpty) {
+      console.log("fade " + this.prevEventSrcID);
       this.fadeOut(this.prevEventSrcID);
     }
-    if (!empty && this.placeClicked != "") {
+    if (!empty && this.placeClicked != "" && !this.equalsBtn(this.placeClicked) && this.placeClicked != "buttonClear") {
       this.letMeShine(this.placeClicked);
-      //console.log("shine " + this.placeClicked);
+      console.log("shine " + this.placeClicked);
     }
     this.prevEventSrcID = this.placeClicked;
     this.lastSearchID = this.placeClicked;
