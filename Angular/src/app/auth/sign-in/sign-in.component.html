@@ -1,0 +1,10 @@
+<div class="text-center">
+  <form class="form-signin" (ngSubmit)="onSignIn(f)" #f="ngForm">
+      <h1 style="font-size: 26px">Please sign in</h1>
+      <label class="sr-only" for="login">Login</label>
+      <input type="login" id="login" name="login" placeholder="Login" style="font-size: 19px" ngModel class="form-control">
+      <label class="sr-only" for="password">Password</label>
+      <input type="password" id="password" name="password" placeholder="Password" style="font-size: 19px" ngModel class="form-control">
+      <button class="btn btn-lg btn-primary btn-block" style="font-size: 20px" type="submit">Sign in</button>
+  </form>
+</div>

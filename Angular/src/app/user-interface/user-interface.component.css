@@ -1,0 +1,160 @@
+.panel-heading {
+  font-size: 20px;
+  font-family: Consolas, 'Times New Roman', Times, serif;
+  text-align: center;
+}
+
+.icon-btn {
+  height: 50px;
+  width: 70px;
+}
+
+h1,
+h2 {
+  text-align: center;
+}
+
+table,
+th,
+td {
+  font-size: 16px;
+  border: 1px solid black;
+}
+
+.fire {
+  position: absolute;
+  left: -460px;
+  top: 125px;
+}
+.water {
+  position: absolute;
+  left: -525px;
+  top: 510px;
+}
+.water2 {
+  position: absolute;
+  left: -610px;
+  top: 1090px;
+}
+.water3 {
+  position: absolute;
+  left: -220px;
+  top: 1050px;
+}
+.water4 {
+  position: absolute;
+  left: 670px;
+  top: 1050px;
+  width: 50px;
+}
+.water5 {
+  position: absolute;
+  left: 1160px;
+  top: 800px;
+  width: 50px;
+}
+.coffee {
+  position: absolute;
+  left: -555px;
+  top: 510px;
+}
+.coffee2 {
+  position: absolute;
+  left: -610px;
+  top: 1060px;
+}
+.coffee3 {
+  position: absolute;
+  left: -200px;
+  top: 1050px;
+}
+.coffee4 {
+  position: absolute;
+  left: 660px;
+  top: 1090px;
+  width: 50px;
+}
+.coffee5 {
+  position: absolute;
+  left: 1160px;
+  top: 760px;
+  width: 50px;
+}
+.aid {
+  position: absolute;
+  left: -560px;
+  top: 125px;
+}
+.printer {
+  position: absolute;
+  left: -360px;
+  top: 115px;
+}
+.printer2 {
+  position: absolute;
+  left: -575px;
+  top: 520px;
+}
+.printer3 {
+  position: absolute;
+  left: -320px;
+  top: 1165px;
+}
+.printer4 {
+  position: absolute;
+  left: 175px;
+  top: 1035px;
+}
+.printer5 {
+  position: absolute;
+  left: 1155px;
+  top: 675px;
+  width: 50px;
+}
+.eat {
+  position: absolute;
+  left: -600px;
+  top: 510px;
+}
+.eat2 {
+  position: absolute;
+  left: -610px;
+  top: 1120px;
+}
+.eat3 {
+  position: absolute;
+  left: -170px;
+  top: 1050px;
+}
+.eat4 {
+  position: absolute;
+  left: 670px;
+  top: 1020px;
+  width: 50px;
+}
+.eat5 {
+  position: absolute;
+  left: 1160px;
+  top: 730px;
+  width: 50px;
+}
+.info {
+  position: absolute;
+  left: -260px;
+  top: 125px;
+}
+.bed {
+  position: absolute;
+  left: -220px;
+  top: 125px;
+}
+.active {
+  position: absolute;
+  left: -400px;
+  top: 125px;
+}
+.health {
+  position: absolute;
+  left: -660px;
+  top: 125px;
+}
