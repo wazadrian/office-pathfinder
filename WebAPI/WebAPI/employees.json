@@ -1,0 +1,72 @@
+[
+  {
+    "employeeId": 1,
+    "employeeName": "Maciek",
+    "employeeSurname": "Kołodziejski",
+    "employeePosition": "INF",
+    "placeId": "station0"
+  },
+  {
+    "employeeId": 2,
+    "employeeName": "Oskar",
+    "employeeSurname": "Sadowski",
+    "employeePosition": "INF",
+    "placeId": "station1"
+  },
+  {
+    "employeeId": 3,
+    "employeeName": "Mateusz",
+    "employeeSurname": "Janiszewski",
+    "employeePosition": "INF",
+    "placeId": "station3"
+  },
+  {
+    "employeeId": 4,
+    "employeeName": "Dominik",
+    "employeeSurname": "Malicki",
+    "employeePosition": "INF",
+    "placeId": "station4"
+  },
+  {
+    "employeeId": 5,
+    "employeeName": "Mateusz",
+    "employeeSurname": "Janiszewski",
+    "employeePosition": "INF",
+    "placeId": "station5"
+  },
+  {
+    "employeeId": 6,
+    "employeeName": "Marcin",
+    "employeeSurname": "Spasiński",
+    "employeePosition": "INF",
+    "placeId": "station6"
+  },
+  {
+    "employeeId": 7,
+    "employeeName": "Mateusz",
+    "employeeSurname": "Janiszewski",
+    "employeePosition": "INF",
+    "placeId": "station7"
+  },
+  {
+    "employeeId": 8,
+    "employeeName": "Adrian",
+    "employeeSurname": "Wąż",
+    "employeePosition": "INF",
+    "placeId": "station8"
+  },
+  {
+    "employeeId": 9,
+    "employeeName": "Jan",
+    "employeeSurname": "Kowalski",
+    "employeePosition": "HR",
+    "placeId": "station9"
+  },
+  {
+    "employeeId": 10,
+    "employeeName": "Arnold",
+    "employeeSurname": "Boczek",
+    "employeePosition": "BOSS",
+    "placeId": "station10"
+  }
+]
