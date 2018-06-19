@@ -6,7 +6,6 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { StationsComponent } from './clickable-stations/stations.component';
-import { ConferenceRoomsComponent } from './conference-rooms/conference-rooms.component';
 import { MapComponent } from './map/map.component';
 import { UserInterfaceComponent } from './user-interface/user-interface.component';
 import { ClickableOfficesComponent } from './clickable-offices/clickable-offices.component';
@@ -30,7 +29,6 @@ import { ApiService } from './api.service';
   declarations: [
     AppComponent,
     StationsComponent,
-    ConferenceRoomsComponent,
     MapComponent,
     UserInterfaceComponent,
     ClickableOfficesComponent,
