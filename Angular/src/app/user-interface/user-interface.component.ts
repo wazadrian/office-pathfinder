@@ -240,7 +240,6 @@ export class UserInterfaceComponent implements OnInit, AfterContentChecked {
         data === element.guestSurname ||
         data === element.id
       ) {
-        console.log('xdd');
         this.foundThing += element.guestName + ' ' + element.guestSurname;
         console.log('gosc');
         this.searchedGuest = element;
