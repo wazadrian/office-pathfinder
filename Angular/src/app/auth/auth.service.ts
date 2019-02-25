@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { tokenNotExpired } from 'angular2-jwt';
 import { AuthModel } from '../models/auth.model';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable()
 export class AuthService {
-  constructor(private _http: HttpClient, private router: Router) {}
+  constructor(private _http: HttpClient, private router: Router) { }
   url = 'Authorize';
 
   public getToken(): string {
@@ -14,8 +14,9 @@ export class AuthService {
   }
 
   public isAuthenticated(): boolean {
+    const helper = new JwtHelperService();
     const token = this.getToken();
-    return tokenNotExpired(null, token);
+    return !helper.isTokenExpired(token);
   }
 
   signUpUser(email: string, password: string) {

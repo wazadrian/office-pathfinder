@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { StationModel } from './models/station.model';
+import { BehaviorSubject } from 'rxjs';
 
 
 @Injectable()
 export class DataService {
 
 
-  private stationSource = new BehaviorSubject<StationModel>( { id: null, stationId: null, employeeId: null, guestId: null } );
+  private stationSource = new BehaviorSubject<StationModel>({ id: null, stationId: null, employeeId: null, guestId: null });
 
-  private messageSource = new BehaviorSubject<string>("");
-  private messageForSearch = new BehaviorSubject<string>("");
+  private messageSource = new BehaviorSubject<string>('');
+  private messageForSearch = new BehaviorSubject<string>('');
   private messageWC = new BehaviorSubject<boolean>(false);
   private messageElevator = new BehaviorSubject<boolean>(false);
   private messageWater = new BehaviorSubject<boolean>(false);
@@ -42,76 +42,76 @@ export class DataService {
   currentMsgBed = this.messageElevator.asObservable();
   currentMsgActive = this.messageElevator.asObservable();
   currentMsgHealth = this.messageElevator.asObservable();
-  currentMsgSearch= this.messageSearch.asObservable();
-  currentMsgClear= this.messageClear.asObservable();
+  currentMsgSearch = this.messageSearch.asObservable();
+  currentMsgClear = this.messageClear.asObservable();
 
   constructor() { }
 
   changeStations(station: StationModel) {
-    this.stationSource.next(station)
+    this.stationSource.next(station);
   }
 
   changeMsgClear(message: boolean) {
-    this.messageClear.next(message)
+    this.messageClear.next(message);
   }
 
   changeMessage(message: string) {
-    this.messageSource.next(message)
+    this.messageSource.next(message);
   }
 
-  changeMsgWC(wanted : boolean) {
-    this.messageWC.next(wanted)
+  changeMsgWC(wanted: boolean) {
+    this.messageWC.next(wanted);
   }
 
-  changeMsgElevator(wanted : boolean) {
-    this.messageElevator.next(wanted)
+  changeMsgElevator(wanted: boolean) {
+    this.messageElevator.next(wanted);
   }
 
-  changeDataForSearch(data : string) {
-    this.messageForSearch.next(data)
+  changeDataForSearch(data: string) {
+    this.messageForSearch.next(data);
   }
 
-  changeMsgWater(wanted : boolean) {
-    this.messageWater.next(wanted)
+  changeMsgWater(wanted: boolean) {
+    this.messageWater.next(wanted);
   }
 
-  changeMsgFire(wanted : boolean) {
-    this.messageFire.next(wanted)
+  changeMsgFire(wanted: boolean) {
+    this.messageFire.next(wanted);
   }
 
-  changeMsgCoffee(wanted : boolean) {
-    this.messageCoffee.next(wanted)
+  changeMsgCoffee(wanted: boolean) {
+    this.messageCoffee.next(wanted);
   }
 
-  changeMsgAid(wanted : boolean) {
-    this.messageAid.next(wanted)
+  changeMsgAid(wanted: boolean) {
+    this.messageAid.next(wanted);
   }
 
-  changeMsgPrinter(wanted : boolean) {
-    this.messagePrinter.next(wanted)
+  changeMsgPrinter(wanted: boolean) {
+    this.messagePrinter.next(wanted);
   }
 
-  changeMsgEat(wanted : boolean) {
-    this.messageEat.next(wanted)
+  changeMsgEat(wanted: boolean) {
+    this.messageEat.next(wanted);
   }
 
-  changeMsgInfo(wanted : boolean) {
-    this.messageInfo.next(wanted)
+  changeMsgInfo(wanted: boolean) {
+    this.messageInfo.next(wanted);
   }
 
-  changeMsgBed(wanted : boolean) {
-    this.messageBed.next(wanted)
+  changeMsgBed(wanted: boolean) {
+    this.messageBed.next(wanted);
   }
 
-  changeMsgActive(wanted : boolean) {
-    this.messageActive.next(wanted)
+  changeMsgActive(wanted: boolean) {
+    this.messageActive.next(wanted);
   }
 
-  changeMsgHealth(wanted : boolean) {
-    this.messageHealth.next(wanted)
+  changeMsgHealth(wanted: boolean) {
+    this.messageHealth.next(wanted);
   }
 
-  changeMsgSearch(wanted : boolean) {
-    this.messageSearch.next(wanted)
+  changeMsgSearch(wanted: boolean) {
+    this.messageSearch.next(wanted);
   }
 }
