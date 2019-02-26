@@ -1,0 +1,8 @@
+.position{
+    position: absolute;
+    left: 850px;
+    top: 83px;
+    width: 605px;
+    min-height: 850px;
+    border-style: solid;
+}
